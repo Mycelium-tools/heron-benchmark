@@ -12,7 +12,7 @@ Usage:
 
 This will:
 1. Download the latest questions from Google Sheets
-2. Save to dataset/seal_questions.csv (with a canary column injected)
+2. Save to dataset/heron_questions.csv (with a canary column injected)
 3. Upload to HuggingFace
 4. Regenerate samples.json
 """
@@ -29,11 +29,11 @@ from canary import CANARY
 
 load_dotenv()
 
-# Configuration — paste the published-CSV URL of the SEAL Google Sheet here.
-GOOGLE_SHEETS_URL = ""
-LOCAL_CSV = "dataset/seal_questions.csv"
-HF_CSV = "seal_questions.csv"          # filename as stored in the HF repo
-HF_DATASET = "mycelium-ai/seal-benchmark-questions"
+# Configuration — paste the published-CSV URL of the HERON Google Sheet here.
+GOOGLE_SHEETS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTT0O6nvlUXvQiD3nm-RGfwbdCoXJaopYTN3ZlrKWYYzRf6hYFxs3EXRV_oZ0m7FYK2-XWSTRZgfh4o/pub?output=csv"
+LOCAL_CSV = "dataset/heron_questions.csv"
+HF_CSV = "heron_questions.csv"          # filename as stored in the HF repo
+HF_DATASET = "mycelium-ai/heron-benchmark-questions"
 
 
 def get_existing_ids():
@@ -71,7 +71,7 @@ def download_from_google_sheets():
     if not GOOGLE_SHEETS_URL:
         print("❌ Error: GOOGLE_SHEETS_URL is not set in sync_questions_to_hf.py")
         print("\nSteps:")
-        print("1. Open your SEAL Google Sheet")
+        print("1. Open your HERON Google Sheet")
         print("2. File → Share → Publish to web")
         print("3. Select 'Comma-separated values (.csv)'")
         print("4. Copy the URL")
@@ -142,7 +142,7 @@ def upload_to_huggingface():
             commit_message="Sync from Google Sheets",
         )
         readme = (
-            "# SEAL Benchmark Questions\n\n"
+            "# HERON Benchmark Questions\n\n"
             "Factual accuracy on animal sentience — question dataset.\n\n"
             f"{CANARY}\n"
         )

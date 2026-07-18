@@ -1,5 +1,5 @@
 """
-SEAL Static Conversation Solver
+HERON Static Conversation Solver
 =============================
 Runs each question as a 1- or 2-turn conversation using static text from the dataset.
 

@@ -1,7 +1,7 @@
 [project]
-name = "seal-benchmark"
+name = "heron-benchmark"
 version = "0.1.0"
-description = "SEAL — factual accuracy on animal sentience: benchmark for accurate, calibrated claims about animal sentience, cognition, and welfare practices in LLMs"
+description = "HERON — Hidden-stakes Ethical Reasoning On Nonhumans: benchmark measuring moral consideration for animals in scenarios where welfare stakes are implicit"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [

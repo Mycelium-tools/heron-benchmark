@@ -1,7 +1,7 @@
 """
-Run a SEAL eval on a single question by ID.
+Run a HERON eval on a single question by ID.
 =============================
-Pulls from samples.json and uses the same seal_scorer as the full eval.
+Pulls from samples.json and uses the same heron_scorer as the full eval.
 
 Usage:
     python run_single_eval.py <question_id>
@@ -11,8 +11,8 @@ Usage:
 
 Log directory resolution (first match wins):
     1. --log-dir <path>
-    2. SEAL_LOG_DIR env
-    3. SEAL_USER env → logs/{SEAL_USER}_{Month}{Year}
+    2. HERON_LOG_DIR env
+    3. HERON_USER env → logs/{HERON_USER}_{Month}{Year}
     4. Default: logs/
 """
 
@@ -21,7 +21,7 @@ import json
 import os
 from datetime import datetime
 
-# Add src/ to path so seal.* absolute imports resolve when run from repo root.
+# Add src/ to path so heron.* absolute imports resolve when run from repo root.
 _src_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "src")
 if _src_dir not in sys.path:
     sys.path.insert(0, _src_dir)
@@ -29,13 +29,13 @@ if _src_dir not in sys.path:
 from inspect_ai import eval, Task
 from inspect_ai.dataset import Sample, MemoryDataset
 
-from seal.seal_solver import static_two_turn_conversation
-from seal.seal_scorer import seal_scorer
-from seal.seal_eval import MODELS, parse_tags
+from heron.heron_solver import static_two_turn_conversation
+from heron.heron_scorer import heron_scorer
+from heron.heron_eval import MODELS, parse_tags
 
 
 def get_log_dir(args=None):
-    """Resolve log dir from --log-dir, SEAL_LOG_DIR, SEAL_USER, or default logs/."""
+    """Resolve log dir from --log-dir, HERON_LOG_DIR, HERON_USER, or default logs/."""
     if args:
         for i, arg in enumerate(args):
             if arg.startswith("--log-dir="):
@@ -46,13 +46,13 @@ def get_log_dir(args=None):
                 log_dir = args[i + 1]
                 os.makedirs(log_dir, exist_ok=True)
                 return log_dir
-    if os.environ.get("SEAL_LOG_DIR"):
-        log_dir = os.environ["SEAL_LOG_DIR"]
+    if os.environ.get("HERON_LOG_DIR"):
+        log_dir = os.environ["HERON_LOG_DIR"]
         os.makedirs(log_dir, exist_ok=True)
         return log_dir
-    if os.environ.get("SEAL_USER"):
+    if os.environ.get("HERON_USER"):
         month_year = datetime.now().strftime("%B%Y")
-        log_dir = f"logs/{os.environ['SEAL_USER']}_{month_year}"
+        log_dir = f"logs/{os.environ['HERON_USER']}_{month_year}"
         os.makedirs(log_dir, exist_ok=True)
         return log_dir
     return "logs"
@@ -94,7 +94,7 @@ def main():
     tags = parse_tags(question.get("tags", []))
     turn2 = question.get("turn2", "")
     print(f"Running eval on question {question_id} ({'2-turn' if turn2 else '1-turn'})")
-    print(f"Tags: {tags or 'none (all dimensions)'}")
+    print(f"Tags: {tags or 'none'}")
     print(f"Turn 1: {question['question'][:120]}...")
     if turn2:
         print(f"Turn 2: {turn2[:120]}...")
@@ -114,9 +114,9 @@ def main():
     )
 
     test_task = Task(
-        dataset=MemoryDataset(samples=[sample], name=f"seal_single_{question_id}"),
+        dataset=MemoryDataset(samples=[sample], name=f"heron_single_{question_id}"),
         solver=[static_two_turn_conversation()],
-        scorer=seal_scorer(),
+        scorer=heron_scorer(),
     )
 
     log_dir = get_log_dir(sys.argv[1:])

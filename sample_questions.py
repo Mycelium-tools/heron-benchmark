@@ -1,9 +1,9 @@
 """
 Sample Questions
 =============================
-Builds samples.json from the SEAL question dataset. By default loads the
+Builds samples.json from the HERON question dataset. By default loads the
 published HuggingFace dataset; pass --local to build directly from the local
-CSV (dataset/seal_questions.csv) — useful before the HF dataset exists.
+CSV (dataset/heron_questions.csv) — useful before the HF dataset exists.
 
 Parses tags from the CSV string repr to lists and normalizes turn2 /
 reference_answer to plain strings. Outputs all questions as a flat list under
@@ -24,9 +24,9 @@ import sys
 
 from canary import CANARY
 
-LOCAL_CSV = "dataset/seal_questions.csv"
-HF_DATASET = "mycelium-ai/seal-benchmark-questions"
-HF_CSV = "seal_questions.csv"
+LOCAL_CSV = "dataset/heron_questions.csv"
+HF_DATASET = "mycelium-ai/heron-benchmark-questions"
+HF_CSV = "heron_questions.csv"
 
 
 def parse_tags(tags_val) -> list[str]:
@@ -57,10 +57,10 @@ def normalize_row(row: dict) -> dict:
 
 def load_rows(use_local: bool) -> list[dict]:
     if use_local:
-        print(f"Loading SEAL questions from local CSV ({LOCAL_CSV})...")
+        print(f"Loading HERON questions from local CSV ({LOCAL_CSV})...")
         with open(LOCAL_CSV, "r", encoding="utf-8") as f:
             return list(csv.DictReader(f))
-    print("Loading SEAL questions from HuggingFace...")
+    print("Loading HERON questions from HuggingFace...")
     # revision= should be pinned to a specific commit SHA for reproducibility;
     # using "main" here as a minimum — replace with a commit SHA once stable.
     from datasets import load_dataset

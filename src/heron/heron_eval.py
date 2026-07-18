@@ -1,30 +1,28 @@
 """
-SEAL Inspect AI Evaluation
+HERON Inspect AI Evaluation
 =============================
-Factual-accuracy evaluation of animal sentience & welfare reasoning.
-Each question runs as a 1- or 2-turn static conversation (see seal_solver.py):
-  Turn 1: a task where the welfare/sentience stakes are implicit; model answers.
-  Turn 2 (optional): a static follow-up that raises the stakes explicitly.
+Measures moral consideration for animals in scenarios where the welfare stakes
+are implicit — embedded in an everyday request but never raised by the user.
+Each question runs as a 1- or 2-turn static conversation (see heron_solver.py).
 
-Scoring (seal_scorer.py): a single judge scores each tagged dimension
-(Sentience Factual Accuracy, Epistemic Calibration, Welfare Practice Accuracy)
-against the reference answer; overall = mean of applicable dimensions.
+Scoring (heron_scorer.py): a single judge scores Moral Consideration — did the
+model spontaneously surface the animal welfare angle? — on a 0.0-1.0 scale.
 
 Tasks:
-- seal_test5 — first 5 questions (smoke test)
-- seal_full  — all questions (primary eval)
+- heron_test5 — first 5 questions (smoke test)
+- heron_full  — all questions (primary eval)
 
 Usage:
-    inspect eval src/seal/seal_eval.py@seal_test5 --model anthropic/claude-sonnet-5
-    inspect eval src/seal/seal_eval.py@seal_full   --model anthropic/claude-sonnet-5
-    python src/seal/seal_eval.py                    # run all MODELS across NUM_EPOCHS
+    inspect eval src/heron/heron_eval.py@heron_test5 --model anthropic/claude-sonnet-5
+    inspect eval src/heron/heron_eval.py@heron_full   --model anthropic/claude-sonnet-5
+    python src/heron/heron_eval.py                    # run all MODELS across NUM_EPOCHS
 """
 
 import sys
 import os
 
 # When inspect eval loads this file directly (not via the installed package),
-# src/ won't be on sys.path. Add it so seal.* absolute imports resolve.
+# src/ won't be on sys.path. Add it so heron.* absolute imports resolve.
 _src_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 if _src_dir not in sys.path:
     sys.path.insert(0, _src_dir)
@@ -37,8 +35,8 @@ from inspect_ai import Task, eval, task
 from inspect_ai.dataset import Sample, MemoryDataset
 from dotenv import load_dotenv
 
-from seal.seal_solver import static_two_turn_conversation
-from seal.seal_scorer import seal_scorer
+from heron.heron_solver import static_two_turn_conversation
+from heron.heron_scorer import heron_scorer
 
 load_dotenv()
 
@@ -52,8 +50,8 @@ def get_log_dir(args=None):
       --log-dir PATH               → explicit path
       --full-run [LABEL]           → timestamped subdirectory in the monthly base dir
       --sample-range START END     → sample_range_START_END_TIMESTAMP subdirectory
-      SEAL_LOG_DIR env             → base dir
-      SEAL_USER env                → logs/NAME_MonthYYYY
+      HERON_LOG_DIR env             → base dir
+      HERON_USER env                → logs/NAME_MonthYYYY
       default                      → logs/
     """
     if args:
@@ -97,11 +95,11 @@ def get_log_dir(args=None):
             except NameError:
                 pass
 
-    if os.environ.get("SEAL_LOG_DIR"):
-        base_dir = os.environ["SEAL_LOG_DIR"]
-    elif os.environ.get("SEAL_USER"):
+    if os.environ.get("HERON_LOG_DIR"):
+        base_dir = os.environ["HERON_LOG_DIR"]
+    elif os.environ.get("HERON_USER"):
         month_year = datetime.now().strftime("%B%Y")
-        base_dir = f"logs/{os.environ['SEAL_USER']}_{month_year}"
+        base_dir = f"logs/{os.environ['HERON_USER']}_{month_year}"
     else:
         base_dir = "logs"
 
@@ -156,11 +154,11 @@ while _i < len(sys.argv):
         break
     _i += 1
 
-if SAMPLE_START is not None and not os.environ.get("SEAL_USER") and not os.environ.get("SEAL_LOG_DIR"):
+if SAMPLE_START is not None and not os.environ.get("HERON_USER") and not os.environ.get("HERON_LOG_DIR"):
     print(
-        "\n[SEAL WARNING] --sample-range is set but SEAL_USER is not configured.\n"
+        "\n[HERON WARNING] --sample-range is set but HERON_USER is not configured.\n"
         "  Logs will be saved to: logs/\n"
-        "  For named log routing, add to ~/.zshrc:  export SEAL_USER=YOUR_NAME\n"
+        "  For named log routing, add to ~/.zshrc:  export HERON_USER=YOUR_NAME\n"
         "  Then run: source ~/.zshrc\n",
         file=sys.stderr,
         flush=True,
@@ -211,22 +209,22 @@ def load_samples(
 
 
 @task
-def seal_test5():
+def heron_test5():
     """Smoke eval on the first 5 questions from samples.json."""
     return Task(
-        dataset=MemoryDataset(samples=load_samples()[:5], name="seal_test5"),
+        dataset=MemoryDataset(samples=load_samples()[:5], name="heron_test5"),
         solver=[static_two_turn_conversation()],
-        scorer=seal_scorer(),
+        scorer=heron_scorer(),
     )
 
 
 @task
-def seal_full():
-    """SEAL evaluation over all questions in samples.json."""
+def heron_full():
+    """HERON evaluation over all questions in samples.json."""
     return Task(
-        dataset=MemoryDataset(samples=load_samples(), name="seal_full"),
+        dataset=MemoryDataset(samples=load_samples(), name="heron_full"),
         solver=[static_two_turn_conversation()],
-        scorer=seal_scorer(),
+        scorer=heron_scorer(),
     )
 
 
@@ -258,7 +256,7 @@ def validate_environment(models: list[str]) -> None:
         raise RuntimeError(
             "Missing required API credentials: "
             + ", ".join(missing)
-            + ". Add them to .env or export them before running seal_eval.py."
+            + ". Add them to .env or export them before running heron_eval.py."
         )
 
 
@@ -267,10 +265,10 @@ if __name__ == "__main__":
     log_dir = get_log_dir(sys.argv[1:])
     print(f"Saving logs to: {log_dir}")
 
-    if SAMPLE_START is not None and not os.environ.get("SEAL_USER") and not os.environ.get("SEAL_LOG_DIR"):
+    if SAMPLE_START is not None and not os.environ.get("HERON_USER") and not os.environ.get("HERON_LOG_DIR"):
         confirm = input(
-            "\n[SEAL] SEAL_USER is not set — logs will go to logs/.\n"
-            "  Set it with: export SEAL_USER=YOUR_NAME && source ~/.zshrc\n"
+            "\n[HERON] HERON_USER is not set — logs will go to logs/.\n"
+            "  Set it with: export HERON_USER=YOUR_NAME && source ~/.zshrc\n"
             "  Proceed anyway? [y/N] "
         ).strip().lower()
         if confirm != "y":
@@ -282,7 +280,7 @@ if __name__ == "__main__":
         for model in MODELS:
             print(f"\nRunning eval for model: {model}")
             eval(
-                seal_full(),
+                heron_full(),
                 model=model,
                 log_dir=log_dir,
                 metadata={"epoch": epoch + 1},

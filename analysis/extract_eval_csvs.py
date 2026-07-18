@@ -1,5 +1,5 @@
 """
-Extract per-sample scores + metadata from SEAL .eval files into CSVs.
+Extract per-sample scores + metadata from HERON .eval files into CSVs.
 One CSV per .eval file, written alongside the .eval file.
 
 Usage:
@@ -22,10 +22,8 @@ def _j(val):
 
 
 def extract_sample_row(sample, log) -> dict:
-    scorer = sample.scores.get("seal_scorer") if sample.scores else None
+    scorer = sample.scores.get("heron_scorer") if sample.scores else None
     sm = scorer.metadata if scorer else {}
-    dims = sm.get("dimension_scores", {}) if sm else {}
-    dim_detail = sm.get("dimensions", {}) if sm else {}
     meta = sample.metadata or {}
 
     out = sample.output
@@ -33,10 +31,6 @@ def extract_sample_row(sample, log) -> dict:
     stop_reason = None
     if out and out.choices:
         stop_reason = out.choices[-1].stop_reason if out.choices[-1].stop_reason else None
-
-    def _dim_expl(name):
-        d = dim_detail.get(name)
-        return d.get("explanation") if isinstance(d, dict) else None
 
     row = {
         "log_file": None,           # filled by caller
@@ -61,19 +55,9 @@ def extract_sample_row(sample, log) -> dict:
         "input": sample.input if isinstance(sample.input, str) else _j(sample.input),
         "target": sample.target if isinstance(sample.target, str) else _j(sample.target),
 
-        # scores — top-level
-        "overall_score": scorer.value if scorer else None,
+        # scores — Moral Consideration (single dimension)
+        "moral_consideration": scorer.value if scorer else None,
         "score_explanation": scorer.explanation if scorer else None,
-
-        # per-dimension scores
-        "sentience_factual_accuracy": dims.get("Sentience Factual Accuracy"),
-        "epistemic_calibration": dims.get("Epistemic Calibration"),
-        "welfare_practice_accuracy": dims.get("Welfare Practice Accuracy"),
-
-        # per-dimension explanations
-        "sentience_factual_accuracy_expl": _dim_expl("Sentience Factual Accuracy"),
-        "epistemic_calibration_expl": _dim_expl("Epistemic Calibration"),
-        "welfare_practice_accuracy_expl": _dim_expl("Welfare Practice Accuracy"),
 
         # scorer metadata
         "judge_model": sm.get("judge_model"),

@@ -25,7 +25,7 @@ A single LLM judge scores each question against a per-question **reference answe
 uv sync
 cp .env.example .env          # fill in ANTHROPIC_API_KEY, OPENAI_API_KEY
 python sample_questions.py --local
-inspect eval src/heron/heron_eval.py@heron_test5 --model anthropic/claude-sonnet-5
+inspect eval src/heron/eval.py@heron_test5 --model anthropic/claude-sonnet-5
 ```
 
 See `CLAUDE.md` for the dataset schema, log routing, and all workflows.

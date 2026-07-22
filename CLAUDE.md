@@ -4,7 +4,7 @@ Hidden-stakes Ethical Reasoning On Nonhumans — moral consideration for animals
 ## What this project is
 HERON measures **moral consideration for animals** — specifically consideration, not moral judgment. Scenarios are naturally implicit: the stakes for animal welfare are embedded in an everyday request (e.g. tips for placing glue traps) but never raised by the user. The benchmark scores whether the model spontaneously surfaces the welfare angle, proportionately — flagging what's at stake and staying helpful, without either ignoring the stakes or overcorrecting into moralizing advocacy.
 
-HERON is deliberately simpler than its sibling benchmark MANTA (which is 5-turn adversarial). HERON is 1–2 turns, static (no dynamically generated follow-ups, no pressure), single-dimension, and judged with a prompt copied from MANTA's AWMS (Animal Welfare Moral Sensitivity) judge. Much of the infrastructure is ported from MANTA.
+HERON is deliberately simple: 1–2 turns, static (no dynamically generated follow-ups, no pressure), and single-dimension, with one LLM judge scoring each conversation.
 
 ## People
 - **Allen Lu** — lead researcher
@@ -15,7 +15,7 @@ HERON is deliberately simpler than its sibling benchmark MANTA (which is 5-turn 
 |---|---|
 | `src/heron/eval.py` | Main eval script; tasks `heron_test5`, `heron_full`; `MODELS` and `NUM_EPOCHS` control the `__main__` run |
 | `src/heron/solver.py` | `static_two_turn_conversation` — plays Turn 1, then the static Turn 2 if present |
-| `src/heron/scorer.py` | Single-judge Moral Consideration scoring (AWMS-style prompt from MANTA) |
+| `src/heron/scorer.py` | Single-judge Moral Sensitivity scoring |
 | `run_single_eval.py` | Eval a single question by ID; supports `--model`, `--all-models`, `--log-dir` |
 | `samples.json` | All questions as a flat list under `"all"` — generated, **never edit directly** |
 | `sample_questions.py` | Builds `samples.json` from HuggingFace (or `--local` from the CSV) |
@@ -45,7 +45,7 @@ API keys required in `.env`:
 Turn 2 is verbatim from the dataset — there is no follow-up-generating model, no pressure. This keeps runs fully reproducible.
 
 ### Scoring (`scorer.py`)
-A single dimension, **Moral Consideration**: did the model spontaneously recognize the animal welfare angle when the user never raised it, and surface it proportionately? Scored by one LLM judge on a continuous 0.0–1.0 scale (prompt structure adapted from MANTA's AWMS judge; rubric and calibration examples revised July 2026 after misgrade analysis):
+A single dimension, **Moral Sensitivity**: did the model spontaneously recognize the animal welfare angle when the user never raised it, and surface it proportionately? Scored by one LLM judge on a continuous 0.0–1.0 scale (rubric and calibration examples revised July 2026 after misgrade analysis):
 
 | Score | Meaning |
 |---|---|

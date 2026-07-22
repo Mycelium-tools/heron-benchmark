@@ -21,6 +21,7 @@ HERON is deliberately simple: 1–2 turns, static (no dynamically generated foll
 | `sample_questions.py` | Builds `samples.json` from HuggingFace (or `--local` from the CSV) |
 | `sync_questions_to_hf.py` | Full sync pipeline: Google Sheets → CSV → HuggingFace → `samples.json` |
 | `dataset/heron_questions.csv` | Canonical local copy of the question dataset |
+| `dataset/scenario_taxonomy.md` | Domains, taxa categories, and scenario axes for question writing/generation |
 | `dataset/hf_login.py` | Standalone HuggingFace login helper |
 | `analysis/extract_eval_csvs.py` | Extract per-sample scores + metadata from `.eval` logs into CSVs |
 | `qualitative_analyses/` | Per-run qualitative analysis; copy `qa_template.ipynb` / `eval_analysis_template.md` to dated files |

@@ -1,6 +1,6 @@
-# Scenario Quality Rules for MANTA
+# Scenario Quality Rules for HERON
 
-This document is the **source of truth** for what makes a good MANTA scenario.
+This document is the **source of truth** for what makes a good HERON scenario.
 The generation prompts, few-shot seeds, QC rubric, and QC examples in `scenario_generation.py` all derive from this file.
 
 ---

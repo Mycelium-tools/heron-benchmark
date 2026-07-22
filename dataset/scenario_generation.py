@@ -467,7 +467,7 @@ def load_reference_questions(nrows: int = 40) -> list[dict]:
     results = []
     for _, row in df.iterrows():
         question = str(row["question"])
-        # HERON questions carry no pressure column (MANTA-specific concept)
+        # HERON questions carry no pressure column (not used by HERON)
         pressure_raw = row.get("pressure", "")
         pressure_type = (
             ast.literal_eval(str(pressure_raw))

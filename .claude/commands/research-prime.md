@@ -5,9 +5,9 @@
 - `CLAUDE.md` — project overview, schema, dimensions, workflows, conventions
 - `README.md` — what HERON is + the canonical silkworm example
 - `pyproject.toml` — deps and package layout
-- `src/heron/heron_eval.py` — tasks, dataset loading, log routing, MODELS
-- `src/heron/heron_solver.py` — 1–2 turn static conversation
-- `src/heron/heron_scorer.py` — dimensions, judge, reference-anchored scoring
+- `src/heron/eval.py` — tasks, dataset loading, log routing, MODELS
+- `src/heron/solver.py` — 1–2 turn static conversation
+- `src/heron/scorer.py` — dimensions, judge, reference-anchored scoring
 - `dataset/heron_questions.csv` — current question set
 
 ## Structure

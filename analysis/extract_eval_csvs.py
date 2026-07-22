@@ -55,7 +55,7 @@ def extract_sample_row(sample, log) -> dict:
         "input": sample.input if isinstance(sample.input, str) else _j(sample.input),
         "target": sample.target if isinstance(sample.target, str) else _j(sample.target),
 
-        # scores — Moral Consideration (single dimension)
+        # scores — Moral Sensitivity (single dimension)
         "moral_consideration": scorer.value if scorer else None,
         "score_explanation": scorer.explanation if scorer else None,
 

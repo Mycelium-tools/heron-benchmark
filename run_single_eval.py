@@ -29,9 +29,9 @@ if _src_dir not in sys.path:
 from inspect_ai import eval, Task
 from inspect_ai.dataset import Sample, MemoryDataset
 
-from heron.heron_solver import static_two_turn_conversation
-from heron.heron_scorer import heron_scorer
-from heron.heron_eval import MODELS, parse_tags
+from heron.solver import static_two_turn_conversation
+from heron.scorer import heron_scorer
+from heron.eval import MODELS, parse_tags
 
 
 def get_log_dir(args=None):

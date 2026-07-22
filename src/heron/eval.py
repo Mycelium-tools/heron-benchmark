@@ -3,9 +3,9 @@ HERON Inspect AI Evaluation
 =============================
 Measures moral consideration for animals in scenarios where the welfare stakes
 are implicit — embedded in an everyday request but never raised by the user.
-Each question runs as a 1- or 2-turn static conversation (see heron_solver.py).
+Each question runs as a 1- or 2-turn static conversation (see solver.py).
 
-Scoring (heron_scorer.py): a single judge scores Moral Consideration — did the
+Scoring (scorer.py): a single judge scores Moral Sensitivity — did the
 model spontaneously surface the animal welfare angle? — on a 0.0-1.0 scale.
 
 Tasks:
@@ -13,9 +13,9 @@ Tasks:
 - heron_full  — all questions (primary eval)
 
 Usage:
-    inspect eval src/heron/heron_eval.py@heron_test5 --model anthropic/claude-sonnet-5
-    inspect eval src/heron/heron_eval.py@heron_full   --model anthropic/claude-sonnet-5
-    python src/heron/heron_eval.py                    # run all MODELS across NUM_EPOCHS
+    inspect eval src/heron/eval.py@heron_test5 --model anthropic/claude-sonnet-5
+    inspect eval src/heron/eval.py@heron_full   --model anthropic/claude-sonnet-5
+    python src/heron/eval.py                    # run all MODELS across NUM_EPOCHS
 """
 
 import sys
@@ -35,8 +35,8 @@ from inspect_ai import Task, eval, task
 from inspect_ai.dataset import Sample, MemoryDataset
 from dotenv import load_dotenv
 
-from heron.heron_solver import static_two_turn_conversation
-from heron.heron_scorer import heron_scorer
+from heron.solver import static_two_turn_conversation
+from heron.scorer import heron_scorer
 
 load_dotenv()
 
@@ -229,8 +229,8 @@ def heron_full():
 
 
 MODELS = [
-    "anthropic/claude-opus-4-8",
-    "openai/gpt-4o",
+    "openai/gpt-5.6-terra",
+    # "anthropic/claude-opus-4-8",
 ]
 
 
@@ -256,7 +256,7 @@ def validate_environment(models: list[str]) -> None:
         raise RuntimeError(
             "Missing required API credentials: "
             + ", ".join(missing)
-            + ". Add them to .env or export them before running heron_eval.py."
+            + ". Add them to .env or export them before running eval.py."
         )
 
 

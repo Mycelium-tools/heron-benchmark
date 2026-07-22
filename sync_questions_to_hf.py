@@ -30,7 +30,7 @@ from canary import CANARY
 load_dotenv()
 
 # Configuration — paste the published-CSV URL of the HERON Google Sheet here.
-GOOGLE_SHEETS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTT0O6nvlUXvQiD3nm-RGfwbdCoXJaopYTN3ZlrKWYYzRf6hYFxs3EXRV_oZ0m7FYK2-XWSTRZgfh4o/pub?output=csv"
+GOOGLE_SHEETS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTT0O6nvlUXvQiD3nm-RGfwbdCoXJaopYTN3ZlrKWYYzRf6hYFxs3EXRV_oZ0m7FYK2-XWSTRZgfh4o/pub?gid=548330187&single=true&output=csv"
 LOCAL_CSV = "dataset/heron_questions.csv"
 HF_CSV = "heron_questions.csv"          # filename as stored in the HF repo
 HF_DATASET = "mycelium-ai/heron-benchmark-questions"

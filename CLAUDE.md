@@ -23,6 +23,7 @@ HERON is deliberately simple: 1–2 turns, static (no dynamically generated foll
 | `dataset/heron_questions.csv` | Canonical local copy of the question dataset |
 | `dataset/hf_login.py` | Standalone HuggingFace login helper |
 | `analysis/extract_eval_csvs.py` | Extract per-sample scores + metadata from `.eval` logs into CSVs |
+| `qualitative_analyses/` | Per-run qualitative analysis; copy `qa_template.ipynb` / `eval_analysis_template.md` to dated files |
 | `canary.py` | BIG-bench-style contamination canary (unique GUID; never reuse or change) |
 | `logs/` | Generated `.eval` files from evaluation runs |
 | `.claude/commands/` | Custom Claude slash commands |

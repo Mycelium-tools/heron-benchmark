@@ -16,6 +16,7 @@ dependencies = [
     "anthropic>=0.97.0",
     "instructor>=1.7.0",
     "pandas>=2.2.0",
+    "google-genai>=2.13.0",
 ]
 
 [build-system]

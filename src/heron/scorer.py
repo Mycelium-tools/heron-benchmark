@@ -23,7 +23,7 @@ from inspect_ai.model import get_model, ChatMessageSystem, ChatMessageUser
 
 
 # --- Judge configuration -----------------------------------------------------
-JUDGE_DEFAULT = "anthropic/claude-opus-4-8"
+JUDGE_DEFAULT = "openai/gpt-5.6-terra"
 JUDGE_ALT = "openai/gpt-4o"
 JUDGE_CONCURRENCY = 8
 

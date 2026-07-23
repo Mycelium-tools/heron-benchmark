@@ -44,9 +44,16 @@ def parse_tags(tags_val) -> list[str]:
         return []
 
 
-def normalize_row(row: dict) -> dict:
-    """Normalize one raw CSV/HF row into a clean question dict."""
+def normalize_row(row: dict) -> dict | None:
+    """Normalize one raw CSV/HF row into a clean question dict.
+
+    Returns None for blank/placeholder rows (empty question text).
+    """
+    question = (row.get("question") or "").strip()
+    if not question:
+        return None
     row = dict(row)
+    row["question"] = question
     row["tags"] = parse_tags(row.get("tags"))
     row["turn2"] = (row.get("turn2") or "").strip()
     row["reference_answer"] = (row.get("reference_answer") or "").strip()
@@ -73,8 +80,10 @@ def main():
     use_local = "--local" in sys.argv[1:]
     rows = load_rows(use_local)
 
-    all_questions = [normalize_row(r) for r in rows]
-    print(f"\nTotal questions: {len(all_questions)}")
+    all_questions = [q for r in rows if (q := normalize_row(r)) is not None]
+    skipped = len(rows) - len(all_questions)
+    print(f"\nTotal questions: {len(all_questions)}"
+          + (f" (skipped {skipped} blank row(s))" if skipped else ""))
 
     samples = {
         "canary": CANARY,

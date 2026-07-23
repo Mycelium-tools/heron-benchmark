@@ -186,9 +186,12 @@ def load_samples(
 
     samples = []
     for q in questions:
+        question = q.get("question")
+        if not isinstance(question, str) or not question.strip():
+            continue
         tags = parse_tags(q.get("tags", []))
         samples.append(Sample(
-            input=q["question"],
+            input=question,
             target=json.dumps({"tags": tags}),
             id=str(q["id"]),
             metadata={

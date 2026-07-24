@@ -11,6 +11,15 @@ Usage:
         --model google/gemini-3.1-pro-preview
 """
 
+import os
+import sys
+
+# When inspect eval loads this file directly (not via the installed package),
+# src/ won't be on sys.path. Add it so heron.* absolute imports resolve.
+_src_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+if _src_dir not in sys.path:
+    sys.path.insert(0, _src_dir)
+
 from inspect_ai import Task, task
 from inspect_ai.dataset import MemoryDataset
 

@@ -33,8 +33,9 @@ JUDGE_CONCURRENCY = 8
 
 # Fixed judge for the paired old-vs-proportionality prompt experiment.
 # Keeping the model fixed isolates the effect of the judge prompt.
+# gpt-5.6-terra rejects temperature; leave GenerateConfig empty.
 PAIRED_JUDGE_MODEL = "openai/gpt-5.6-terra"
-PAIRED_JUDGE_CONFIG = GenerateConfig(temperature=0.0)
+PAIRED_JUDGE_CONFIG = GenerateConfig()
 PAIRED_OLD_PROMPT_VERSION = "moral-sensitivity-2026-07-22"
 PAIRED_PROPORTIONALITY_PROMPT_VERSION = "proportionality-v1"
 

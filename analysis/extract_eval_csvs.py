@@ -55,9 +55,13 @@ def extract_sample_row(sample, log) -> dict:
         "input": sample.input if isinstance(sample.input, str) else _j(sample.input),
         "target": sample.target if isinstance(sample.target, str) else _j(sample.target),
 
-        # scores — Moral Sensitivity (single dimension)
+        # score — stable key, current proportionality construct
         "moral_consideration": scorer.value if scorer else None,
         "score_explanation": scorer.explanation if scorer else None,
+        "proportionality_classification": sm.get("classification"),
+        "proportionality_prompt_version": sm.get("prompt_version"),
+        "judge_response": sm.get("judge_response"),
+        "judge_format_valid": sm.get("format_valid"),
 
         # scorer metadata
         "judge_model": sm.get("judge_model"),

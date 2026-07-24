@@ -17,22 +17,27 @@ This will:
 4. Regenerate samples.json
 """
 
-import os
+import argparse
 import csv
+import os
 import subprocess
+
 import requests
 from datasets import load_dataset
-from huggingface_hub import create_repo, upload_file, login
 from dotenv import load_dotenv
+from huggingface_hub import create_repo, login, upload_file
 
 from canary import CANARY
 
 load_dotenv()
 
-# Configuration — paste the published-CSV URL of the HERON Google Sheet here.
-GOOGLE_SHEETS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTT0O6nvlUXvQiD3nm-RGfwbdCoXJaopYTN3ZlrKWYYzRf6hYFxs3EXRV_oZ0m7FYK2-XWSTRZgfh4o/pub?gid=548330187&single=true&output=csv"
+# Prefer GOOGLE_SHEETS_URL from .env so a changed published link does not require
+# editing this script. The existing published URL remains as a fallback.
+GOOGLE_SHEETS_URL = os.getenv("GOOGLE_SHEETS_URL") or (
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vTT0O6nvlUXvQiD3nm-RGfwbdCoXJaopYTN3ZlrKWYYzRf6hYFxs3EXRV_oZ0m7FYK2-XWSTRZgfh4o/pub?output=csv"
+)
 LOCAL_CSV = "dataset/heron_questions.csv"
-HF_CSV = "heron_questions.csv"          # filename as stored in the HF repo
+HF_CSV = "heron_questions.csv"  # filename as stored in the HF repo
 HF_DATASET = "mycelium-ai/heron-benchmark-questions"
 
 
@@ -62,7 +67,9 @@ def print_new_questions(old_ids):
         print("=" * 60)
         for row in new_rows:
             q = row["question"]
-            print(f"  ID {row['id']} | Tags: {row.get('tags', '')} | {q[:120]}{'...' if len(q) > 120 else ''}")
+            print(
+                f"  ID {row['id']} | Tags: {row.get('tags', '')} | {q[:120]}{'...' if len(q) > 120 else ''}"
+            )
     print("=" * 60)
 
 
@@ -118,6 +125,58 @@ def inject_canary():
     return True
 
 
+def validate_questions(expected_count: int | None = None):
+    """Fail before upload when the downloaded sheet is incomplete or malformed."""
+    with open(LOCAL_CSV, "r", newline="", encoding="utf-8-sig") as f:
+        rows = list(csv.DictReader(f))
+
+    problems = []
+    if expected_count is not None and len(rows) != expected_count:
+        problems.append(f"expected {expected_count} rows, downloaded {len(rows)}")
+
+    if not rows:
+        problems.append("the sheet contains no question rows")
+    elif "id" not in rows[0] or "question" not in rows[0]:
+        problems.append("required columns are missing (need: id, question)")
+
+    missing_ids = [
+        index + 2 for index, row in enumerate(rows) if not (row.get("id") or "").strip()
+    ]
+    if missing_ids:
+        problems.append(f"blank IDs on CSV rows: {missing_ids}")
+
+    blank_questions = [
+        index + 2
+        for index, row in enumerate(rows)
+        if not (row.get("question") or "").strip()
+    ]
+    if blank_questions:
+        problems.append(f"blank questions on CSV rows: {blank_questions}")
+
+    ids = [(row.get("id") or "").strip() for row in rows]
+    duplicate_ids = sorted(
+        {
+            question_id
+            for question_id in ids
+            if question_id and ids.count(question_id) > 1
+        }
+    )
+    if duplicate_ids:
+        problems.append(f"duplicate IDs: {duplicate_ids}")
+
+    if problems:
+        print("❌ Downloaded question sheet failed validation:")
+        for problem in problems:
+            print(f"   • {problem}")
+        print(
+            "The local CSV was downloaded, but it was not uploaded or used to regenerate samples.json."
+        )
+        return False
+
+    print(f"✅ Validated {len(rows)} questions with unique, non-empty IDs")
+    return True
+
+
 def upload_to_huggingface():
     """Upload the CSV and a dataset card to the HuggingFace dataset repo."""
     if not os.path.exists(LOCAL_CSV):
@@ -133,7 +192,9 @@ def upload_to_huggingface():
 
     print(f"📤 Uploading to HuggingFace ({HF_DATASET})...")
     try:
-        create_repo(repo_id=HF_DATASET, repo_type="dataset", exist_ok=True, private=False)
+        create_repo(
+            repo_id=HF_DATASET, repo_type="dataset", exist_ok=True, private=False
+        )
         upload_file(
             path_or_fileobj=LOCAL_CSV,
             path_in_repo=HF_CSV,
@@ -153,7 +214,9 @@ def upload_to_huggingface():
             repo_type="dataset",
             commit_message="Update dataset card",
         )
-        print(f"✅ Successfully uploaded to https://huggingface.co/datasets/{HF_DATASET}")
+        print(
+            f"✅ Successfully uploaded to https://huggingface.co/datasets/{HF_DATASET}"
+        )
 
         print("🔍 Verifying...")
         dataset = load_dataset(HF_DATASET, data_files=HF_CSV, split="train")
@@ -166,6 +229,14 @@ def upload_to_huggingface():
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--expected-count",
+        type=int,
+        help="Fail before upload unless the downloaded sheet has this many questions.",
+    )
+    args = parser.parse_args()
+
     print("=" * 60)
     print("Google Sheets → Local CSV → HuggingFace Sync")
     print("=" * 60)
@@ -173,6 +244,8 @@ def main():
     old_ids = get_existing_ids()
 
     if not download_from_google_sheets():
+        return
+    if not validate_questions(args.expected_count):
         return
     if not inject_canary():
         return

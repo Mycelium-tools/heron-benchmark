@@ -6,6 +6,7 @@ Usage:
     python analysis/extract_eval_csvs.py --run-dir logs/Allen_July2026/run_...
     python analysis/extract_eval_csvs.py                 # scan all of logs/
 """
+
 import argparse
 import csv
 import json
@@ -24,17 +25,27 @@ def _j(val):
 def extract_sample_row(sample, log) -> dict:
     scorer = sample.scores.get("heron_scorer") if sample.scores else None
     sm = scorer.metadata if scorer else {}
+    old_scorer = sample.scores.get("heron_old_prompt_scorer") if sample.scores else None
+    old_sm = old_scorer.metadata if old_scorer else {}
+    proportionality_scorer = (
+        sample.scores.get("heron_proportionality_scorer") if sample.scores else None
+    )
+    proportionality_sm = (
+        proportionality_scorer.metadata if proportionality_scorer else {}
+    )
     meta = sample.metadata or {}
 
     out = sample.output
     usage = out.usage if out else None
     stop_reason = None
     if out and out.choices:
-        stop_reason = out.choices[-1].stop_reason if out.choices[-1].stop_reason else None
+        stop_reason = (
+            out.choices[-1].stop_reason if out.choices[-1].stop_reason else None
+        )
 
     row = {
-        "log_file": None,           # filled by caller
-        "run_dir": None,            # filled by caller
+        "log_file": None,  # filled by caller
+        "run_dir": None,  # filled by caller
         "eval_id": log.eval.eval_id,
         "run_id": log.eval.run_id,
         "eval_created": log.eval.created,
@@ -45,24 +56,38 @@ def extract_sample_row(sample, log) -> dict:
         "epochs": log.eval.config.epochs if log.eval.config else None,
         "git_commit": log.eval.revision.commit if log.eval.revision else None,
         "git_dirty": log.eval.revision.dirty if log.eval.revision else None,
-
         # sample identity
         "sample_id": sample.id,
         "epoch": sample.epoch,
         "uuid": sample.uuid,
-
         # input / target
         "input": sample.input if isinstance(sample.input, str) else _j(sample.input),
-        "target": sample.target if isinstance(sample.target, str) else _j(sample.target),
-
+        "target": sample.target
+        if isinstance(sample.target, str)
+        else _j(sample.target),
         # scores — Moral Sensitivity (single dimension)
         "moral_consideration": scorer.value if scorer else None,
         "score_explanation": scorer.explanation if scorer else None,
-
+        # paired old-vs-proportionality experiment
+        "old_prompt_score": old_scorer.value if old_scorer else None,
+        "old_prompt_explanation": old_scorer.explanation if old_scorer else None,
+        "old_prompt_judge_response": old_sm.get("judge_response"),
+        "old_prompt_version": old_sm.get("prompt_version"),
+        "proportionality_score": (
+            proportionality_scorer.value if proportionality_scorer else None
+        ),
+        "proportionality_classification": proportionality_sm.get("classification"),
+        "proportionality_reasoning": (
+            proportionality_scorer.explanation if proportionality_scorer else None
+        ),
+        "proportionality_judge_response": proportionality_sm.get("judge_response"),
+        "proportionality_prompt_version": proportionality_sm.get("prompt_version"),
+        "paired_judge_model": (
+            proportionality_sm.get("judge_model") or old_sm.get("judge_model")
+        ),
         # scorer metadata
         "judge_model": sm.get("judge_model"),
         "num_turns": sm.get("num_turns"),
-
         # sample metadata fields
         "tags": _j(meta.get("tags")),
         "turn2": meta.get("turn2"),
@@ -70,7 +95,6 @@ def extract_sample_row(sample, log) -> dict:
         "sentience_level": meta.get("sentience_level"),
         "animal_category": meta.get("animal_category"),
         "language": meta.get("language"),
-
         # output
         "output_model": out.model if out else None,
         "output_completion": out.completion if out else None,
@@ -80,16 +104,15 @@ def extract_sample_row(sample, log) -> dict:
         "output_input_tokens": usage.input_tokens if usage else None,
         "output_output_tokens": usage.output_tokens if usage else None,
         "output_total_tokens": usage.total_tokens if usage else None,
-
         # full conversation messages (JSON array)
-        "messages": _j([m.model_dump() for m in sample.messages] if sample.messages else []),
-
+        "messages": _j(
+            [m.model_dump() for m in sample.messages] if sample.messages else []
+        ),
         # timing
         "started_at": sample.started_at,
         "completed_at": sample.completed_at,
         "total_time": sample.total_time,
         "working_time": sample.working_time,
-
         # errors
         "error": str(sample.error) if sample.error else None,
         "error_retries": len(sample.error_retries) if sample.error_retries else 0,
@@ -123,7 +146,9 @@ def process_eval_file(eval_path: Path) -> int:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--run-dir", help="Directory to process (default: scan all of logs/)")
+    parser.add_argument(
+        "--run-dir", help="Directory to process (default: scan all of logs/)"
+    )
     args = parser.parse_args()
 
     base = Path(__file__).parent.parent  # repo root

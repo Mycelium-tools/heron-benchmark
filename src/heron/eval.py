@@ -40,6 +40,13 @@ from heron.scorer import heron_scorer
 
 load_dotenv()
 
+# Bedrock (bedrock/... models): Inspect's provider reads AWS_BEARER_TOKEN_BEDROCK and
+# a region, not our .env key name. Bridge them so the key in .env works out of the box.
+if os.environ.get("CHAD_AWS_BEDROCK_KEY"):
+    os.environ.setdefault("AWS_BEARER_TOKEN_BEDROCK", os.environ["CHAD_AWS_BEDROCK_KEY"])
+    # boto3 needs AWS_DEFAULT_REGION; AWS_REGION alone is not picked up.
+    os.environ.setdefault("AWS_DEFAULT_REGION", "us-east-1")
+
 NUM_EPOCHS = 1  # independent eval runs per model
 
 
@@ -231,6 +238,11 @@ def heron_full():
 MODELS = [
     "openai/gpt-5.6-terra",
     # "anthropic/claude-opus-4-8",
+    # Bedrock (billed to the shared AWS credits; requires CHAD_AWS_BEDROCK_KEY in .env).
+    # Haiku must use the fully-versioned id — the short alias is rejected by Bedrock.
+    # "bedrock/us.anthropic.claude-opus-4-8",
+    # "bedrock/us.anthropic.claude-sonnet-5",
+    # "bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0",
 ]
 
 
@@ -239,11 +251,14 @@ def validate_environment(models: list[str]) -> None:
     missing = []
     needs_anthropic = any(m.startswith("anthropic/") for m in models)
     needs_openai = any(m.startswith("openai/") or m.startswith("openai-api/") for m in models)
+    needs_bedrock = any(m.startswith("bedrock/") for m in models)
 
     if needs_anthropic and not os.environ.get("ANTHROPIC_API_KEY"):
         missing.append("ANTHROPIC_API_KEY")
     if needs_openai and not os.environ.get("OPENAI_API_KEY"):
         missing.append("OPENAI_API_KEY")
+    if needs_bedrock and not os.environ.get("AWS_BEARER_TOKEN_BEDROCK"):
+        missing.append("CHAD_AWS_BEDROCK_KEY (or AWS_BEARER_TOKEN_BEDROCK)")
     # The judge is either Claude (Anthropic) or GPT (OpenAI) depending on the target,
     # so both keys are needed for a mixed MODELS list.
     if not os.environ.get("ANTHROPIC_API_KEY"):

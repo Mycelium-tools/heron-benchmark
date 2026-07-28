@@ -39,6 +39,7 @@ API keys required in `.env`:
 - `ANTHROPIC_API_KEY`
 - `OPENAI_API_KEY`
 - `HF_TOKEN` (only for dataset sync)
+- `CHAD_AWS_BEDROCK_KEY` (only for `bedrock/...` models — the shared AWS Bedrock bearer key; ask Allen for the value, never commit it). `eval.py` auto-bridges it to `AWS_BEARER_TOKEN_BEDROCK` + `AWS_DEFAULT_REGION=us-east-1`, so no manual exports are needed. Verified model ids: `bedrock/us.anthropic.claude-opus-4-8`, `bedrock/us.anthropic.claude-sonnet-5`, `bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0` (Haiku requires the full versioned id).
 
 ### Conversation structure (`solver.py`)
 - **Turn 1:** the scenario from `samples.json` (welfare stakes implicit). Model answers.

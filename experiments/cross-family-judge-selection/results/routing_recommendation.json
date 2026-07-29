@@ -1,0 +1,185 @@
+{
+  "openai": {
+    "main": null,
+    "backup": null,
+    "status": "inconclusive",
+    "candidate_results": [
+      {
+        "candidate": "flash",
+        "qualifies": false,
+        "estimated_experiment_judge_cost_usd": 0.252438,
+        "metrics": {
+          "resolved_count": 21,
+          "mae": 0.07142857142857145,
+          "within_0_15": 0.8571428571428571,
+          "over_0_30": 0.047619047619047616,
+          "signed_bias": 0.07142857142857145,
+          "bootstrap_95_ci": {
+            "mae": [
+              0.026190476190476215,
+              0.1285714285714286
+            ],
+            "within_0_15": [
+              0.7142857142857143,
+              1.0
+            ],
+            "signed_bias": [
+              0.026190476190476215,
+              0.1285714285714286
+            ]
+          }
+        },
+        "stability_within_0_15": 1.0
+      },
+      {
+        "candidate": "sonnet",
+        "qualifies": false,
+        "estimated_experiment_judge_cost_usd": 0.6040179999999999,
+        "metrics": {
+          "resolved_count": 21,
+          "mae": 0.10476190476190476,
+          "within_0_15": 0.7142857142857143,
+          "over_0_30": 0.047619047619047616,
+          "signed_bias": -0.0619047619047619,
+          "bootstrap_95_ci": {
+            "mae": [
+              0.060714285714285735,
+              0.15476190476190474
+            ],
+            "within_0_15": [
+              0.5238095238095238,
+              0.9047619047619048
+            ],
+            "signed_bias": [
+              -0.11547619047619047,
+              0.002380952380952378
+            ]
+          }
+        },
+        "stability_within_0_15": 0.8333333333333334
+      }
+    ]
+  },
+  "google": {
+    "main": null,
+    "backup": null,
+    "status": "inconclusive",
+    "candidate_results": [
+      {
+        "candidate": "sonnet",
+        "qualifies": false,
+        "estimated_experiment_judge_cost_usd": 0.6040179999999999,
+        "metrics": {
+          "resolved_count": 19,
+          "mae": 0.13289473684210523,
+          "within_0_15": 0.7368421052631579,
+          "over_0_30": 0.05263157894736842,
+          "signed_bias": 0.06973684210526312,
+          "bootstrap_95_ci": {
+            "mae": [
+              0.08289473684210524,
+              0.19078947368421048
+            ],
+            "within_0_15": [
+              0.5263157894736842,
+              0.8947368421052632
+            ],
+            "signed_bias": [
+              -0.00394736842105267,
+              0.14473684210526314
+            ]
+          }
+        },
+        "stability_within_0_15": 0.8333333333333334
+      },
+      {
+        "candidate": "luna",
+        "qualifies": false,
+        "estimated_experiment_judge_cost_usd": 0.19987425,
+        "metrics": {
+          "resolved_count": 19,
+          "mae": 0.09868421052631576,
+          "within_0_15": 0.8421052631578947,
+          "over_0_30": 0.0,
+          "signed_bias": -0.019736842105263167,
+          "bootstrap_95_ci": {
+            "mae": [
+              0.07368421052631577,
+              0.12763157894736837
+            ],
+            "within_0_15": [
+              0.6842105263157895,
+              1.0
+            ],
+            "signed_bias": [
+              -0.06842105263157894,
+              0.03289473684210525
+            ]
+          }
+        },
+        "stability_within_0_15": 0.8333333333333334
+      }
+    ]
+  },
+  "anthropic": {
+    "main": null,
+    "backup": null,
+    "status": "inconclusive",
+    "candidate_results": [
+      {
+        "candidate": "flash",
+        "qualifies": false,
+        "estimated_experiment_judge_cost_usd": 0.252438,
+        "metrics": {
+          "resolved_count": 16,
+          "mae": 0.19625,
+          "within_0_15": 0.6875,
+          "over_0_30": 0.3125,
+          "signed_bias": 0.19625,
+          "bootstrap_95_ci": {
+            "mae": [
+              0.07249218750000001,
+              0.33687500000000004
+            ],
+            "within_0_15": [
+              0.4375,
+              0.875
+            ],
+            "signed_bias": [
+              0.07249218750000001,
+              0.33687500000000004
+            ]
+          }
+        },
+        "stability_within_0_15": 1.0
+      },
+      {
+        "candidate": "luna",
+        "qualifies": false,
+        "estimated_experiment_judge_cost_usd": 0.19987425,
+        "metrics": {
+          "resolved_count": 16,
+          "mae": 0.136875,
+          "within_0_15": 0.6875,
+          "over_0_30": 0.1875,
+          "signed_bias": 0.111875,
+          "bootstrap_95_ci": {
+            "mae": [
+              0.05187500000000002,
+              0.2359375
+            ],
+            "within_0_15": [
+              0.4375,
+              0.875
+            ],
+            "signed_bias": [
+              0.017179687500000016,
+              0.2159375
+            ]
+          }
+        },
+        "stability_within_0_15": 0.8333333333333334
+      }
+    ]
+  }
+}

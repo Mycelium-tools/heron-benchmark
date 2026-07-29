@@ -1,0 +1,24 @@
+{
+  "seed": 20260729,
+  "selection_rule": "Six frozen responses sampled from each target family",
+  "corpus_keys": [
+    "anthropic:12",
+    "anthropic:15",
+    "anthropic:16",
+    "anthropic:21",
+    "anthropic:23",
+    "anthropic:4",
+    "google:13",
+    "google:14",
+    "google:15",
+    "google:17",
+    "google:5",
+    "google:6",
+    "openai:2",
+    "openai:20",
+    "openai:22",
+    "openai:28",
+    "openai:29",
+    "openai:6"
+  ]
+}

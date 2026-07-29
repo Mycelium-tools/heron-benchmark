@@ -883,7 +883,7 @@ def estimate_cost(model: str, rows: list[dict[str, Any]]) -> dict[str, Any]:
         "cache_write_tokens": cache_write,
         "cached_tokens": cached,
         "estimated_cost_usd": input_cost + output_cost,
-        "average_latency_seconds": (
+        "average_scheduled_elapsed_seconds": (
             statistics.mean(row["latency_seconds"] for row in rows) if rows else 0
         ),
     }

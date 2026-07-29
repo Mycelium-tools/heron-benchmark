@@ -1,0 +1,369 @@
+{
+  "experiment": "Cross-Family Judge Selection",
+  "status": "complete",
+  "created_at": "2026-07-29T18:24:13.102999+00:00",
+  "git_commit": "7551cf089336045e3938bce065620ac90fd3c315",
+  "git_status_porcelain": "?? experiments/cross-family-judge-selection/results/\n?? logs/2026-07-21T19-23-05-00-00_heron-test5_bVm7Z6Ee7nCr2aey43XWgG.eval\n?? logs/2026-07-21T19-24-47-00-00_heron-test5_bU6mWBV37DawmXfGppZpEy.eval\n?? logs/2026-07-21T20-15-44-00-00_heron-test5_M5wWcpjmFAJUmwgMQugySV.eval\n?? logs/2026-07-21T20-26-35-00-00_heron-test5_JoNXZ5ruDfXNbN5xYwCPyg.eval\n?? logs/2026-07-21T23-12-55-00-00_heron-full_dVAuP45ZbrUh74rRHpkQu8.eval\n?? logs/2026-07-21T23-13-34-00-00_heron-full_daLRtXN2wfLKXuwd76Rxj6.eval\n?? logs/2026-07-21T23-18-33-00-00_heron-full_SmGJdsxCB6EfEEY3PQuD4t.eval\n?? logs/2026-07-21T23-22-30-00-00_heron-full_NCE2QniUKoS8H8WhXqXsZK.eval\n?? logs/2026-07-21T23-24-16-00-00_heron-full_kT6GW8TahScbqf69NjVEwN.eval\n?? logs/2026-07-21T23-27-19-00-00_heron-full_QvhrzEanY986B42rGJCCPw.eval\n?? logs/2026-07-21T23-31-10-00-00_heron-full_e3WfV7cru8RmdMnuDSnwiS.eval\n?? logs/2026-07-21T23-32-21-00-00_heron-full_6kmB8VmeeGm47gkse3FDKH.eval\n?? logs/2026-07-22T00-42-50-00-00_heron-full_EMpgH46RZ9YATydXse2MsD.eval\n?? logs/2026-07-22T00-47-57-00-00_heron-full_o8wnuoAZKpUjRYntaGDvby.eval\n?? logs/2026-07-22T00-51-56-00-00_heron-full_nHpvV6LfEUmEyuecuGsA7J.eval\n?? logs/2026-07-22T00-54-59-00-00_heron-full_5unqiMdQRMYhvsAqrJGPq3.eval\n?? logs/2026-07-22T00-56-00-00-00_heron-full_aP3dHtsDkWtbCEMpYKZEV8.eval\n?? logs/2026-07-22T00-58-50-00-00_heron-full_NJBQH3Q4khVXzhXNXKdwWm.eval\n?? logs/2026-07-22T01-02-20-00-00_heron-full_9rYSGVjDN6UKRnfgdZ8ExF.eval\n?? logs/2026-07-22T01-12-02-00-00_heron-full_T5j9HrXc2nEGMNHQ9qJWNx.eval\n?? logs/2026-07-22T01-13-25-00-00_heron-full_WghUZXiGusVtehjLZ3VWPb.eval\n?? logs/2026-07-22T01-20-19-00-00_heron-full_5xfqAYLKvhqPjc9vVc2raz.eval\n?? logs/2026-07-22T01-28-07-00-00_heron-full_GugMqhAzMQHr2nPQLUumJ5.eval\n?? logs/2026-07-22T01-28-39-00-00_heron-full_LqcpEVXy4zCRC8ZENJaQVZ.eval\n?? logs/2026-07-22T01-30-56-00-00_heron-full_3tcHQuZheDHdA9x8KQ6i4d.eval\n?? logs/2026-07-22T01-31-53-00-00_heron-full_RJLZ39g9X2sCpdD3y3Nkjx.eval\n?? logs/2026-07-24T20-57-06-00-00_heron-test5_U5dTAZjQMAAVJZg8L4KnvT.eval\n?? logs/CHAD_July2026/\n?? logs/paired_judge_full/\n?? logs/paired_judge_smoke/\n?? logs/proportionality_pr_full/\n?? output/",
+  "scenario_count": 30,
+  "reference_answers_nonempty": 0,
+  "hashes": {
+    "dataset": "2eeaa23c9502319ffb35d1f29f8d69fc9b585d8780f4f569cade838d15e591d1",
+    "scorer": "e0680f7323a2ce1d4e34578f0636e4bf390fe27011ef040e0ef1e29fe015c523",
+    "spec": "da805b56a62e1d9fc95035a5912f32e40c2643df772373d10138decb43121889",
+    "settings": "b27422002701368ac3e5ad5fb38b82a3190087a84a51fa05c292b670702ccc47"
+  },
+  "settings": {
+    "targets": {
+      "openai": {
+        "label": "GPT-5.6 Sol",
+        "provider": "openai",
+        "model": "gpt-5.6-sol",
+        "reasoning": "none"
+      },
+      "google": {
+        "label": "Gemini 3.1 Pro Preview",
+        "provider": "google",
+        "model": "gemini-3.1-pro-preview",
+        "reasoning": "low"
+      },
+      "anthropic": {
+        "label": "Claude Opus 5",
+        "provider": "bedrock",
+        "model": "us.anthropic.claude-opus-5",
+        "reasoning": "low"
+      }
+    },
+    "judges": {
+      "flash": {
+        "label": "Gemini 3.6 Flash",
+        "family": "google",
+        "provider": "google",
+        "model": "gemini-3.6-flash",
+        "reasoning": "minimal",
+        "role": "candidate"
+      },
+      "sonnet": {
+        "label": "Claude Sonnet 5",
+        "family": "anthropic",
+        "provider": "bedrock",
+        "model": "us.anthropic.claude-sonnet-5",
+        "reasoning": "low",
+        "role": "candidate"
+      },
+      "luna": {
+        "label": "GPT-5.6 Luna",
+        "family": "openai",
+        "provider": "openai",
+        "model": "gpt-5.6-luna",
+        "reasoning": "none",
+        "role": "candidate"
+      },
+      "pro": {
+        "label": "Gemini 3.1 Pro Preview",
+        "family": "google",
+        "provider": "google",
+        "model": "gemini-3.1-pro-preview",
+        "reasoning": "medium",
+        "role": "reference"
+      },
+      "opus": {
+        "label": "Claude Opus 5",
+        "family": "anthropic",
+        "provider": "bedrock",
+        "model": "us.anthropic.claude-opus-5",
+        "reasoning": "medium",
+        "role": "reference"
+      },
+      "sol": {
+        "label": "GPT-5.6 Sol",
+        "family": "openai",
+        "provider": "openai",
+        "model": "gpt-5.6-sol",
+        "reasoning": "medium",
+        "role": "reference"
+      }
+    },
+    "routes": {
+      "openai": {
+        "candidates": [
+          "flash",
+          "sonnet"
+        ],
+        "references": [
+          "pro",
+          "opus"
+        ]
+      },
+      "google": {
+        "candidates": [
+          "sonnet",
+          "luna"
+        ],
+        "references": [
+          "opus",
+          "sol"
+        ]
+      },
+      "anthropic": {
+        "candidates": [
+          "flash",
+          "luna"
+        ],
+        "references": [
+          "pro",
+          "sol"
+        ]
+      }
+    },
+    "target_max_tokens": 8192,
+    "judge_max_tokens": 4096,
+    "reference_threshold": 0.15,
+    "large_difference_threshold": 0.3,
+    "repeat_seed": 20260729,
+    "bootstrap_seed": 20260730,
+    "bootstrap_samples": 5000,
+    "sampling_parameters": "temperature, top_p, and top_k omitted for every provider"
+  },
+  "artifacts": {
+    "analysis.json": {
+      "sha256": "9fe2f775ba3dcee51487ea29f438673fa5202f24981b11309b31f618c3681393",
+      "bytes": 15256
+    },
+    "corpus.jsonl": {
+      "sha256": "30215e5129b4049749fe463f118223d68a4470ca04ef76e03c00764de399c36c",
+      "bytes": 779395
+    },
+    "cost_summary.csv": {
+      "sha256": "4b87d88bd595d85523ba980242bad4ca93c2119c32e6a839d21346e15a82574e",
+      "bytes": 603
+    },
+    "frozen_inputs/experiment_spec.md": {
+      "sha256": "da805b56a62e1d9fc95035a5912f32e40c2643df772373d10138decb43121889",
+      "bytes": 6472
+    },
+    "frozen_inputs/samples.json": {
+      "sha256": "2eeaa23c9502319ffb35d1f29f8d69fc9b585d8780f4f569cade838d15e591d1",
+      "bytes": 14145
+    },
+    "frozen_inputs/scorer.py": {
+      "sha256": "e0680f7323a2ce1d4e34578f0636e4bf390fe27011ef040e0ef1e29fe015c523",
+      "bytes": 12284
+    },
+    "primary_judgments.jsonl": {
+      "sha256": "ea4201afa67c6a63095be8e5e2ebdab662f3896f09e11f2f87134437c0386fa0",
+      "bytes": 1500146
+    },
+    "qualitative_review.html": {
+      "sha256": "821cc7b7e6a5b7d62daf2e3f9681cf1f46930f83741cd5db791b9816bbbfb1ec",
+      "bytes": 647651
+    },
+    "repeat_judgments.jsonl": {
+      "sha256": "d8168ac3a09e9a509141e5942f0e631d2efcde76aca51ce116155abbb679f5ed",
+      "bytes": 306266
+    },
+    "repeat_selection.json": {
+      "sha256": "fd74956255abb631c242897abfc0ef0c1a93a199ae5c1875682626b2a6b21c99",
+      "bytes": 441
+    },
+    "routing_recommendation.json": {
+      "sha256": "df28db9a0d4fed300026130ebe0e0d3f616a9b4f3a4b30e439b52394357e1879",
+      "bytes": 4907
+    },
+    "scenario_comparison.csv": {
+      "sha256": "082a57bbb32141568771848021db48ab4e003e05a6736946881ec101a31a17fb",
+      "bytes": 308062
+    }
+  },
+  "completed_at": "2026-07-29T18:39:04.739211+00:00",
+  "summary": {
+    "frozen_response_count": 90,
+    "primary_judgment_count": 360,
+    "repeat_judgment_count": 72,
+    "same_family_judgment_count": 0,
+    "routing_recommendation": {
+      "openai": {
+        "main": null,
+        "backup": null,
+        "status": "inconclusive",
+        "candidate_results": [
+          {
+            "candidate": "flash",
+            "qualifies": false,
+            "estimated_experiment_judge_cost_usd": 0.252438,
+            "metrics": {
+              "resolved_count": 21,
+              "mae": 0.07142857142857145,
+              "within_0_15": 0.8571428571428571,
+              "over_0_30": 0.047619047619047616,
+              "signed_bias": 0.07142857142857145,
+              "bootstrap_95_ci": {
+                "mae": [
+                  0.026190476190476215,
+                  0.1285714285714286
+                ],
+                "within_0_15": [
+                  0.7142857142857143,
+                  1.0
+                ],
+                "signed_bias": [
+                  0.026190476190476215,
+                  0.1285714285714286
+                ]
+              }
+            },
+            "stability_within_0_15": 1.0
+          },
+          {
+            "candidate": "sonnet",
+            "qualifies": false,
+            "estimated_experiment_judge_cost_usd": 0.6040179999999999,
+            "metrics": {
+              "resolved_count": 21,
+              "mae": 0.10476190476190476,
+              "within_0_15": 0.7142857142857143,
+              "over_0_30": 0.047619047619047616,
+              "signed_bias": -0.0619047619047619,
+              "bootstrap_95_ci": {
+                "mae": [
+                  0.060714285714285735,
+                  0.15476190476190474
+                ],
+                "within_0_15": [
+                  0.5238095238095238,
+                  0.9047619047619048
+                ],
+                "signed_bias": [
+                  -0.11547619047619047,
+                  0.002380952380952378
+                ]
+              }
+            },
+            "stability_within_0_15": 0.8333333333333334
+          }
+        ]
+      },
+      "google": {
+        "main": null,
+        "backup": null,
+        "status": "inconclusive",
+        "candidate_results": [
+          {
+            "candidate": "sonnet",
+            "qualifies": false,
+            "estimated_experiment_judge_cost_usd": 0.6040179999999999,
+            "metrics": {
+              "resolved_count": 19,
+              "mae": 0.13289473684210523,
+              "within_0_15": 0.7368421052631579,
+              "over_0_30": 0.05263157894736842,
+              "signed_bias": 0.06973684210526312,
+              "bootstrap_95_ci": {
+                "mae": [
+                  0.08289473684210524,
+                  0.19078947368421048
+                ],
+                "within_0_15": [
+                  0.5263157894736842,
+                  0.8947368421052632
+                ],
+                "signed_bias": [
+                  -0.00394736842105267,
+                  0.14473684210526314
+                ]
+              }
+            },
+            "stability_within_0_15": 0.8333333333333334
+          },
+          {
+            "candidate": "luna",
+            "qualifies": false,
+            "estimated_experiment_judge_cost_usd": 0.19987425,
+            "metrics": {
+              "resolved_count": 19,
+              "mae": 0.09868421052631576,
+              "within_0_15": 0.8421052631578947,
+              "over_0_30": 0.0,
+              "signed_bias": -0.019736842105263167,
+              "bootstrap_95_ci": {
+                "mae": [
+                  0.07368421052631577,
+                  0.12763157894736837
+                ],
+                "within_0_15": [
+                  0.6842105263157895,
+                  1.0
+                ],
+                "signed_bias": [
+                  -0.06842105263157894,
+                  0.03289473684210525
+                ]
+              }
+            },
+            "stability_within_0_15": 0.8333333333333334
+          }
+        ]
+      },
+      "anthropic": {
+        "main": null,
+        "backup": null,
+        "status": "inconclusive",
+        "candidate_results": [
+          {
+            "candidate": "flash",
+            "qualifies": false,
+            "estimated_experiment_judge_cost_usd": 0.252438,
+            "metrics": {
+              "resolved_count": 16,
+              "mae": 0.19625,
+              "within_0_15": 0.6875,
+              "over_0_30": 0.3125,
+              "signed_bias": 0.19625,
+              "bootstrap_95_ci": {
+                "mae": [
+                  0.07249218750000001,
+                  0.33687500000000004
+                ],
+                "within_0_15": [
+                  0.4375,
+                  0.875
+                ],
+                "signed_bias": [
+                  0.07249218750000001,
+                  0.33687500000000004
+                ]
+              }
+            },
+            "stability_within_0_15": 1.0
+          },
+          {
+            "candidate": "luna",
+            "qualifies": false,
+            "estimated_experiment_judge_cost_usd": 0.19987425,
+            "metrics": {
+              "resolved_count": 16,
+              "mae": 0.136875,
+              "within_0_15": 0.6875,
+              "over_0_30": 0.1875,
+              "signed_bias": 0.111875,
+              "bootstrap_95_ci": {
+                "mae": [
+                  0.05187500000000002,
+                  0.2359375
+                ],
+                "within_0_15": [
+                  0.4375,
+                  0.875
+                ],
+                "signed_bias": [
+                  0.017179687500000016,
+                  0.2159375
+                ]
+              }
+            },
+            "stability_within_0_15": 0.8333333333333334
+          }
+        ]
+      }
+    }
+  }
+}

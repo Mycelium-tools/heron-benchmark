@@ -5,8 +5,9 @@ Measures moral consideration for animals in scenarios where the welfare stakes
 are implicit — embedded in an everyday request but never raised by the user.
 Each question runs as a 1- or 2-turn static conversation (see solver.py).
 
-Scoring (scorer.py): a single judge scores whether the model gives animal
-welfare proportionate consideration on a 0.0-1.0 scale.
+Scoring (scorer.py): two strong judges outside the evaluated model's family
+score whether the response gives animal welfare proportionate consideration on
+a 0.0-1.0 scale. Cases where they differ by more than 0.15 are ambiguous.
 
 Tasks:
 - heron_test5 — first 5 questions (smoke test)
@@ -40,10 +41,17 @@ from heron.scorer import heron_scorer
 
 load_dotenv()
 
-# Bedrock (bedrock/... models): Inspect's provider reads AWS_BEARER_TOKEN_BEDROCK and
-# a region, not our .env key name. Bridge them so the key in .env works out of the box.
-if os.environ.get("CHAD_AWS_BEDROCK_KEY"):
-    os.environ.setdefault("AWS_BEARER_TOKEN_BEDROCK", os.environ["CHAD_AWS_BEDROCK_KEY"])
+# Bedrock (bedrock/... models): Inspect reads AWS_BEARER_TOKEN_BEDROCK.
+# Bridge the repository's supported .env names to that standard variable.
+_bedrock_key = (
+    os.environ.get("CHAD_AWS_BEDROCK_KEY")
+    or os.environ.get("AWS_API_KEY")
+    or ""
+).strip()
+if "=" in _bedrock_key:
+    _bedrock_key = _bedrock_key.split("=", 1)[1].strip()
+if _bedrock_key:
+    os.environ.setdefault("AWS_BEARER_TOKEN_BEDROCK", _bedrock_key)
     # boto3 needs AWS_DEFAULT_REGION; AWS_REGION alone is not picked up.
     os.environ.setdefault("AWS_DEFAULT_REGION", "us-east-1")
 
@@ -250,7 +258,9 @@ def validate_environment(models: list[str]) -> None:
     """Fail fast for credentials required by the configured eval pipeline."""
     missing = []
     needs_anthropic = any(m.startswith("anthropic/") for m in models)
-    needs_openai = any(m.startswith("openai/") or m.startswith("openai-api/") for m in models)
+    needs_openai = any(
+        m.startswith(("openai/", "openai-api/")) for m in models
+    )
     needs_bedrock = any(m.startswith("bedrock/") for m in models)
 
     if needs_anthropic and not os.environ.get("ANTHROPIC_API_KEY"):
@@ -259,12 +269,17 @@ def validate_environment(models: list[str]) -> None:
         missing.append("OPENAI_API_KEY")
     if needs_bedrock and not os.environ.get("AWS_BEARER_TOKEN_BEDROCK"):
         missing.append("CHAD_AWS_BEDROCK_KEY (or AWS_BEARER_TOKEN_BEDROCK)")
-    # The judge is either Claude (Anthropic) or GPT (OpenAI) depending on the target,
-    # so both keys are needed for a mixed MODELS list.
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        missing.append("ANTHROPIC_API_KEY")
+    # The scorer uses two strong cross-family judges. Across the supported
+    # OpenAI, Google, and Anthropic target families this requires all three
+    # provider credentials, with Claude routed through Bedrock.
     if not os.environ.get("OPENAI_API_KEY"):
         missing.append("OPENAI_API_KEY")
+    if not os.environ.get("GOOGLE_API_KEY"):
+        missing.append("GOOGLE_API_KEY")
+    if not os.environ.get("AWS_BEARER_TOKEN_BEDROCK"):
+        missing.append(
+            "CHAD_AWS_BEDROCK_KEY, AWS_API_KEY, or AWS_BEARER_TOKEN_BEDROCK"
+        )
 
     missing = list(dict.fromkeys(missing))
     if missing:

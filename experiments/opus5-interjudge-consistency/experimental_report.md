@@ -190,7 +190,9 @@ Pro in this run:
 - it has the lowest pairwise MAE against Pro; and
 - 80% of scenario scores are within 0.15.
 
-Luna and Sol agree closely with each other,
+Luna is even cheaper, but its relationship to the Gemini judges is less stable:
+it differs from Flash by more than 0.15 on 10/30 scenarios and has the largest
+pairwise MAE in the experiment. Luna and Sol agree closely with each other,
 which may reflect shared calibration within the OpenAI model family rather than
 greater objective correctness.
 
@@ -239,3 +241,4 @@ be exported as JSON or CSV.
 - `pairwise_agreement.csv`: compact pairwise statistics.
 - `qualitative_review.html`: interactive qualitative review interface.
 - `manifest.json`: settings, revisions, and artifact hashes.
+

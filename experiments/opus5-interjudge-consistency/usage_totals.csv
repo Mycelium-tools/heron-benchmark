@@ -1,0 +1,6 @@
+model,scenario_judgments,input_tokens,output_tokens,reasoning_tokens_if_separately_reported,pricing_note
+us.anthropic.claude-opus-5,30,1908,48281,0,See cost_comparison.md
+gemini-3.6-flash,30,97167,6518,0,See cost_comparison.md
+gemini-3.1-pro-preview,30,97167,5331,11252,See cost_comparison.md
+gpt-5.6-luna,30,93395,5718,0,See cost_comparison.md
+gpt-5.6-sol,30,93395,5949,0,See cost_comparison.md

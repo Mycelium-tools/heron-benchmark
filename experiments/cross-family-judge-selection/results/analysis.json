@@ -1,0 +1,552 @@
+{
+  "generated_at": "2026-07-29T18:39:04.738693+00:00",
+  "scenario_count": 30,
+  "frozen_response_count": 90,
+  "primary_judgment_count": 360,
+  "repeat_judgment_count": 72,
+  "same_family_judgment_count": 0,
+  "reference_coverage": {
+    "openai": {
+      "total": 30,
+      "resolved": 21,
+      "ambiguous": 9,
+      "resolution_rate": 0.7
+    },
+    "google": {
+      "total": 30,
+      "resolved": 19,
+      "ambiguous": 11,
+      "resolution_rate": 0.6333333333333333
+    },
+    "anthropic": {
+      "total": 30,
+      "resolved": 16,
+      "ambiguous": 14,
+      "resolution_rate": 0.5333333333333333
+    }
+  },
+  "candidate_summary": {
+    "flash": {
+      "label": "Gemini 3.6 Flash",
+      "overall": {
+        "resolved_count": 37,
+        "mae": 0.12540540540540543,
+        "within_0_15": 0.7837837837837838,
+        "over_0_30": 0.16216216216216217,
+        "signed_bias": 0.12540540540540543,
+        "bootstrap_95_ci": {
+          "mae": [
+            0.05832565789473686,
+            0.20833333333333334
+          ],
+          "within_0_15": [
+            0.6153846153846154,
+            0.918918918918919
+          ],
+          "signed_bias": [
+            0.05832565789473686,
+            0.20833333333333334
+          ]
+        }
+      },
+      "by_target_family": {
+        "openai": {
+          "resolved_count": 21,
+          "mae": 0.07142857142857145,
+          "within_0_15": 0.8571428571428571,
+          "over_0_30": 0.047619047619047616,
+          "signed_bias": 0.07142857142857145,
+          "bootstrap_95_ci": {
+            "mae": [
+              0.026190476190476215,
+              0.1285714285714286
+            ],
+            "within_0_15": [
+              0.7142857142857143,
+              1.0
+            ],
+            "signed_bias": [
+              0.026190476190476215,
+              0.1285714285714286
+            ]
+          }
+        },
+        "anthropic": {
+          "resolved_count": 16,
+          "mae": 0.19625,
+          "within_0_15": 0.6875,
+          "over_0_30": 0.3125,
+          "signed_bias": 0.19625,
+          "bootstrap_95_ci": {
+            "mae": [
+              0.07249218750000001,
+              0.33687500000000004
+            ],
+            "within_0_15": [
+              0.4375,
+              0.875
+            ],
+            "signed_bias": [
+              0.07249218750000001,
+              0.33687500000000004
+            ]
+          }
+        }
+      },
+      "stability": {
+        "repeat_count": 12,
+        "same_score": 1.0,
+        "within_0_15": 1.0,
+        "mean_absolute_difference": 0.0,
+        "maximum_absolute_difference": 0.0
+      }
+    },
+    "sonnet": {
+      "label": "Claude Sonnet 5",
+      "overall": {
+        "resolved_count": 40,
+        "mae": 0.118125,
+        "within_0_15": 0.725,
+        "over_0_30": 0.05,
+        "signed_bias": 0.0006249999999999839,
+        "bootstrap_95_ci": {
+          "mae": [
+            0.08154761904761904,
+            0.1607242063492062
+          ],
+          "within_0_15": [
+            0.5588235294117647,
+            0.8604651162790697
+          ],
+          "signed_bias": [
+            -0.05250328947368423,
+            0.055627232142857086
+          ]
+        }
+      },
+      "by_target_family": {
+        "openai": {
+          "resolved_count": 21,
+          "mae": 0.10476190476190476,
+          "within_0_15": 0.7142857142857143,
+          "over_0_30": 0.047619047619047616,
+          "signed_bias": -0.0619047619047619,
+          "bootstrap_95_ci": {
+            "mae": [
+              0.060714285714285735,
+              0.15476190476190474
+            ],
+            "within_0_15": [
+              0.5238095238095238,
+              0.9047619047619048
+            ],
+            "signed_bias": [
+              -0.11547619047619047,
+              0.002380952380952378
+            ]
+          }
+        },
+        "google": {
+          "resolved_count": 19,
+          "mae": 0.13289473684210523,
+          "within_0_15": 0.7368421052631579,
+          "over_0_30": 0.05263157894736842,
+          "signed_bias": 0.06973684210526312,
+          "bootstrap_95_ci": {
+            "mae": [
+              0.08289473684210524,
+              0.19078947368421048
+            ],
+            "within_0_15": [
+              0.5263157894736842,
+              0.8947368421052632
+            ],
+            "signed_bias": [
+              -0.00394736842105267,
+              0.14473684210526314
+            ]
+          }
+        }
+      },
+      "stability": {
+        "repeat_count": 12,
+        "same_score": 0.5,
+        "within_0_15": 0.8333333333333334,
+        "mean_absolute_difference": 0.07083333333333333,
+        "maximum_absolute_difference": 0.25
+      }
+    },
+    "luna": {
+      "label": "GPT-5.6 Luna",
+      "overall": {
+        "resolved_count": 35,
+        "mae": 0.11614285714285713,
+        "within_0_15": 0.7714285714285715,
+        "over_0_30": 0.08571428571428572,
+        "signed_bias": 0.040428571428571425,
+        "bootstrap_95_ci": {
+          "mae": [
+            0.07499652777777777,
+            0.16875473484848477
+          ],
+          "within_0_15": [
+            0.625,
+            0.8947368421052632
+          ],
+          "signed_bias": [
+            -0.01581137387387388,
+            0.10725843108504396
+          ]
+        }
+      },
+      "by_target_family": {
+        "google": {
+          "resolved_count": 19,
+          "mae": 0.09868421052631576,
+          "within_0_15": 0.8421052631578947,
+          "over_0_30": 0.0,
+          "signed_bias": -0.019736842105263167,
+          "bootstrap_95_ci": {
+            "mae": [
+              0.07368421052631577,
+              0.12763157894736837
+            ],
+            "within_0_15": [
+              0.6842105263157895,
+              1.0
+            ],
+            "signed_bias": [
+              -0.06842105263157894,
+              0.03289473684210525
+            ]
+          }
+        },
+        "anthropic": {
+          "resolved_count": 16,
+          "mae": 0.136875,
+          "within_0_15": 0.6875,
+          "over_0_30": 0.1875,
+          "signed_bias": 0.111875,
+          "bootstrap_95_ci": {
+            "mae": [
+              0.05187500000000002,
+              0.2359375
+            ],
+            "within_0_15": [
+              0.4375,
+              0.875
+            ],
+            "signed_bias": [
+              0.017179687500000016,
+              0.2159375
+            ]
+          }
+        }
+      },
+      "stability": {
+        "repeat_count": 12,
+        "same_score": 0.4166666666666667,
+        "within_0_15": 0.8333333333333334,
+        "mean_absolute_difference": 0.11666666666666667,
+        "maximum_absolute_difference": 0.6000000000000001
+      }
+    }
+  },
+  "stability": {
+    "flash": {
+      "repeat_count": 12,
+      "same_score": 1.0,
+      "within_0_15": 1.0,
+      "mean_absolute_difference": 0.0,
+      "maximum_absolute_difference": 0.0
+    },
+    "sonnet": {
+      "repeat_count": 12,
+      "same_score": 0.5,
+      "within_0_15": 0.8333333333333334,
+      "mean_absolute_difference": 0.07083333333333333,
+      "maximum_absolute_difference": 0.25
+    },
+    "luna": {
+      "repeat_count": 12,
+      "same_score": 0.4166666666666667,
+      "within_0_15": 0.8333333333333334,
+      "mean_absolute_difference": 0.11666666666666667,
+      "maximum_absolute_difference": 0.6000000000000001
+    },
+    "pro": {
+      "repeat_count": 12,
+      "same_score": 0.8333333333333334,
+      "within_0_15": 0.8333333333333334,
+      "mean_absolute_difference": 0.049999999999999996,
+      "maximum_absolute_difference": 0.3
+    },
+    "opus": {
+      "repeat_count": 12,
+      "same_score": 0.4166666666666667,
+      "within_0_15": 0.8333333333333334,
+      "mean_absolute_difference": 0.06666666666666665,
+      "maximum_absolute_difference": 0.19999999999999996
+    },
+    "sol": {
+      "repeat_count": 12,
+      "same_score": 0.4166666666666667,
+      "within_0_15": 0.8333333333333334,
+      "mean_absolute_difference": 0.06916666666666667,
+      "maximum_absolute_difference": 0.20000000000000007
+    }
+  },
+  "routing_recommendation": {
+    "openai": {
+      "main": null,
+      "backup": null,
+      "status": "inconclusive",
+      "candidate_results": [
+        {
+          "candidate": "flash",
+          "qualifies": false,
+          "estimated_experiment_judge_cost_usd": 0.252438,
+          "metrics": {
+            "resolved_count": 21,
+            "mae": 0.07142857142857145,
+            "within_0_15": 0.8571428571428571,
+            "over_0_30": 0.047619047619047616,
+            "signed_bias": 0.07142857142857145,
+            "bootstrap_95_ci": {
+              "mae": [
+                0.026190476190476215,
+                0.1285714285714286
+              ],
+              "within_0_15": [
+                0.7142857142857143,
+                1.0
+              ],
+              "signed_bias": [
+                0.026190476190476215,
+                0.1285714285714286
+              ]
+            }
+          },
+          "stability_within_0_15": 1.0
+        },
+        {
+          "candidate": "sonnet",
+          "qualifies": false,
+          "estimated_experiment_judge_cost_usd": 0.6040179999999999,
+          "metrics": {
+            "resolved_count": 21,
+            "mae": 0.10476190476190476,
+            "within_0_15": 0.7142857142857143,
+            "over_0_30": 0.047619047619047616,
+            "signed_bias": -0.0619047619047619,
+            "bootstrap_95_ci": {
+              "mae": [
+                0.060714285714285735,
+                0.15476190476190474
+              ],
+              "within_0_15": [
+                0.5238095238095238,
+                0.9047619047619048
+              ],
+              "signed_bias": [
+                -0.11547619047619047,
+                0.002380952380952378
+              ]
+            }
+          },
+          "stability_within_0_15": 0.8333333333333334
+        }
+      ]
+    },
+    "google": {
+      "main": null,
+      "backup": null,
+      "status": "inconclusive",
+      "candidate_results": [
+        {
+          "candidate": "sonnet",
+          "qualifies": false,
+          "estimated_experiment_judge_cost_usd": 0.6040179999999999,
+          "metrics": {
+            "resolved_count": 19,
+            "mae": 0.13289473684210523,
+            "within_0_15": 0.7368421052631579,
+            "over_0_30": 0.05263157894736842,
+            "signed_bias": 0.06973684210526312,
+            "bootstrap_95_ci": {
+              "mae": [
+                0.08289473684210524,
+                0.19078947368421048
+              ],
+              "within_0_15": [
+                0.5263157894736842,
+                0.8947368421052632
+              ],
+              "signed_bias": [
+                -0.00394736842105267,
+                0.14473684210526314
+              ]
+            }
+          },
+          "stability_within_0_15": 0.8333333333333334
+        },
+        {
+          "candidate": "luna",
+          "qualifies": false,
+          "estimated_experiment_judge_cost_usd": 0.19987425,
+          "metrics": {
+            "resolved_count": 19,
+            "mae": 0.09868421052631576,
+            "within_0_15": 0.8421052631578947,
+            "over_0_30": 0.0,
+            "signed_bias": -0.019736842105263167,
+            "bootstrap_95_ci": {
+              "mae": [
+                0.07368421052631577,
+                0.12763157894736837
+              ],
+              "within_0_15": [
+                0.6842105263157895,
+                1.0
+              ],
+              "signed_bias": [
+                -0.06842105263157894,
+                0.03289473684210525
+              ]
+            }
+          },
+          "stability_within_0_15": 0.8333333333333334
+        }
+      ]
+    },
+    "anthropic": {
+      "main": null,
+      "backup": null,
+      "status": "inconclusive",
+      "candidate_results": [
+        {
+          "candidate": "flash",
+          "qualifies": false,
+          "estimated_experiment_judge_cost_usd": 0.252438,
+          "metrics": {
+            "resolved_count": 16,
+            "mae": 0.19625,
+            "within_0_15": 0.6875,
+            "over_0_30": 0.3125,
+            "signed_bias": 0.19625,
+            "bootstrap_95_ci": {
+              "mae": [
+                0.07249218750000001,
+                0.33687500000000004
+              ],
+              "within_0_15": [
+                0.4375,
+                0.875
+              ],
+              "signed_bias": [
+                0.07249218750000001,
+                0.33687500000000004
+              ]
+            }
+          },
+          "stability_within_0_15": 1.0
+        },
+        {
+          "candidate": "luna",
+          "qualifies": false,
+          "estimated_experiment_judge_cost_usd": 0.19987425,
+          "metrics": {
+            "resolved_count": 16,
+            "mae": 0.136875,
+            "within_0_15": 0.6875,
+            "over_0_30": 0.1875,
+            "signed_bias": 0.111875,
+            "bootstrap_95_ci": {
+              "mae": [
+                0.05187500000000002,
+                0.2359375
+              ],
+              "within_0_15": [
+                0.4375,
+                0.875
+              ],
+              "signed_bias": [
+                0.017179687500000016,
+                0.2159375
+              ]
+            }
+          },
+          "stability_within_0_15": 0.8333333333333334
+        }
+      ]
+    }
+  },
+  "costs": [
+    {
+      "model": "gemini-3.1-pro-preview",
+      "calls": 102,
+      "input_tokens": 132564,
+      "output_tokens": 32068,
+      "reasoning_tokens": 61673,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "estimated_cost_usd": 1.39002,
+      "average_latency_seconds": 156.68951960784312
+    },
+    {
+      "model": "gemini-3.6-flash",
+      "calls": 72,
+      "input_tokens": 131417,
+      "output_tokens": 7375,
+      "reasoning_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "estimated_cost_usd": 0.252438,
+      "average_latency_seconds": 138.04320833333333
+    },
+    {
+      "model": "gpt-5.6-luna",
+      "calls": 72,
+      "input_tokens": 140145,
+      "output_tokens": 8437,
+      "reasoning_tokens": 0,
+      "cache_write_tokens": 117429,
+      "cached_tokens": 22500,
+      "estimated_cost_usd": 0.19987425,
+      "average_latency_seconds": 136.85136111111112
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "calls": 102,
+      "input_tokens": 141498,
+      "output_tokens": 32385,
+      "reasoning_tokens": 0,
+      "cache_write_tokens": 117429,
+      "cached_tokens": 22500,
+      "estimated_cost_usd": 1.7245762500000001,
+      "average_latency_seconds": 119.89933333333333
+    },
+    {
+      "model": "us.anthropic.claude-opus-5",
+      "calls": 102,
+      "input_tokens": 220591,
+      "output_tokens": 84064,
+      "reasoning_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "estimated_cost_usd": 3.204555,
+      "average_latency_seconds": 208.6441274509804
+    },
+    {
+      "model": "us.anthropic.claude-sonnet-5",
+      "calls": 72,
+      "input_tokens": 218794,
+      "output_tokens": 16643,
+      "reasoning_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "estimated_cost_usd": 0.6040179999999999,
+      "average_latency_seconds": 142.35072222222223
+    }
+  ]
+}

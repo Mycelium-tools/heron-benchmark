@@ -1,0 +1,121 @@
+track,question_id,judge,scalar_preference,pairwise_forward,pairwise_reverse,position_consistent
+gemini,0,flash,TIE,TIE,Claude Opus 5,False
+gemini,0,pro,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,1,flash,TIE,Claude Opus 5,TIE,False
+gemini,1,pro,TIE,TIE,TIE,True
+gemini,2,flash,TIE,TIE,TIE,True
+gemini,2,pro,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,3,flash,TIE,TIE,TIE,True
+gemini,3,pro,TIE,TIE,TIE,True
+gemini,4,flash,TIE,GPT-5.6 Sol,Claude Opus 5,False
+gemini,4,pro,GPT-5.6 Sol,GPT-5.6 Sol,TIE,False
+gemini,5,flash,TIE,TIE,TIE,True
+gemini,5,pro,GPT-5.6 Sol,Claude Opus 5,Claude Opus 5,True
+gemini,6,flash,TIE,TIE,Claude Opus 5,False
+gemini,6,pro,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,7,flash,TIE,Claude Opus 5,TIE,False
+gemini,7,pro,TIE,TIE,TIE,True
+gemini,8,flash,TIE,TIE,TIE,True
+gemini,8,pro,TIE,TIE,TIE,True
+gemini,9,flash,TIE,TIE,TIE,True
+gemini,9,pro,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,10,flash,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,10,pro,TIE,TIE,TIE,True
+gemini,11,flash,TIE,TIE,TIE,True
+gemini,11,pro,GPT-5.6 Sol,TIE,TIE,True
+gemini,12,flash,TIE,TIE,TIE,True
+gemini,12,pro,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+gemini,13,flash,TIE,GPT-5.6 Sol,TIE,False
+gemini,13,pro,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,14,flash,TIE,TIE,TIE,True
+gemini,14,pro,TIE,TIE,TIE,True
+gemini,15,flash,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,15,pro,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,16,flash,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+gemini,16,pro,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+gemini,17,flash,TIE,TIE,TIE,True
+gemini,17,pro,TIE,TIE,TIE,True
+gemini,18,flash,TIE,GPT-5.6 Sol,TIE,False
+gemini,18,pro,TIE,TIE,Claude Opus 5,False
+gemini,19,flash,TIE,TIE,TIE,True
+gemini,19,pro,TIE,TIE,TIE,True
+gemini,20,flash,TIE,TIE,TIE,True
+gemini,20,pro,TIE,TIE,TIE,True
+gemini,21,flash,TIE,TIE,Claude Opus 5,False
+gemini,21,pro,TIE,TIE,Claude Opus 5,False
+gemini,22,flash,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,22,pro,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,23,flash,TIE,TIE,TIE,True
+gemini,23,pro,GPT-5.6 Sol,TIE,TIE,True
+gemini,24,flash,TIE,GPT-5.6 Sol,TIE,False
+gemini,24,pro,TIE,TIE,TIE,True
+gemini,25,flash,TIE,TIE,TIE,True
+gemini,25,pro,TIE,GPT-5.6 Sol,GPT-5.6 Sol,True
+gemini,26,flash,TIE,TIE,TIE,True
+gemini,26,pro,TIE,TIE,TIE,True
+gemini,27,flash,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,27,pro,TIE,TIE,TIE,True
+gemini,28,flash,TIE,TIE,TIE,True
+gemini,28,pro,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+gemini,29,flash,TIE,TIE,TIE,True
+gemini,29,pro,TIE,Claude Opus 5,TIE,False
+openai,0,luna,TIE,Claude Opus 5,Claude Opus 5,True
+openai,0,sol,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,True
+openai,1,luna,TIE,TIE,Claude Opus 5,False
+openai,1,sol,TIE,Claude Opus 5,Claude Opus 5,True
+openai,2,luna,Claude Opus 5,TIE,TIE,True
+openai,2,sol,TIE,TIE,TIE,True
+openai,3,luna,TIE,TIE,TIE,True
+openai,3,sol,TIE,TIE,Claude Opus 5,False
+openai,4,luna,TIE,TIE,Gemini 3.1 Pro Preview,False
+openai,4,sol,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,True
+openai,5,luna,TIE,Claude Opus 5,Claude Opus 5,True
+openai,5,sol,TIE,Claude Opus 5,Claude Opus 5,True
+openai,6,luna,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,6,sol,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,7,luna,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,7,sol,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,8,luna,TIE,Claude Opus 5,Claude Opus 5,True
+openai,8,sol,TIE,Claude Opus 5,Claude Opus 5,True
+openai,9,luna,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,9,sol,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,10,luna,Gemini 3.1 Pro Preview,Claude Opus 5,Claude Opus 5,True
+openai,10,sol,Claude Opus 5,TIE,Claude Opus 5,False
+openai,11,luna,TIE,Gemini 3.1 Pro Preview,Claude Opus 5,False
+openai,11,sol,TIE,Gemini 3.1 Pro Preview,TIE,False
+openai,12,luna,TIE,Claude Opus 5,Claude Opus 5,True
+openai,12,sol,TIE,Claude Opus 5,Claude Opus 5,True
+openai,13,luna,Claude Opus 5,Gemini 3.1 Pro Preview,Claude Opus 5,False
+openai,13,sol,TIE,Claude Opus 5,Claude Opus 5,True
+openai,14,luna,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,14,sol,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,15,luna,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,15,sol,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,16,luna,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,16,sol,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,17,luna,TIE,Claude Opus 5,Claude Opus 5,True
+openai,17,sol,TIE,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,True
+openai,18,luna,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,18,sol,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,19,luna,TIE,Claude Opus 5,Claude Opus 5,True
+openai,19,sol,TIE,TIE,Claude Opus 5,False
+openai,20,luna,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,20,sol,TIE,TIE,TIE,True
+openai,21,luna,TIE,Claude Opus 5,Claude Opus 5,True
+openai,21,sol,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,22,luna,TIE,Gemini 3.1 Pro Preview,Claude Opus 5,False
+openai,22,sol,TIE,Claude Opus 5,Claude Opus 5,True
+openai,23,luna,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,23,sol,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,True
+openai,24,luna,TIE,Claude Opus 5,Gemini 3.1 Pro Preview,False
+openai,24,sol,TIE,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,True
+openai,25,luna,TIE,Claude Opus 5,Claude Opus 5,True
+openai,25,sol,Gemini 3.1 Pro Preview,Claude Opus 5,Claude Opus 5,True
+openai,26,luna,Claude Opus 5,TIE,Claude Opus 5,False
+openai,26,sol,TIE,Claude Opus 5,Claude Opus 5,True
+openai,27,luna,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,27,sol,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,28,luna,Gemini 3.1 Pro Preview,Claude Opus 5,Claude Opus 5,True
+openai,28,sol,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,True
+openai,29,luna,Claude Opus 5,Claude Opus 5,Claude Opus 5,True
+openai,29,sol,Claude Opus 5,Claude Opus 5,Claude Opus 5,True

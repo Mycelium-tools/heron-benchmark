@@ -1,0 +1,21 @@
+track,question_id,judge,scalar_preference,pairwise_forward,pairwise_reverse,position_consistent
+gemini,0,flash,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,0,pro,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,1,flash,TIE,TIE,TIE,True
+gemini,1,pro,TIE,TIE,TIE,True
+gemini,2,flash,TIE,TIE,TIE,True
+gemini,2,pro,TIE,Claude Opus 5,Claude Opus 5,True
+gemini,3,flash,TIE,TIE,TIE,True
+gemini,3,pro,TIE,TIE,TIE,True
+gemini,4,flash,TIE,GPT-5.6 Sol,Claude Opus 5,False
+gemini,4,pro,GPT-5.6 Sol,GPT-5.6 Sol,TIE,False
+openai,0,luna,TIE,Claude Opus 5,Gemini 3.1 Pro Preview,False
+openai,0,sol,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,True
+openai,1,luna,TIE,TIE,Claude Opus 5,False
+openai,1,sol,TIE,Claude Opus 5,Claude Opus 5,True
+openai,2,luna,Claude Opus 5,Claude Opus 5,TIE,False
+openai,2,sol,TIE,TIE,TIE,True
+openai,3,luna,TIE,TIE,TIE,True
+openai,3,sol,TIE,TIE,Claude Opus 5,False
+openai,4,luna,TIE,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,True
+openai,4,sol,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,Gemini 3.1 Pro Preview,True

@@ -1,0 +1,299 @@
+{
+  "experiment": "Pairwise LLM Judge Consistency",
+  "status": "complete",
+  "created_at": "2026-07-31T19:15:31.091366+00:00",
+  "scenario_count": 5,
+  "expected_pairwise_calls": 40,
+  "hashes": {
+    "source_corpus": "30215e5129b4049749fe463f118223d68a4470ca04ef76e03c00764de399c36c",
+    "source_scalars": "ea4201afa67c6a63095be8e5e2ebdab662f3896f09e11f2f87134437c0386fa0",
+    "pairwise_scorer": "c5bf860ba2303dd9d4f5a2640375d4ad8c5a12749e2669f40d6087476e6774f4",
+    "experiment_spec": "e1a80d538f6056ce135420febd80334e0eab3c37ac9c53f0999a0747b68de8d8",
+    "settings": "e3892332df65fc8bb05de6b54cff97af078b04fdec2fea818fc628f99641ce0d"
+  },
+  "settings": {
+    "scenario_limit": 5,
+    "tracks": {
+      "gemini": {
+        "response_families": [
+          "openai",
+          "anthropic"
+        ],
+        "response_labels": [
+          "GPT-5.6 Sol",
+          "Claude Opus 5"
+        ],
+        "judges": [
+          "flash",
+          "pro"
+        ]
+      },
+      "openai": {
+        "response_families": [
+          "google",
+          "anthropic"
+        ],
+        "response_labels": [
+          "Gemini 3.1 Pro Preview",
+          "Claude Opus 5"
+        ],
+        "judges": [
+          "luna",
+          "sol"
+        ]
+      }
+    },
+    "judges": {
+      "flash": {
+        "label": "Gemini 3.6 Flash",
+        "family": "google",
+        "provider": "google",
+        "model": "gemini-3.6-flash",
+        "reasoning": "minimal"
+      },
+      "pro": {
+        "label": "Gemini 3.1 Pro Preview",
+        "family": "google",
+        "provider": "google",
+        "model": "gemini-3.1-pro-preview",
+        "reasoning": "medium"
+      },
+      "luna": {
+        "label": "GPT-5.6 Luna",
+        "family": "openai",
+        "provider": "openai",
+        "model": "gpt-5.6-luna",
+        "reasoning": "none"
+      },
+      "sol": {
+        "label": "GPT-5.6 Sol",
+        "family": "openai",
+        "provider": "openai",
+        "model": "gpt-5.6-sol",
+        "reasoning": "medium"
+      }
+    },
+    "max_tokens": 4096,
+    "concurrency": 6,
+    "scalar_tie_threshold": 0.15,
+    "orders": [
+      "forward",
+      "reverse"
+    ],
+    "sampling_parameters": "temperature, top_p, and top_k omitted",
+    "allowed_providers": [
+      "google",
+      "openai"
+    ]
+  },
+  "completed_at": "2026-07-31T19:17:10.770436+00:00",
+  "summary": {
+    "generated_at": "2026-07-31T19:17:10.765632+00:00",
+    "pairwise_call_count": 40,
+    "provider_call_counts": {
+      "google": 20,
+      "openai": 20
+    },
+    "anthropic_call_count": 0,
+    "tracks": {
+      "gemini": {
+        "scenario_count": 5,
+        "judges": [
+          "flash",
+          "pro"
+        ],
+        "scalar_interjudge_agreement": {
+          "count": 4,
+          "total": 5,
+          "percentage": 80.0
+        },
+        "pairwise_interjudge_agreement": {
+          "forward": {
+            "count": 4,
+            "total": 5,
+            "percentage": 80.0
+          },
+          "reverse": {
+            "count": 3,
+            "total": 5,
+            "percentage": 60.0
+          },
+          "all_orders": {
+            "count": 7,
+            "total": 10,
+            "percentage": 70.0
+          },
+          "position_stable_subset": {
+            "count": 3,
+            "total": 4,
+            "percentage": 75.0
+          }
+        },
+        "position_consistency": {
+          "flash": {
+            "count": 4,
+            "total": 5,
+            "percentage": 80.0
+          },
+          "pro": {
+            "count": 4,
+            "total": 5,
+            "percentage": 80.0
+          }
+        },
+        "scalar_pairwise_alignment_on_stable_cases": {
+          "flash": {
+            "count": 3,
+            "total": 4,
+            "percentage": 75.0
+          },
+          "pro": {
+            "count": 2,
+            "total": 4,
+            "percentage": 50.0
+          }
+        },
+        "scalar_tie_rate": {
+          "flash": {
+            "count": 5,
+            "total": 5,
+            "percentage": 100.0
+          },
+          "pro": {
+            "count": 4,
+            "total": 5,
+            "percentage": 80.0
+          }
+        },
+        "pairwise_tie_rate": {
+          "flash": {
+            "count": 6,
+            "total": 10,
+            "percentage": 60.0
+          },
+          "pro": {
+            "count": 5,
+            "total": 10,
+            "percentage": 50.0
+          }
+        }
+      },
+      "openai": {
+        "scenario_count": 5,
+        "judges": [
+          "luna",
+          "sol"
+        ],
+        "scalar_interjudge_agreement": {
+          "count": 2,
+          "total": 5,
+          "percentage": 40.0
+        },
+        "pairwise_interjudge_agreement": {
+          "forward": {
+            "count": 2,
+            "total": 5,
+            "percentage": 40.0
+          },
+          "reverse": {
+            "count": 4,
+            "total": 5,
+            "percentage": 80.0
+          },
+          "all_orders": {
+            "count": 6,
+            "total": 10,
+            "percentage": 60.0
+          },
+          "position_stable_subset": {
+            "count": 1,
+            "total": 1,
+            "percentage": 100.0
+          }
+        },
+        "position_consistency": {
+          "luna": {
+            "count": 2,
+            "total": 5,
+            "percentage": 40.0
+          },
+          "sol": {
+            "count": 4,
+            "total": 5,
+            "percentage": 80.0
+          }
+        },
+        "scalar_pairwise_alignment_on_stable_cases": {
+          "luna": {
+            "count": 1,
+            "total": 2,
+            "percentage": 50.0
+          },
+          "sol": {
+            "count": 3,
+            "total": 4,
+            "percentage": 75.0
+          }
+        },
+        "scalar_tie_rate": {
+          "luna": {
+            "count": 4,
+            "total": 5,
+            "percentage": 80.0
+          },
+          "sol": {
+            "count": 3,
+            "total": 5,
+            "percentage": 60.0
+          }
+        },
+        "pairwise_tie_rate": {
+          "luna": {
+            "count": 4,
+            "total": 10,
+            "percentage": 40.0
+          },
+          "sol": {
+            "count": 3,
+            "total": 10,
+            "percentage": 30.0
+          }
+        }
+      }
+    }
+  },
+  "artifacts": {
+    "analysis.json": {
+      "sha256": "b1016af52fe7e5a4f4fda121b57c764c4d0a717fd5e22f0d3b4ba97adf5f36bf",
+      "bytes": 3600
+    },
+    "comparison.csv": {
+      "sha256": "5280373293c4378f4da1505778de54e817a0cae10dc952e6d21b150abbe111c1",
+      "bytes": 1073
+    },
+    "frozen_inputs/experiment_spec.md": {
+      "sha256": "e1a80d538f6056ce135420febd80334e0eab3c37ac9c53f0999a0747b68de8d8",
+      "bytes": 3045
+    },
+    "frozen_inputs/pairwise_scorer.py": {
+      "sha256": "c5bf860ba2303dd9d4f5a2640375d4ad8c5a12749e2669f40d6087476e6774f4",
+      "bytes": 7398
+    },
+    "frozen_inputs/response_pairs.json": {
+      "sha256": "51e8f8a9d84c80d8eb509367aaca80b2168498a13521663085f14d6a9b1d9946",
+      "bytes": 59623
+    },
+    "frozen_inputs/scalar_baseline.json": {
+      "sha256": "2a62ead24377875e01b54211c54b3f934cf3601dacf39a1a21bd6bade6c5a8b7",
+      "bytes": 7025
+    },
+    "pairwise_judgments.jsonl": {
+      "sha256": "2b2860228446b52c478ee384f588de695997cc3f6b0b3fbb0a12655921cd07aa",
+      "bytes": 174418
+    },
+    "scenario_comparison.json": {
+      "sha256": "7d93f2d5efb99d83165e473be0868bbd720ebeebae1148c0d6d549c42726a4e7",
+      "bytes": 301522
+    }
+  }
+}

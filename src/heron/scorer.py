@@ -12,17 +12,17 @@ import re
 from inspect_ai.model import ChatMessageUser, GenerateConfig, get_model
 from inspect_ai.scorer import SampleScore, Score, Target, metric, scorer
 
-JUDGE_DEFAULT = "anthropic/claude-opus-4-8"
-JUDGE_ALT = "openai/gpt-4o"
+JUDGE_DEFAULT = "google/gemini-3.1-pro-preview"
+JUDGE_ALT = "openai/gpt-5.6-sol"
 JUDGE_CONCURRENCY = 8
-JUDGE_CONFIG = GenerateConfig()
+JUDGE_CONFIG = GenerateConfig(reasoning_effort="minimal")
 PROMPT_VERSION = "proportionality-v1"
 
 
 def select_judge(evaluated_model_name: str) -> str:
-    """Avoid self-judging: Claude targets use GPT; all others use Claude."""
+    """Avoid self-judging: Gemini targets use Sol; all others use Gemini."""
     name_lower = evaluated_model_name.lower()
-    if "claude" in name_lower or "anthropic" in name_lower:
+    if "gemini" in name_lower or "google" in name_lower:
         return JUDGE_ALT
     return JUDGE_DEFAULT
 

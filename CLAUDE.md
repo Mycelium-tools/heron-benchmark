@@ -33,11 +33,12 @@ HERON is deliberately simple: 1–2 turns, static (no dynamically generated foll
 
 ### Models
 - **Evaluated models:** see `MODELS` in `src/heron/eval.py`.
-- **Judge:** single model, chosen to avoid self-judging (`select_judge` in `scorer.py`): Claude/Anthropic targets are judged by GPT (`JUDGE_ALT`, currently `openai/gpt-4o`); everything else by Claude (`JUDGE_DEFAULT`, currently `anthropic/claude-opus-4-8`).
+- **Judge:** single model at minimal reasoning, chosen to avoid self-judging (`select_judge` in `scorer.py`): Gemini/Google targets are judged by Sol (`JUDGE_ALT`, currently `openai/gpt-5.6-sol`); everything else by Gemini (`JUDGE_DEFAULT`, currently `google/gemini-3.1-pro-preview`).
 
 API keys required in `.env`:
 - `ANTHROPIC_API_KEY`
 - `OPENAI_API_KEY`
+- `GOOGLE_API_KEY`
 - `HF_TOKEN` (only for dataset sync)
 - `CHAD_AWS_BEDROCK_KEY` (only for `bedrock/...` models — the shared AWS Bedrock bearer key; ask Allen for the value, never commit it). `eval.py` auto-bridges it to `AWS_BEARER_TOKEN_BEDROCK` + `AWS_DEFAULT_REGION=us-east-1`, so no manual exports are needed. Verified model ids: `bedrock/us.anthropic.claude-opus-4-8`, `bedrock/us.anthropic.claude-sonnet-5`, `bedrock/us.anthropic.claude-haiku-4-5-20251001-v1:0` (Haiku requires the full versioned id).
 

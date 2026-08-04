@@ -251,20 +251,28 @@ def validate_environment(models: list[str]) -> None:
     missing = []
     needs_anthropic = any(m.startswith("anthropic/") for m in models)
     needs_openai = any(m.startswith("openai/") or m.startswith("openai-api/") for m in models)
+    needs_google = any(m.startswith("google/") for m in models)
     needs_bedrock = any(m.startswith("bedrock/") for m in models)
 
     if needs_anthropic and not os.environ.get("ANTHROPIC_API_KEY"):
         missing.append("ANTHROPIC_API_KEY")
     if needs_openai and not os.environ.get("OPENAI_API_KEY"):
         missing.append("OPENAI_API_KEY")
+    if needs_google and not os.environ.get("GOOGLE_API_KEY"):
+        missing.append("GOOGLE_API_KEY")
     if needs_bedrock and not os.environ.get("AWS_BEARER_TOKEN_BEDROCK"):
         missing.append("CHAD_AWS_BEDROCK_KEY (or AWS_BEARER_TOKEN_BEDROCK)")
-    # The judge is either Claude (Anthropic) or GPT (OpenAI) depending on the target,
-    # so both keys are needed for a mixed MODELS list.
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        missing.append("ANTHROPIC_API_KEY")
-    if not os.environ.get("OPENAI_API_KEY"):
+    # Gemini targets use Sol to avoid self-judging; all other targets use Gemini.
+    judge_needs_openai = any(
+        "gemini" in m.lower() or m.startswith("google/") for m in models
+    )
+    judge_needs_google = any(
+        "gemini" not in m.lower() and not m.startswith("google/") for m in models
+    )
+    if judge_needs_openai and not os.environ.get("OPENAI_API_KEY"):
         missing.append("OPENAI_API_KEY")
+    if judge_needs_google and not os.environ.get("GOOGLE_API_KEY"):
+        missing.append("GOOGLE_API_KEY")
 
     missing = list(dict.fromkeys(missing))
     if missing:

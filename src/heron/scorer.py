@@ -13,14 +13,14 @@ from inspect_ai.model import ChatMessageUser, GenerateConfig, get_model
 from inspect_ai.scorer import SampleScore, Score, Target, metric, scorer
 
 JUDGE_DEFAULT = "google/gemini-3.1-pro-preview"
-JUDGE_ALT = "openai/gpt-5.6-luna"
+JUDGE_ALT = "openai/gpt-5.6-sol"
 JUDGE_CONCURRENCY = 8
 JUDGE_CONFIG = GenerateConfig(reasoning_effort="minimal")
 PROMPT_VERSION = "proportionality-v1"
 
 
 def select_judge(evaluated_model_name: str) -> str:
-    """Avoid self-judging: Gemini targets use Luna; all others use Gemini."""
+    """Avoid self-judging: Gemini targets use Sol; all others use Gemini."""
     name_lower = evaluated_model_name.lower()
     if "gemini" in name_lower or "google" in name_lower:
         return JUDGE_ALT

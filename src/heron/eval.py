@@ -262,7 +262,7 @@ def validate_environment(models: list[str]) -> None:
         missing.append("GOOGLE_API_KEY")
     if needs_bedrock and not os.environ.get("AWS_BEARER_TOKEN_BEDROCK"):
         missing.append("CHAD_AWS_BEDROCK_KEY (or AWS_BEARER_TOKEN_BEDROCK)")
-    # Gemini targets use Luna to avoid self-judging; all other targets use Gemini.
+    # Gemini targets use Sol to avoid self-judging; all other targets use Gemini.
     judge_needs_openai = any(
         "gemini" in m.lower() or m.startswith("google/") for m in models
     )

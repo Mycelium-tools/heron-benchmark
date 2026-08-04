@@ -33,7 +33,7 @@ HERON is deliberately simple: 1–2 turns, static (no dynamically generated foll
 
 ### Models
 - **Evaluated models:** see `MODELS` in `src/heron/eval.py`.
-- **Judge:** single model at minimal reasoning, chosen to avoid self-judging (`select_judge` in `scorer.py`): Gemini/Google targets are judged by Luna (`JUDGE_ALT`, currently `openai/gpt-5.6-luna`); everything else by Gemini (`JUDGE_DEFAULT`, currently `google/gemini-3.1-pro-preview`).
+- **Judge:** single model at minimal reasoning, chosen to avoid self-judging (`select_judge` in `scorer.py`): Gemini/Google targets are judged by Sol (`JUDGE_ALT`, currently `openai/gpt-5.6-sol`); everything else by Gemini (`JUDGE_DEFAULT`, currently `google/gemini-3.1-pro-preview`).
 
 API keys required in `.env`:
 - `ANTHROPIC_API_KEY`

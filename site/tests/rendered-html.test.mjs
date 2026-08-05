@@ -44,3 +44,15 @@ test("renders the field note and launch kit", async () => {
   assert.match(launchHtml, /Luna.*74.*Sonnet.*68.*Flash.*61/s);
   assert.match(launchHtml, /Calibration matters/);
 });
+
+test("renders the evaluation explorer with all response data", async () => {
+  const response = await render("/explorer");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Read every response and judgment/);
+  assert.match(html, /20 scenarios · 3 models · 60 cross-family judge evaluations/);
+  assert.match(html, /Search scenarios/);
+  assert.match(html, /View raw judge output/);
+  assert.match(html, /Gemini 3.1 Pro/);
+  assert.match(html, /GPT-5.6 Sol/);
+});

@@ -10,6 +10,7 @@ export function Header() {
       <Link className="brand" href="/"><Mark /><strong>HERON</strong></Link>
       <nav aria-label="Main navigation">
         <Link href="/#results">Results</Link>
+        <Link href="/explorer">Explorer</Link>
         <Link href="/#example">Example</Link>
         <Link href="/blog">Pilot note</Link>
       </nav>
@@ -21,7 +22,7 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <p><strong>HERON</strong> · Hidden-stakes Ethical Reasoning On Nonhumans</p>
-      <div><Link href="/blog">Pilot note</Link><Link href="/launch">Launch post</Link><a href="mailto:allen@sentientfutures.ai">Contact</a></div>
+      <div><Link href="/explorer">Explorer</Link><Link href="/blog">Pilot note</Link><Link href="/launch">Launch post</Link><a href="mailto:allen@sentientfutures.ai">Contact</a></div>
       <small>Sentient Futures · Pilot release · August 2026</small>
     </footer>
   );

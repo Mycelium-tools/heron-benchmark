@@ -1,0 +1,25 @@
+{
+  "experiment": "pairwise-human-feasibility",
+  "seed": 20260731,
+  "unique_comparisons": 10,
+  "hidden_repeats": 2,
+  "review_screens": 12,
+  "source_models": [
+    "gpt-5.6-sol",
+    "gemini-3.1-pro-preview"
+  ],
+  "selected_question_ids": [
+    "0",
+    "16",
+    "29",
+    "15",
+    "25",
+    "6",
+    "11",
+    "22",
+    "12",
+    "19"
+  ],
+  "source_corpus": "experiments/cross-family-judge-selection/results/corpus.jsonl",
+  "source_corpus_sha256": "30215e5129b4049749fe463f118223d68a4470ca04ef76e03c00764de399c36c"
+}

@@ -1,0 +1,175 @@
+{
+  "generated_at": "2026-07-31T19:17:10.765632+00:00",
+  "pairwise_call_count": 40,
+  "provider_call_counts": {
+    "google": 20,
+    "openai": 20
+  },
+  "anthropic_call_count": 0,
+  "tracks": {
+    "gemini": {
+      "scenario_count": 5,
+      "judges": [
+        "flash",
+        "pro"
+      ],
+      "scalar_interjudge_agreement": {
+        "count": 4,
+        "total": 5,
+        "percentage": 80.0
+      },
+      "pairwise_interjudge_agreement": {
+        "forward": {
+          "count": 4,
+          "total": 5,
+          "percentage": 80.0
+        },
+        "reverse": {
+          "count": 3,
+          "total": 5,
+          "percentage": 60.0
+        },
+        "all_orders": {
+          "count": 7,
+          "total": 10,
+          "percentage": 70.0
+        },
+        "position_stable_subset": {
+          "count": 3,
+          "total": 4,
+          "percentage": 75.0
+        }
+      },
+      "position_consistency": {
+        "flash": {
+          "count": 4,
+          "total": 5,
+          "percentage": 80.0
+        },
+        "pro": {
+          "count": 4,
+          "total": 5,
+          "percentage": 80.0
+        }
+      },
+      "scalar_pairwise_alignment_on_stable_cases": {
+        "flash": {
+          "count": 3,
+          "total": 4,
+          "percentage": 75.0
+        },
+        "pro": {
+          "count": 2,
+          "total": 4,
+          "percentage": 50.0
+        }
+      },
+      "scalar_tie_rate": {
+        "flash": {
+          "count": 5,
+          "total": 5,
+          "percentage": 100.0
+        },
+        "pro": {
+          "count": 4,
+          "total": 5,
+          "percentage": 80.0
+        }
+      },
+      "pairwise_tie_rate": {
+        "flash": {
+          "count": 6,
+          "total": 10,
+          "percentage": 60.0
+        },
+        "pro": {
+          "count": 5,
+          "total": 10,
+          "percentage": 50.0
+        }
+      }
+    },
+    "openai": {
+      "scenario_count": 5,
+      "judges": [
+        "luna",
+        "sol"
+      ],
+      "scalar_interjudge_agreement": {
+        "count": 2,
+        "total": 5,
+        "percentage": 40.0
+      },
+      "pairwise_interjudge_agreement": {
+        "forward": {
+          "count": 2,
+          "total": 5,
+          "percentage": 40.0
+        },
+        "reverse": {
+          "count": 4,
+          "total": 5,
+          "percentage": 80.0
+        },
+        "all_orders": {
+          "count": 6,
+          "total": 10,
+          "percentage": 60.0
+        },
+        "position_stable_subset": {
+          "count": 1,
+          "total": 1,
+          "percentage": 100.0
+        }
+      },
+      "position_consistency": {
+        "luna": {
+          "count": 2,
+          "total": 5,
+          "percentage": 40.0
+        },
+        "sol": {
+          "count": 4,
+          "total": 5,
+          "percentage": 80.0
+        }
+      },
+      "scalar_pairwise_alignment_on_stable_cases": {
+        "luna": {
+          "count": 1,
+          "total": 2,
+          "percentage": 50.0
+        },
+        "sol": {
+          "count": 3,
+          "total": 4,
+          "percentage": 75.0
+        }
+      },
+      "scalar_tie_rate": {
+        "luna": {
+          "count": 4,
+          "total": 5,
+          "percentage": 80.0
+        },
+        "sol": {
+          "count": 3,
+          "total": 5,
+          "percentage": 60.0
+        }
+      },
+      "pairwise_tie_rate": {
+        "luna": {
+          "count": 4,
+          "total": 10,
+          "percentage": 40.0
+        },
+        "sol": {
+          "count": 3,
+          "total": 10,
+          "percentage": 30.0
+        }
+      }
+    }
+  }
+}

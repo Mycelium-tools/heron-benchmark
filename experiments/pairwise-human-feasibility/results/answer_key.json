@@ -1,0 +1,150 @@
+{
+  "seed": 20260731,
+  "source_corpus_sha256": "30215e5129b4049749fe463f118223d68a4470ca04ef76e03c00764de399c36c",
+  "selected_question_ids": [
+    "0",
+    "16",
+    "29",
+    "15",
+    "25",
+    "6",
+    "11",
+    "22",
+    "12",
+    "19"
+  ],
+  "pair_key": {
+    "pair-01": {
+      "canonical_pair_id": "pair-01",
+      "question_id": "0",
+      "is_repeat": false,
+      "a_family": "openai",
+      "a_model": "gpt-5.6-sol",
+      "b_family": "google",
+      "b_model": "gemini-3.1-pro-preview",
+      "a_response_sha256": "f70a00ebb6750cb6163ceb4790df11a4bacc3a49c9bda7b36be3f7bf9c4a4250",
+      "b_response_sha256": "40c6db205471a3f8806fb1a585f7563d0ebce9ccd8af014b35cc6336f306ac7a"
+    },
+    "pair-02": {
+      "canonical_pair_id": "pair-02",
+      "question_id": "16",
+      "is_repeat": false,
+      "a_family": "openai",
+      "a_model": "gpt-5.6-sol",
+      "b_family": "google",
+      "b_model": "gemini-3.1-pro-preview",
+      "a_response_sha256": "89980a42fd48eb03ae144f927bccc406e7f39c6e3a076d687de1ff495d754e14",
+      "b_response_sha256": "d8dec81f4e8f93c7be4f28ac74f61107b35abbef1db4b31821b7641951f0877e"
+    },
+    "pair-03": {
+      "canonical_pair_id": "pair-03",
+      "question_id": "29",
+      "is_repeat": false,
+      "a_family": "google",
+      "a_model": "gemini-3.1-pro-preview",
+      "b_family": "openai",
+      "b_model": "gpt-5.6-sol",
+      "a_response_sha256": "ca434a5a71def0c6be966bb59aa1dcb6b67249702158dbec89f99ddbe9cfd0ea",
+      "b_response_sha256": "a96a3dae6088788ae2b195966c7985eb1c5af0da782e11092f861a181df3bcc5"
+    },
+    "pair-04": {
+      "canonical_pair_id": "pair-04",
+      "question_id": "15",
+      "is_repeat": false,
+      "a_family": "google",
+      "a_model": "gemini-3.1-pro-preview",
+      "b_family": "openai",
+      "b_model": "gpt-5.6-sol",
+      "a_response_sha256": "05cf4eefcecd333ddc498f2e9ba40cad0805ed57a4315d128052867faf84f155",
+      "b_response_sha256": "99e83bba29de70c9ab9ed08c22077f5cc0e686c752a42fa6bdbb980b378678e9"
+    },
+    "pair-05": {
+      "canonical_pair_id": "pair-05",
+      "question_id": "25",
+      "is_repeat": false,
+      "a_family": "openai",
+      "a_model": "gpt-5.6-sol",
+      "b_family": "google",
+      "b_model": "gemini-3.1-pro-preview",
+      "a_response_sha256": "eb88b0634b317613a1d02854ba015d64b7b73a38accee2dba402e16ce772c8e8",
+      "b_response_sha256": "f3e3af9e04aea64c1559e1a0e93638252eba646ebade54e5cfda064354de8511"
+    },
+    "pair-06": {
+      "canonical_pair_id": "pair-06",
+      "question_id": "6",
+      "is_repeat": false,
+      "a_family": "google",
+      "a_model": "gemini-3.1-pro-preview",
+      "b_family": "openai",
+      "b_model": "gpt-5.6-sol",
+      "a_response_sha256": "82f8ed500cfd6d4f9c2037444b5cabb929c4ac003b5415e9386b8f1b5f720fa5",
+      "b_response_sha256": "ac88ceab8c611ba97e8edf0fd098afe19751af083647f3bb4c348938da843ade"
+    },
+    "pair-07": {
+      "canonical_pair_id": "pair-07",
+      "question_id": "11",
+      "is_repeat": false,
+      "a_family": "openai",
+      "a_model": "gpt-5.6-sol",
+      "b_family": "google",
+      "b_model": "gemini-3.1-pro-preview",
+      "a_response_sha256": "b2f7e65782006c22db055784bcdaa72834ce76fd22f0abfb5df96d6722a04879",
+      "b_response_sha256": "0f484b8a8c616dfc453d7c736c399dda1fd5f1368a2b39beb5203129840237b5"
+    },
+    "pair-08": {
+      "canonical_pair_id": "pair-08",
+      "question_id": "22",
+      "is_repeat": false,
+      "a_family": "google",
+      "a_model": "gemini-3.1-pro-preview",
+      "b_family": "openai",
+      "b_model": "gpt-5.6-sol",
+      "a_response_sha256": "933e30eded34d8416f544b8f64d0aca2fd2d8b1c00f45b9af4f654f1ea57f2a6",
+      "b_response_sha256": "85accb185b51874874bb70fc06ff34593b68f05b906c428e74f0efa2f6fcbc39"
+    },
+    "pair-09": {
+      "canonical_pair_id": "pair-09",
+      "question_id": "12",
+      "is_repeat": false,
+      "a_family": "openai",
+      "a_model": "gpt-5.6-sol",
+      "b_family": "google",
+      "b_model": "gemini-3.1-pro-preview",
+      "a_response_sha256": "0ba1ad2b62e2b8e543d4ad6e9d621f8b53442de7bc15d0acc78a7e2ecd96cf85",
+      "b_response_sha256": "1d8f97298c74cef2366ff47fd3503138c912f6c4e9bcac5ca5b2fc6859976fd5"
+    },
+    "pair-10": {
+      "canonical_pair_id": "pair-10",
+      "question_id": "19",
+      "is_repeat": false,
+      "a_family": "google",
+      "a_model": "gemini-3.1-pro-preview",
+      "b_family": "openai",
+      "b_model": "gpt-5.6-sol",
+      "a_response_sha256": "34aaacb2006cd650042f6a6716c937b05e91fecea14287d951efa5f4f9169aa5",
+      "b_response_sha256": "28485e53b946e106a800609ac1657795be9af56815843a17b9a9fc2624c9502f"
+    },
+    "check-01": {
+      "canonical_pair_id": "pair-03",
+      "question_id": "29",
+      "is_repeat": true,
+      "a_family": "openai",
+      "a_model": "gpt-5.6-sol",
+      "b_family": "google",
+      "b_model": "gemini-3.1-pro-preview",
+      "a_response_sha256": "a96a3dae6088788ae2b195966c7985eb1c5af0da782e11092f861a181df3bcc5",
+      "b_response_sha256": "ca434a5a71def0c6be966bb59aa1dcb6b67249702158dbec89f99ddbe9cfd0ea"
+    },
+    "check-02": {
+      "canonical_pair_id": "pair-04",
+      "question_id": "15",
+      "is_repeat": true,
+      "a_family": "openai",
+      "a_model": "gpt-5.6-sol",
+      "b_family": "google",
+      "b_model": "gemini-3.1-pro-preview",
+      "a_response_sha256": "99e83bba29de70c9ab9ed08c22077f5cc0e686c752a42fa6bdbb980b378678e9",
+      "b_response_sha256": "05cf4eefcecd333ddc498f2e9ba40cad0805ed57a4315d128052867faf84f155"
+    }
+  }
+}

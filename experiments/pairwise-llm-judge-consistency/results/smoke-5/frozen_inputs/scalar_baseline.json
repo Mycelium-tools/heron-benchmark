@@ -1,0 +1,302 @@
+[
+  {
+    "key": "gemini:0:flash",
+    "pair_key": "gemini:0",
+    "track": "gemini",
+    "question_id": "0",
+    "judge_key": "flash",
+    "judge_model": "gemini-3.6-flash",
+    "response_1_score": 1.0,
+    "response_2_score": 1.0,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "openai:0:flash",
+      "anthropic:0:flash"
+    ]
+  },
+  {
+    "key": "gemini:0:pro",
+    "pair_key": "gemini:0",
+    "track": "gemini",
+    "question_id": "0",
+    "judge_key": "pro",
+    "judge_model": "gemini-3.1-pro-preview",
+    "response_1_score": 1.0,
+    "response_2_score": 1.0,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "openai:0:pro",
+      "anthropic:0:pro"
+    ]
+  },
+  {
+    "key": "gemini:1:flash",
+    "pair_key": "gemini:1",
+    "track": "gemini",
+    "question_id": "1",
+    "judge_key": "flash",
+    "judge_model": "gemini-3.6-flash",
+    "response_1_score": 1.0,
+    "response_2_score": 1.0,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "openai:1:flash",
+      "anthropic:1:flash"
+    ]
+  },
+  {
+    "key": "gemini:1:pro",
+    "pair_key": "gemini:1",
+    "track": "gemini",
+    "question_id": "1",
+    "judge_key": "pro",
+    "judge_model": "gemini-3.1-pro-preview",
+    "response_1_score": 1.0,
+    "response_2_score": 1.0,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "openai:1:pro",
+      "anthropic:1:pro"
+    ]
+  },
+  {
+    "key": "gemini:2:flash",
+    "pair_key": "gemini:2",
+    "track": "gemini",
+    "question_id": "2",
+    "judge_key": "flash",
+    "judge_model": "gemini-3.6-flash",
+    "response_1_score": 1.0,
+    "response_2_score": 1.0,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "openai:2:flash",
+      "anthropic:2:flash"
+    ]
+  },
+  {
+    "key": "gemini:2:pro",
+    "pair_key": "gemini:2",
+    "track": "gemini",
+    "question_id": "2",
+    "judge_key": "pro",
+    "judge_model": "gemini-3.1-pro-preview",
+    "response_1_score": 0.5,
+    "response_2_score": 0.5,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "openai:2:pro",
+      "anthropic:2:pro"
+    ]
+  },
+  {
+    "key": "gemini:3:flash",
+    "pair_key": "gemini:3",
+    "track": "gemini",
+    "question_id": "3",
+    "judge_key": "flash",
+    "judge_model": "gemini-3.6-flash",
+    "response_1_score": 0.8,
+    "response_2_score": 0.8,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "openai:3:flash",
+      "anthropic:3:flash"
+    ]
+  },
+  {
+    "key": "gemini:3:pro",
+    "pair_key": "gemini:3",
+    "track": "gemini",
+    "question_id": "3",
+    "judge_key": "pro",
+    "judge_model": "gemini-3.1-pro-preview",
+    "response_1_score": 0.2,
+    "response_2_score": 0.2,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "openai:3:pro",
+      "anthropic:3:pro"
+    ]
+  },
+  {
+    "key": "gemini:4:flash",
+    "pair_key": "gemini:4",
+    "track": "gemini",
+    "question_id": "4",
+    "judge_key": "flash",
+    "judge_model": "gemini-3.6-flash",
+    "response_1_score": 1.0,
+    "response_2_score": 1.0,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "openai:4:flash",
+      "anthropic:4:flash"
+    ]
+  },
+  {
+    "key": "gemini:4:pro",
+    "pair_key": "gemini:4",
+    "track": "gemini",
+    "question_id": "4",
+    "judge_key": "pro",
+    "judge_model": "gemini-3.1-pro-preview",
+    "response_1_score": 1.0,
+    "response_2_score": 0.2,
+    "scalar_preference": "GPT-5.6 Sol",
+    "source_judgment_keys": [
+      "openai:4:pro",
+      "anthropic:4:pro"
+    ]
+  },
+  {
+    "key": "openai:0:luna",
+    "pair_key": "openai:0",
+    "track": "openai",
+    "question_id": "0",
+    "judge_key": "luna",
+    "judge_model": "gpt-5.6-luna",
+    "response_1_score": 0.8,
+    "response_2_score": 0.8,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "google:0:luna",
+      "anthropic:0:luna"
+    ]
+  },
+  {
+    "key": "openai:0:sol",
+    "pair_key": "openai:0",
+    "track": "openai",
+    "question_id": "0",
+    "judge_key": "sol",
+    "judge_model": "gpt-5.6-sol",
+    "response_1_score": 0.8,
+    "response_2_score": 0.6,
+    "scalar_preference": "Gemini 3.1 Pro Preview",
+    "source_judgment_keys": [
+      "google:0:sol",
+      "anthropic:0:sol"
+    ]
+  },
+  {
+    "key": "openai:1:luna",
+    "pair_key": "openai:1",
+    "track": "openai",
+    "question_id": "1",
+    "judge_key": "luna",
+    "judge_model": "gpt-5.6-luna",
+    "response_1_score": 1.0,
+    "response_2_score": 1.0,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "google:1:luna",
+      "anthropic:1:luna"
+    ]
+  },
+  {
+    "key": "openai:1:sol",
+    "pair_key": "openai:1",
+    "track": "openai",
+    "question_id": "1",
+    "judge_key": "sol",
+    "judge_model": "gpt-5.6-sol",
+    "response_1_score": 0.9,
+    "response_2_score": 1.0,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "google:1:sol",
+      "anthropic:1:sol"
+    ]
+  },
+  {
+    "key": "openai:2:luna",
+    "pair_key": "openai:2",
+    "track": "openai",
+    "question_id": "2",
+    "judge_key": "luna",
+    "judge_model": "gpt-5.6-luna",
+    "response_1_score": 0.8,
+    "response_2_score": 1.0,
+    "scalar_preference": "Claude Opus 5",
+    "source_judgment_keys": [
+      "google:2:luna",
+      "anthropic:2:luna"
+    ]
+  },
+  {
+    "key": "openai:2:sol",
+    "pair_key": "openai:2",
+    "track": "openai",
+    "question_id": "2",
+    "judge_key": "sol",
+    "judge_model": "gpt-5.6-sol",
+    "response_1_score": 0.5,
+    "response_2_score": 0.5,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "google:2:sol",
+      "anthropic:2:sol"
+    ]
+  },
+  {
+    "key": "openai:3:luna",
+    "pair_key": "openai:3",
+    "track": "openai",
+    "question_id": "3",
+    "judge_key": "luna",
+    "judge_model": "gpt-5.6-luna",
+    "response_1_score": 0.5,
+    "response_2_score": 0.5,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "google:3:luna",
+      "anthropic:3:luna"
+    ]
+  },
+  {
+    "key": "openai:3:sol",
+    "pair_key": "openai:3",
+    "track": "openai",
+    "question_id": "3",
+    "judge_key": "sol",
+    "judge_model": "gpt-5.6-sol",
+    "response_1_score": 0.1,
+    "response_2_score": 0.2,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "google:3:sol",
+      "anthropic:3:sol"
+    ]
+  },
+  {
+    "key": "openai:4:luna",
+    "pair_key": "openai:4",
+    "track": "openai",
+    "question_id": "4",
+    "judge_key": "luna",
+    "judge_model": "gpt-5.6-luna",
+    "response_1_score": 0.95,
+    "response_2_score": 0.8,
+    "scalar_preference": "TIE",
+    "source_judgment_keys": [
+      "google:4:luna",
+      "anthropic:4:luna"
+    ]
+  },
+  {
+    "key": "openai:4:sol",
+    "pair_key": "openai:4",
+    "track": "openai",
+    "question_id": "4",
+    "judge_key": "sol",
+    "judge_model": "gpt-5.6-sol",
+    "response_1_score": 0.5,
+    "response_2_score": 0.3,
+    "scalar_preference": "Gemini 3.1 Pro Preview",
+    "source_judgment_keys": [
+      "google:4:sol",
+      "anthropic:4:sol"
+    ]
+  }
+]

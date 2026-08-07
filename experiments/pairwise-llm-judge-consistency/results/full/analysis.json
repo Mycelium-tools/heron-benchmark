@@ -1,0 +1,220 @@
+{
+  "generated_at": "2026-07-31T19:24:39.828976+00:00",
+  "pairwise_call_count": 240,
+  "provider_call_counts": {
+    "google": 120,
+    "openai": 120
+  },
+  "anthropic_call_count": 0,
+  "costs": {
+    "by_model": [
+      {
+        "model": "gemini-3.6-flash",
+        "calls": 60,
+        "input_tokens": 138538,
+        "output_tokens": 6783,
+        "reasoning_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "estimated_cost_usd": 0.2586795
+      },
+      {
+        "model": "gemini-3.1-pro-preview",
+        "calls": 60,
+        "input_tokens": 138538,
+        "output_tokens": 5733,
+        "reasoning_tokens": 35688,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "estimated_cost_usd": 0.7741279999999999
+      },
+      {
+        "model": "gpt-5.6-luna",
+        "calls": 60,
+        "input_tokens": 156422,
+        "output_tokens": 7152,
+        "reasoning_tokens": 0,
+        "cached_tokens": 24252,
+        "cache_write_tokens": 131990,
+        "estimated_cost_usd": 0.21050470000000002
+      },
+      {
+        "model": "gpt-5.6-sol",
+        "calls": 60,
+        "input_tokens": 156422,
+        "output_tokens": 16168,
+        "reasoning_tokens": 0,
+        "cached_tokens": 24252,
+        "cache_write_tokens": 131990,
+        "estimated_cost_usd": 1.3230035
+      }
+    ],
+    "total_estimated_cost_usd": 2.5663157
+  },
+  "tracks": {
+    "gemini": {
+      "scenario_count": 30,
+      "judges": [
+        "flash",
+        "pro"
+      ],
+      "scalar_interjudge_agreement": {
+        "count": 24,
+        "total": 30,
+        "percentage": 80.0
+      },
+      "pairwise_interjudge_agreement": {
+        "forward": {
+          "count": 14,
+          "total": 30,
+          "percentage": 46.666666666666664
+        },
+        "reverse": {
+          "count": 19,
+          "total": 30,
+          "percentage": 63.333333333333336
+        },
+        "all_orders": {
+          "count": 33,
+          "total": 60,
+          "percentage": 55.0
+        },
+        "position_stable_subset": {
+          "count": 12,
+          "total": 20,
+          "percentage": 60.0
+        }
+      },
+      "position_consistency": {
+        "flash": {
+          "count": 21,
+          "total": 30,
+          "percentage": 70.0
+        },
+        "pro": {
+          "count": 26,
+          "total": 30,
+          "percentage": 86.66666666666667
+        }
+      },
+      "scalar_pairwise_alignment_on_stable_cases": {
+        "flash": {
+          "count": 17,
+          "total": 21,
+          "percentage": 80.95238095238095
+        },
+        "pro": {
+          "count": 15,
+          "total": 26,
+          "percentage": 57.69230769230769
+        }
+      },
+      "scalar_tie_rate": {
+        "flash": {
+          "count": 29,
+          "total": 30,
+          "percentage": 96.66666666666667
+        },
+        "pro": {
+          "count": 23,
+          "total": 30,
+          "percentage": 76.66666666666667
+        }
+      },
+      "pairwise_tie_rate": {
+        "flash": {
+          "count": 40,
+          "total": 60,
+          "percentage": 66.66666666666667
+        },
+        "pro": {
+          "count": 32,
+          "total": 60,
+          "percentage": 53.333333333333336
+        }
+      }
+    },
+    "openai": {
+      "scenario_count": 30,
+      "judges": [
+        "luna",
+        "sol"
+      ],
+      "scalar_interjudge_agreement": {
+        "count": 20,
+        "total": 30,
+        "percentage": 66.66666666666667
+      },
+      "pairwise_interjudge_agreement": {
+        "forward": {
+          "count": 17,
+          "total": 30,
+          "percentage": 56.666666666666664
+        },
+        "reverse": {
+          "count": 23,
+          "total": 30,
+          "percentage": 76.66666666666667
+        },
+        "all_orders": {
+          "count": 40,
+          "total": 60,
+          "percentage": 66.66666666666667
+        },
+        "position_stable_subset": {
+          "count": 15,
+          "total": 20,
+          "percentage": 75.0
+        }
+      },
+      "position_consistency": {
+        "luna": {
+          "count": 23,
+          "total": 30,
+          "percentage": 76.66666666666667
+        },
+        "sol": {
+          "count": 26,
+          "total": 30,
+          "percentage": 86.66666666666667
+        }
+      },
+      "scalar_pairwise_alignment_on_stable_cases": {
+        "luna": {
+          "count": 12,
+          "total": 23,
+          "percentage": 52.17391304347826
+        },
+        "sol": {
+          "count": 16,
+          "total": 26,
+          "percentage": 61.53846153846154
+        }
+      },
+      "scalar_tie_rate": {
+        "luna": {
+          "count": 14,
+          "total": 30,
+          "percentage": 46.666666666666664
+        },
+        "sol": {
+          "count": 14,
+          "total": 30,
+          "percentage": 46.666666666666664
+        }
+      },
+      "pairwise_tie_rate": {
+        "luna": {
+          "count": 7,
+          "total": 60,
+          "percentage": 11.666666666666666
+        },
+        "sol": {
+          "count": 8,
+          "total": 60,
+          "percentage": 13.333333333333334
+        }
+      }
+    }
+  }
+}

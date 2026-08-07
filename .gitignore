@@ -1,5 +1,6 @@
 .env
 .venv/
+experiments/wildchat/out/*.jsonl
 __pycache__/
 *.egg-info/
 .DS_Store

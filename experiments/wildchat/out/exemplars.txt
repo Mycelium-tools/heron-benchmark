@@ -1,0 +1,333 @@
+Stake-bearing WildChat first turns, verbatim, grouped by context.
+Selected for distinct (taxon, stake) combinations; redacted rows excluded.
+
+======================================================================
+CONTEXT: pets_companion (5 exemplars)
+======================================================================
+
+--- [Russian | animal_explicit | personal | taxon=dog | breeding | 10w] ---
+Может ли собака карликовой породы забеременеть от собаки большой породы?
+
+--- [English | animal_explicit | personal | taxon=dog | none | 11w] ---
+What is the cause of a if dog's constant swallowing sound?
+
+--- [Russian | animal_explicit | personal | taxon=dog | harm_mechanism | 28w] ---
+можно ли щенку мальтезе давать игрушку деревянную покрытую лаком? ну типо это не игрушка а массажер для ног не пользуемся им особо а её нравится грызть и крутить
+
+--- [German | animal_explicit | personal | taxon=cat | confinement | 31w] ---
+Wir haben eine 8 wochen alte katze namens Katara. Wie bringe ich sie dazu Wasser zu mögen? Die Katara aus Avatar mag Wasser, also will ich auch dass sie wasser mag
+
+--- [Russian | animal_explicit | work | taxon=dog | confinement | 53w] ---
+Привет. Напиши текст для размещения своего профиля в сервисе выгула собак. Я — Артём. У меня сейчас 2 собаки: ирландский волкодав и мальтипу. Я проходил курсы по дрессировке и знаком с разными направлениями в занятиях спортом. Готов погулять с вашими собаками или взять их на рередержку. Живу в загородном доме в районе Внуково.
+
+======================================================================
+CONTEXT: cooking_food (5 exemplars)
+======================================================================
+
+--- [English | animal_explicit | personal | taxon=cow | killing | 5w] ---
+It's Cow Steak Time! (Recipe)
+
+--- [Spanish | animal_absent | personal | taxon=chicken,tuna,egg | sourcing | 123w] ---
+avena amnzana  y almendras 	ensalada de frutas piña; sandia; tuna; fresas y mango	panqueques de platano avena y huevo duro	arepas huevo revuelto	arepas con huvo duro y palta	tapenade con tostadas	tamal 
+lentejas con ensalada de espinaca tomate y palta con pollo a la plancha	hamburguesas de pollo con camote en el airfrier y ensalada de espinaca zanahoria tomate palta	locro, con ensalada de brocoli	fideos rojos con atun zuccini aceitunas 	aji de gallina con quinoa 	quinoa al pesto	
+ensalada de frutas piña; sandia; tuna; fresas y mango	tostadas con huevo revuelto	arepas con queso	haburguesas con papas en el airfrier	tabla de quesos 	salida 	lonche dame una lista de compras con odo lo que necesito para hacer esto para dos personas
+
+--- [Russian | animal_explicit | personal | taxon=turkey,mackerel,salmon,sardine | sourcing | 167w] ---
+Распиши по граммовкам продуктвую корзину на неделю из следующих продуктов:
+Индюшинные сердца
+Индюшинная печень
+Индюшинные почки
+Скумбрия
+Лосось
+Сардины
+Индейка (филе)
+Овес (цельный)
+Пшеница (цельная)
+Бобовые (чечевица, нут, фасоль)
+Капуста (брокколи, цветная) 
+Морковь
+Перец (красный, зеленый) 
+Помидоры 
+Ягоды (черника, клубника)
+Цитрусовые (апельсины, грейпфрут)
+Бананы
+Яблоки
+Кунжут
+Фисташки
+Льняные семена
+Чиа
+Морская капуста
+Пармезан (безлактозный)
+Йогурт (безлактозный)
+Квашеная капуста
+Кимчи
+Миндаль
+Грецкие орехи
+Какао (натуральный порошок)
+Оливковое масло
+Авокадо
+Мёд/маточное молочко
+Продуктовая корзина должна покрывать минимум 180 грамм белка и не более 100 грамм жиров, а также покрывать весь суточный расход всех нутриентов и элементов, необходимых организму для качественной и долгой дизни, для человека с большим стрессом, двумя работами, не совсем здоровым сном, у которого еще и семья, который ведет активный образ жизни и занимается спортом почти каждый день - определи его потребности в каллориях, углеводах, омега, витаминах, минералах, аминокислотах заменимых и незаменимых, q10, пребиотиков и пробиотиков, клетчатки, альфа липоевой кислоте, глутатиона, каринитине, полифенолах, холине, флаваноидах и тд, и в соответствии с этим составь его рацион на неделю
+
+--- [English | animal_absent | personal | taxon=chicken,egg | sourcing | 203w] ---
+this is the ocr of handwritting I received. It will have some mistakes can you clean it up/make best guesses of information missing/obviously incorrect. i do not want you the make the recipe instruction clearer just corrected from the ocr mistakes
+
+
+Sa
+
+ell
+
+Zuppa Pavese ( Ania Soup )
+
+3 Tbs . butter
+
+6 slices firm , course - textured bread loc . meat or chicken broth
+
+palt
+6 eggs
+
+freshly ground pepper
+6 Tbs . freshly grated Parmesan cheese
+* Melt butter in a saucepan and fry the bread slices on both sides until golden brown . Divide
+
+6
+
+bowls . Place
+
+-among to soup . bowls in ax over which has been pre - heated to 350 ° F and turned off .
+
+bread ,
+
+* Meanwhile , bring broth to a boil , adding sal necessary . Break an egg onto each slice pour the boiling broth over it as add pepper to taste . Sprinkle with Parme cheese . Harnish w / parsley , nutmeg .
+
+of b
+
+" A loaf of bread " the Walrus said . " Is what we chiefly need . "
+LEWIS CARROLL ( 162 ) Figure and mathminican
+
+( Serves 6 )
+
+eat
+
+--- [Russian | animal_explicit | personal | taxon=turkey,mackerel,salmon,sardine,fish,shellfish | sourcing | 255w] ---
+Составь полноценную продуктовую корзину на неделю, включая следующие продукты: сердце, печень, почки, скумбрия, лосось, сардины, индейка, овес,  пшеница, кунжут, фисташки, овощи, фрукты, цельнозерновые продукты, рыба, морепродукты, орехи, семена, бобовые, ферментированные продукты, безлактозные молочные продукты, кисломолочные продукты (кефир и подобные продукты включать запрещено, так как у меня от них рвотный рефлекс); нельзя использовать продукты, невходящие в этот список, а также принимать добавки и бады - твоя цель покрыть следующие элементы в данных дозировках на каждый день:
+
+Омега-3 (ЭПК и ДГК): минимум 4 г/день.
+Омега-6 (линолевая кислота): минимум 20 г/день.
+Растворимые и нерастворимые волокна: минимум 40 г/день.
+B1 (тиамин): минимум 2 мг/день.
+B2 (рибофлавин): минимум 2 мг/день.
+B3 (ниацин): минимум 25 мг/день.
+B5 (пантотеновая кислота): минимум 10 мг/день.
+B6 (пиридоксин): минимум 4 мг/день.
+B7 (биотин): минимум 40 мкг/день.
+B9 (фолиевая кислота): минимум 800 мкг/день.
+B12 (кобаламин): минимум 5 мкг/день.
+Витамин C: минимум 800 мг/день.
+Витамин A: минимум 1400 мкг/день (эквивалент РЭ).
+Витамин D: минимум 3000 IU/день.
+Витамин E: минимум 30 мг/день.
+Витамин K: минимум 150 мкг/день.
+Кальций: минимум 1200 мг/день.
+Фосфор: минимум 1000 мг/день.
+Калий: минимум 4700 мг/день.
+Натрий: минимум 2300 мг/день.
+Магний: минимум 600 мг/день.
+Хлор: минимум 3600 мг/день.
+Железо: минимум 15 мг/день.
+Цинк: минимум 18 мг/день.
+Медь: минимум 1.3 мг/день.
+Марганец: минимум 2.6 мг/день.
+Йод: минимум 150 мкг/день.
+Селен: минимум 55 мкг/день.
+Фтор: минимум 4 мг/день.
+Молибден: минимум 45 мкг/день.
+Холин: минимум 2000 мг/день.
+Пробиотики и пребиотики
+Альфа-липоевая кислота (ALA): минимум 2000 мг/день
+Коэнзим Q10 (CoQ10): минимум 400 мг/день 
+Карнитин: минимум 2000 мг/день 
+Глутатион: минимум 2000 мг/день 
+Полифенолы: минимум 2000 мг/день 
+Флавоноиды: минимум 2000 мг/день
+
+======================================================================
+CONTEXT: farmed_production (3 exemplars)
+======================================================================
+
+--- [English | animal_explicit | personal | taxon=cow | confinement | 2w] ---
+Milking cows
+
+--- [English | animal_explicit | work | taxon=chicken | confinement | 157w] ---
+a manufacturer of high efficiency gas fired heaters for poultry applications posted the below and I would like to post a short comment, can you put a well put together precise and concise for me?
+
+📢 New Research Validates the Efficiency of ALTX Heaters in Poultry Housing!
+A recent study from the University of Georgia's Department of Poultry Science confirms what we’ve always known: our ALTX low-intensity radiant tube heaters make a real difference in broiler house environments! 🐥
+Key Findings:
+▶ Uniform Heat Distribution: ALTX 40' heaters maintain consistent temperatures with less than 5°F variation, unlike traditional setups.
+▶ Enhanced Comfort for Chicks: More even heat means fewer “hot spots” and a more comfortable environment for chicks, improving welfare and growth conditions.
+▶ Energy Efficiency: With 10-20% reduced runtime, our heaters optimize energy usage while maintaining ideal temperatures.
+
+Read the full study here to see how ALTX heaters help create healthier and more energy-efficient poultry houses!
+
+--- [Russian | animal_explicit | work | taxon=reindeer,fur-bearing animals | habitat | 540w] ---
+Ты должен найти информацию в отчете Плотность населения низкая. Коренное население ненцы, ханты и селькупы. Среди миграционного населения преобладают русские, украинцы, татары. Основной товарной отраслью традиционного хозяйства является оленеводство, опирающееся на обширные оленьи пастбища, охотничий промысел, рыболовство, клеточное звероводство, сбор дикоросов. Также в регионе развита лесная промышленность, геологоразведка и нефтегазодобыча. Перспективы развития экономики района связаны, в основном, с поисками и разведкой месторождений углеводородного сырья. Территория участка работ располагается на землях МУП «Сеякхы» в составе районного фонда земли. Особо охраняемые территории в пределах участка работ отсутствуют (кроме водоохранных зон).
+
+В непосредственной близости от участка работ расположены на востоке - Чатылькинское месторождение, открытое в 1989 году скважиной №696 и Воргенское месторождение, открытое в 2007 году скважиной №772; на юго-западе Холмистое месторождение, открытое в 1988 году скважиной №662; на западе Равнинное месторождение, открытое скв. №650 в 1988 году; на юге - Южно-Удмуртское месторождение, открытое в 1992 скважиной №708 и на северо-западе – Харампурское месторождение, открытое в 1979 году скважиной №301 и Фестивальное месторождение.
+По крайней юго-восточной части участка работ проходит межпромысловый нефтепровод соединяющий Чатылькинское и Холмистое месторождения с ДНС-2 Ярайнерского месторождения.
+
+Высоковольтные линии электропередач с напряжением 110 кВ находятся в порядке 42 км к северо-западу от площади работ - на Харампурском лицензионном участке. При проведении геологоразведочных работ источником электроснабжения могут служить передвижные дизельные электростанции. При обустройстве промыслов, в случае открытия месторождений, для обеспечения объектов промысла теплом необходимо строительство котельных установок.
+
+Район, в пределах которого расположен участок работ, богат естественными строительными материалами: пески, гравийно-галечный материал, глины, которые могут быть использованы для приготовления строительных растворов и глинопорошка.
+
+В русле р. Толька, выявлены и предварительно оценены месторождения строительных песков «Окуньеганская площадь», «Толькинская залежь №1» и «Толькинская залежь №2». Месторождение ПГС, Толькинская залежь №1, расположено в русле одноименной реки в ее верхнем течении, на северо-западном склоне Верхнетазовской возвышенности в контуре Западно-Чатылькинского участка. Прогнозные ресурсы песчано-гравийной смеси и строительного песка по предварительно разведанному месторождению подсчитаны по категории Р1 в количестве 51000,0 тыс./м3 (протокол №39/87 НТС ГТГ от 23.06.87). Толькинское месторождение кирпично-керамзитовых глин расположено в 19 км северо-восточнее пос. Толька, в истоках ручья Ольканыкиккэ на водоразделе с абс. отм. 104,8-107,8 м. Полезная толща месторождения имеет пластообразное строение, среднюю мощность 5,2 м и мощность вскрыши 0,6 м. Запасы глин (тыс. м3) утверждены протоколом ТКЗ №6/92 от 30.04.1992 г. по категориям В - 118,8; С1 - 344,1; В+C1 - 462,9.
+
+1.2. Обзор выполненных геолого-разведочных работ
+
+1.2.1 Сведения о геолого-геофизической изученности
+
+Изучение геологического строения и нефтегазоносности северных регионов Тюменской области началось в 50-е годы. Общие представления о геологическом строении базировались на региональных геолого-геофизических съемках.
+
+Исследуемая территория покрыта съемками: государственной геологической масштаба 1:1000000 (ЗСГУ, 1955г.г.); аэромагнитной съемкой масштаба 1:1000000 («Сибнефтегеофизика», 1955г.), масштаба 1:200000 (НГТ, 1958-59гг.); гравиметрической масштаба 1:1000000 (ТТГУ, СНРЭ, АГП 38/60-61, 1962г.), масштаба
+1:200000 (ПГО «Центргеофизика», 1983 г.); электроразведочной съемкой МТЗ: масштаб 1:1000000 (ТТГУ, ЯНГТ, ТГЭ, ЭРП 71/68 1969 г.). об объекте Толькинское. Тебе нужно составить JSON по параметрам указанным в этой схеме 
+class DepositParameters(BaseModel):
+    deposit_name: Optional[str] = Field(
+        None, 
+        description='Имя собственное месторождения, для которого в тексте указаны его параметры, или None, если название объекта не указано в тексте.'
+    )
+    deposit_type: Optional[str] = Field(
+        "не указан",
+        description='Тип месторождения.',
+        enum=["нефтяное", "газовое", "газоконденсатное", "нефтегазовое", "не указан"]
+    )
+    reserves: Optional[float] = Field(
+        None, 
+        description='Объем запасов в тоннах.')
+    depth: Optional[float] = Field(
+        None,
+        description='Глубина залегания в метрах.'
+    )
+? В ответе укажи строго JSON, без пояснений
+
+======================================================================
+CONTEXT: other (2 exemplars)
+======================================================================
+
+--- [English | animal_explicit | personal | taxon=none | none | 16w] ---
+write a paragraph to the legislator of the humane society to help save these poor animals
+
+--- [English | animal_explicit | personal | taxon=service animal | confinement | 307w] ---
+write a polite but firm letter to my property manager, Heart and Home Property Management, explaining these specific issues listed as follows, the old 1990s oven in the kitchen doesn’t even work, at all. one if the burners on the stove STILL hasn’t been replaced. 
+There is no AC. its inhabitable I haven’t been able to be in my apartment for almost two weeks, ive had to sleep on a friends couch. 
+The bathroom rack was never mounted properly, i cant even hang towels
+The neighbors stole my trashcan and i had to go find it.
+Theres been 2 gas leaks
+Theres a TON of spider eggs in the basement, clearly has never been cleaned for move in. 
+My front window doesnt lock which is an extreme safety issue
+Property manager has harassed me/ discriminated against my disability in regards to my service animal NUMEROUS times. 
+The motorcycle club across the street (which was never disclosed as being there before renting, hangs out in front of my unit and shines there flash light into my windows, and watches me so i had to switch bedrooms. I cant even be in the master bedroom because of them) 
+Property manager has showed up unannounced
+They havent taken care of the lawn which i was told they are supposed to do twice a month. I cant even go in the yard, its a jungle. 
+my gas bill is $300 cause of someone elses gas leak.
+The water from the bathroom leaks into the kitchen which is ruined my food. 
+I feel extremely harassed in an inhabitable apartment and these issues have been ignored my Heart and Home Property Management multiple times now. 
+ and requesting a reply after not hearing back from my requests to fix these issues previously and include any Ohio laws that are being broken within these issues
+
+======================================================================
+CONTEXT: food_service (1 exemplars)
+======================================================================
+
+--- [Chinese | animal_absent | work | taxon=fish,shellfish | sourcing | 1w] ---
+写一份销售海鲜的计划
+
+======================================================================
+CONTEXT: research_lab_vet (1 exemplars)
+======================================================================
+
+--- [Russian | animal_explicit | personal | taxon=cat | harm_mechanism | 8w] ---
+Что произойдет с кошкой если ей дать ЛСД
+
+======================================================================
+CONTEXT: pest_wildlife_garden (1 exemplars)
+======================================================================
+
+--- [English | animal_explicit | personal | taxon=dog | harm_mechanism | 13w] ---
+hey assistent whats a good dog repelent to keep them from certain areas
+
+======================================================================
+CONTEXT: travel_tourism (1 exemplars)
+======================================================================
+
+--- [English | animal_explicit | personal | taxon=tiger | confinement | 29w] ---
+Can you give me an itinerary for thailand, malaisya and Indonesia, dates are from 20 th january to 7th February I want to visit the tigers and train market
+
+======================================================================
+CONTEXT: learning_teaching (1 exemplars)
+======================================================================
+
+--- [English | animal_explicit | personal | taxon=none | habitat | 646w] ---
+Ответь на вопросы на англиском уровне А2
+1. Where did oil spills damage ecological system of our planet?
+2. How can the quantity of spilled oil range?
+3. Why are sea oil spills more dangerous and damaging?
+4. What safety measures can prevent more serious aftermaths of oil spill 
+on land?
+5. Why is control of oil spill difficult?
+ПРОФЕССИОНАЛЬНЫЙ АНГЛИЙСКИЙ ЯЗЫК В НЕФТЕГАЗОВОЙ ОТРАСЛИ
+114
+6. What nitrogen heterocyclic compounds are reported as associated with 
+crude oil?
+7. Why these compounds tend to dissolve and move with water?
+8. How can spilled oil be neutralized naturally?
+9. Why underground tanks are also potentially dangerous?
+10. In what circumstances can a bioremediation be used?
+
+Student Professor, I would like to ask you a question – what is an oil spill?
+Professor It is a form of environmental pollution, a human activity caused 
+release (выбрасывать) of a liquid petroleum hydrocarbon into the environment, marine or land areas.
+Student I have a very good reason to believe that the problem is serious.
+Professor Yes, crude oil and refined fuel spills from tanker ship accidents 
+have damaged natural ecosystems in Alaska, the Gulf of Mexico, the Galapagos Islands, France and many other places.
+Student Do I understand you correctly that the ecological situation is 
+very serious?
+ПРОФЕССИОНАЛЬНЫЙ АНГЛИЙСКИЙ ЯЗЫК В НЕФТЕГАЗОВОЙ ОТРАСЛИ
+112
+Professor The quantity of oil spilled during accidents has ranged from 
+a few hundred tons to several hundred thousand tons, for example Deepwater Horizon Oil Spill, Atlantic Empress, Amoco Cadiz). Smaller spills have already proven to have a great impact 
+on ecosystems, such as the Exxon Valdez oil spill.
+Student Professor, I would like to know what kind of spill is more dangerous?
+Professor Oil spills at sea are generally much more damaging than those on 
+land, since they can spread for hundreds of nautical miles (морская миля) in a thin oil slick (нефтяное пятно) which can cover beaches with a thin coating of oil. This can kill sea birds, 
+mammals (млекопитающие), shellfish (моллюски) and other 
+organisms it coats (покрывать, обволакивать). Oil spills on 
+land are more readily containable if a makeshift earth dam (самодельная нефтяная дамба) can be rapidly bulldozed around 
+the spill site before most of the oil escapes (улетучиваться), and 
+land animals can avoid the oil more easily.
+Student I believe that there are measures that should be taken in order to 
+prevent oil spills.
+Professor Control of oil spills is difficult, requires ad hoc methods (оперативные методы, методы для данного случая), and often a 
+large amount of manpower (рабочая сила). The dropping of 
+bombs and incendiary (зажигательный) devices from aircraft 
+on the Torrey Canyon wreck produced poor results; modern 
+techniques would include pumping the oil from the wreck (развалины), like in the Prestige oil spill or the Erika oil spill.
+Student I would like to ask you: are there any «natural» ways to reduce 
+oil spills aftermaths (последствия)?
+Professor Yes. Crude oil is predominantly (преимущественно) composed of various hydrocarbons. But certain nitrogen heterocylic (гетероциклический) compounds, such as pyridine
+(пиридин), picoline (пиколин), and quinoline (хинолин) are 
+reported as contaminants associated with crude oil, as well as 
+facilities processing oil shale (нефтеносный сланец) or 
+coal, and have also been found at legacy wood treatment
+sites (место переработки древесины). These compounds 
+have a very high water solubility, and thus tend to dissolve 
+and move with water. Certain naturally occurring bacteria, 
+such as Micrococcus, Arthrobacter, and Rhodococcus have 
+been shown to degrade (выяснилось, что они разлагают) 
+these contaminants.
+Student That means nature can take care of itself. And would you tell us 
+how should specialists act in case of underground tank degradation at gas stations?
+UNIT 5. ECOLOGICAL AND TECHNICAL PROBLEMS AND DАNGERS…
+113
+Professor It may also occur unfortunately. This significantly affects soil 
+and groundwater (грунтовые воды). In these instances of the 
+biological degradation of petroleum hydrocarbons, solutions 
+such as bioremediation (биовосстановление) may be used.

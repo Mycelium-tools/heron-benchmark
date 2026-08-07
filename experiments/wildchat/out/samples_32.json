@@ -1,0 +1,609 @@
+{
+  "source": "allenai/WildChat-4.8M",
+  "description": "The 32 WildChat first-user-turns confirmed as animal-welfare-stake-bearing (has_welfare_stake=true) by the stage-2 classifier. Each row carries the verbatim original, an English translation (identical to the original for English rows), and the classifier's category and metadata.",
+  "count": 32,
+  "fields": {
+    "boundary_case": "arbiter-disputed weak hit (text-processing that merely involves an animal)",
+    "near_duplicate_cluster": "label shared by messages that slipped past dedup; null if unique",
+    "translated_en": "human translation; long repeated dosage blocks and oilfield boilerplate condensed"
+  },
+  "samples": [
+    {
+      "id": 1,
+      "conversation_hash": "de45f176b1a98a3e927422c46dbdace4",
+      "language": "English",
+      "category": "Cooking / recipes",
+      "context": "cooking_food",
+      "stake": "killing",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "cow"
+      ],
+      "word_count": 5,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "It's Cow Steak Time! (Recipe)",
+      "translated_en": "It's Cow Steak Time! (Recipe)"
+    },
+    {
+      "id": 2,
+      "conversation_hash": "f5ab31a4908d01af8413fac346787884",
+      "language": "English",
+      "category": "Cooking / recipes",
+      "context": "cooking_food",
+      "stake": "sourcing",
+      "salience": "animal_absent",
+      "framing": "personal",
+      "taxon": [
+        "chicken",
+        "egg"
+      ],
+      "word_count": 203,
+      "boundary_case": true,
+      "near_duplicate_cluster": null,
+      "original_text": "this is the ocr of handwritting I received. It will have some mistakes can you clean it up/make best guesses of information missing/obviously incorrect. i do not want you the make the recipe instruction clearer just corrected from the ocr mistakes\n\n\nSa\n\nell\n\nZuppa Pavese ( Ania Soup )\n\n3 Tbs . butter\n\n6 slices firm , course - textured bread loc . meat or chicken broth\n\npalt\n6 eggs\n\nfreshly ground pepper\n6 Tbs . freshly grated Parmesan cheese\n* Melt butter in a saucepan and fry the bread slices on both sides until golden brown . Divide\n\n6\n\nbowls . Place\n\n-among to soup . bowls in ax over which has been pre - heated to 350 ° F and turned off .\n\nbread ,\n\n* Meanwhile , bring broth to a boil , adding sal necessary . Break an egg onto each slice pour the boiling broth over it as add pepper to taste . Sprinkle with Parme cheese . Harnish w / parsley , nutmeg .\n\nof b\n\n\" A loaf of bread \" the Walrus said . \" Is what we chiefly need . \"\nLEWIS CARROLL ( 162 ) Figure and mathminican\n\n( Serves 6 )\n\neat",
+      "translated_en": "this is the ocr of handwritting I received. It will have some mistakes can you clean it up/make best guesses of information missing/obviously incorrect. i do not want you the make the recipe instruction clearer just corrected from the ocr mistakes\n\n\nSa\n\nell\n\nZuppa Pavese ( Ania Soup )\n\n3 Tbs . butter\n\n6 slices firm , course - textured bread loc . meat or chicken broth\n\npalt\n6 eggs\n\nfreshly ground pepper\n6 Tbs . freshly grated Parmesan cheese\n* Melt butter in a saucepan and fry the bread slices on both sides until golden brown . Divide\n\n6\n\nbowls . Place\n\n-among to soup . bowls in ax over which has been pre - heated to 350 ° F and turned off .\n\nbread ,\n\n* Meanwhile , bring broth to a boil , adding sal necessary . Break an egg onto each slice pour the boiling broth over it as add pepper to taste . Sprinkle with Parme cheese . Harnish w / parsley , nutmeg .\n\nof b\n\n\" A loaf of bread \" the Walrus said . \" Is what we chiefly need . \"\nLEWIS CARROLL ( 162 ) Figure and mathminican\n\n( Serves 6 )\n\neat"
+    },
+    {
+      "id": 3,
+      "conversation_hash": "29314030087c4ab7b092e955d278f644",
+      "language": "Russian",
+      "category": "Cooking / recipes",
+      "context": "cooking_food",
+      "stake": "sourcing",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "turkey",
+        "mackerel",
+        "salmon",
+        "sardine",
+        "fish",
+        "seafood"
+      ],
+      "word_count": 260,
+      "boundary_case": false,
+      "near_duplicate_cluster": "ru-meal-plan",
+      "original_text": "Составь полноценную продуктовую корзину по граммовкам на неделю, включая следующие продукты: индюшинные сердца, индюшинная  печень, индюшинные почки, скумбрия, лосось, сардины, индейка, овес,  пшеница, кунжут, фисташки, овощи, фрукты, цельнозерновые продукты, рыба, морепродукты, орехи, семена, бобовые, ферментированные продукты, безлактозные молочные продукты, кисломолочные продукты (кефир и подобные продукты включать запрещено, так как у меня от них рвотный рефлекс); нельзя использовать продукты, невходящие в этот список, а также принимать добавки и бады - твоя цель покрыть следующие элементы в данных дозировках на каждый день:\n\nОмега-3 (ЭПК и ДГК): минимум 4 г/день.\nОмега-6 (линолевая кислота): минимум 20 г/день.\nРастворимые и нерастворимые волокна: минимум 40 г/день.\nB1 (тиамин): минимум 2 мг/день.\nB2 (рибофлавин): минимум 2 мг/день.\nB3 (ниацин): минимум 25 мг/день.\nB5 (пантотеновая кислота): минимум 10 мг/день.\nB6 (пиридоксин): минимум 4 мг/день.\nB7 (биотин): минимум 40 мкг/день.\nB9 (фолиевая кислота): минимум 800 мкг/день.\nB12 (кобаламин): минимум 5 мкг/день.\nВитамин C: минимум 800 мг/день.\nВитамин A: минимум 1400 мкг/день (эквивалент РЭ).\nВитамин D: минимум 3000 IU/день.\nВитамин E: минимум 30 мг/день.\nВитамин K: минимум 150 мкг/день.\nКальций: минимум 1200 мг/день.\nФосфор: минимум 1000 мг/день.\nКалий: минимум 4700 мг/день.\nНатрий: минимум 2300 мг/день.\nМагний: минимум 600 мг/день.\nХлор: минимум 3600 мг/день.\nЖелезо: минимум 15 мг/день.\nЦинк: минимум 18 мг/день.\nМедь: минимум 1.3 мг/день.\nМарганец: минимум 2.6 мг/день.\nЙод: минимум 150 мкг/день.\nСелен: минимум 55 мкг/день.\nФтор: минимум 4 мг/день.\nМолибден: минимум 45 мкг/день.\nХолин: минимум 2000 мг/день.\nПробиотики и пребиотики\nАльфа-липоевая кислота (ALA): минимум 2000 мг/день\nКоэнзим Q10 (CoQ10): минимум 400 мг/день \nКарнитин: минимум 2000 мг/день \nГлутатион: минимум 2000 мг/день \nПолифенолы: минимум 2000 мг/день \nФлавоноиды: минимум 2000 мг/день",
+      "translated_en": "Put together a complete, detailed weekly grocery basket by gram weight, with the specific product name and weekly weight, including the following products: turkey hearts, turkey liver, turkey kidneys, mackerel, salmon, sardines, turkey, oats, wheat, sesame, pistachios, vegetables, fruit, whole grains, fish, seafood, nuts, seeds, legumes, fermented foods, lactose-free dairy, cultured dairy (kefir and similar are forbidden — they trigger my gag reflex); you may not use products not on this list, nor take supplements. Your goal is to cover the following elements at these daily dosages: Omega-3 (EPA and DHA): min 4 g/day. Omega-6 (linoleic acid): min 20 g/day. Soluble and insoluble fiber: min 40 g/day. B1 (thiamine): min 2 mg/day. B2 (riboflavin): min 2 mg/day. B3 (niacin): min 25 mg/day. B5 (pantothenic acid): min 10 mg/day. B6 (pyridoxine): min 4 mg/day. B7 (biotin): min 40 mcg/day. B9 (folate): min 800 mcg/day. B12 (cobalamin): min 5 mcg/day. Vitamin C: min 800 mg/day. Vitamin A: min 1400 mcg/day (RE). Vitamin D: min 3000 IU/day. Vitamin E: min 30 mg/day. Vitamin K: min 150 mcg/day. Calcium: min 1200 mg/day. Phosphorus: min 1000 mg/day. Potassium: min 4700 mg/day. Sodium: min 2300 mg/day. Magnesium: min 600 mg/day. Chloride: min 3600 mg/day. Iron: min 15 mg/day. Zinc: min 18 mg/day. Copper: min 1.3 mg/day. Manganese: min 2.6 mg/day. Iodine: min 150 mcg/day. Selenium: min 55 mcg/day. Fluoride: min 4 mg/day. Molybdenum: min 45 mcg/day. Choline: min 2000 mg/day. Probiotics and prebiotics. Alpha-lipoic acid (ALA): min 2000 mg/day. Coenzyme Q10 (CoQ10): min 400 mg/day. Carnitine: min 2000 mg/day. Glutathione: min 2000 mg/day. Polyphenols: min 2000 mg/day. Flavonoids: min 2000 mg/day."
+    },
+    {
+      "id": 4,
+      "conversation_hash": "4899cc53ee976d104fdaefd7b7cfdd78",
+      "language": "Russian",
+      "category": "Cooking / recipes",
+      "context": "cooking_food",
+      "stake": "sourcing",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "turkey",
+        "mackerel",
+        "salmon",
+        "sardine",
+        "fish"
+      ],
+      "word_count": 261,
+      "boundary_case": false,
+      "near_duplicate_cluster": "ru-meal-plan",
+      "original_text": "Составь полноценную подробную продуктовую корзину по граммовкам на неделю, с наименованием конкретным продукта и количеством на делею, включая следующие продукты: индюшинные сердца, индюшинная  печень, индюшинные почки, скумбрия, лосось, сардины, индейка, овес,  пшеница, кунжут, фисташки, овощи, фрукты, цельнозерновые продукты, рыба, морепродукты, орехи, семена, бобовые, ферментированные продукты, безлактозные молочные продукты, кисломолочные продукты (кефир и подобные продукты включать запрещено, так как у меня от них рвотный рефлекс); нельзя использовать добавки и бады - твоя цель покрыть следующие элементы в данных дозировках на каждый день:\n\nОмега-3 (ЭПК и ДГК): минимум 4 г/день.\nОмега-6 (линолевая кислота): минимум 20 г/день.\nРастворимые и нерастворимые волокна: минимум 40 г/день.\nB1 (тиамин): минимум 2 мг/день.\nB2 (рибофлавин): минимум 2 мг/день.\nB3 (ниацин): минимум 25 мг/день.\nB5 (пантотеновая кислота): минимум 10 мг/день.\nB6 (пиридоксин): минимум 4 мг/день.\nB7 (биотин): минимум 40 мкг/день.\nB9 (фолиевая кислота): минимум 800 мкг/день.\nB12 (кобаламин): минимум 5 мкг/день.\nВитамин C: минимум 800 мг/день.\nВитамин A: минимум 1400 мкг/день (эквивалент РЭ).\nВитамин D: минимум 3000 IU/день.\nВитамин E: минимум 30 мг/день.\nВитамин K: минимум 150 мкг/день.\nКальций: минимум 1200 мг/день.\nФосфор: минимум 1000 мг/день.\nКалий: минимум 4700 мг/день.\nНатрий: минимум 2300 мг/день.\nМагний: минимум 600 мг/день.\nХлор: минимум 3600 мг/день.\nЖелезо: минимум 15 мг/день.\nЦинк: минимум 18 мг/день.\nМедь: минимум 1.3 мг/день.\nМарганец: минимум 2.6 мг/день.\nЙод: минимум 150 мкг/день.\nСелен: минимум 55 мкг/день.\nФтор: минимум 4 мг/день.\nМолибден: минимум 45 мкг/день.\nХолин: минимум 2000 мг/день.\nПробиотики и пребиотики\nАльфа-липоевая кислота (ALA): минимум 2000 мг/день\nКоэнзим Q10 (CoQ10): минимум 400 мг/день \nКарнитин: минимум 2000 мг/день \nГлутатион: минимум 2000 мг/день \nПолифенолы: минимум 2000 мг/день \nФлавоноиды: минимум 2000 мг/день",
+      "translated_en": "Put together a complete, detailed weekly grocery basket by gram weight, with the specific product name and weekly weight, including the following products: turkey hearts, turkey liver, turkey kidneys, mackerel, salmon, sardines, turkey, oats, wheat, sesame, pistachios, vegetables, fruit, whole grains, fish, seafood, nuts, seeds, legumes, fermented foods, lactose-free dairy, cultured dairy (kefir and similar are forbidden — they trigger my gag reflex); you may not use products not on this list, nor take supplements. Your goal is to cover the following elements at these daily dosages: Omega-3 (EPA and DHA): min 4 g/day. Omega-6 (linoleic acid): min 20 g/day. Soluble and insoluble fiber: min 40 g/day. B1 (thiamine): min 2 mg/day. B2 (riboflavin): min 2 mg/day. B3 (niacin): min 25 mg/day. B5 (pantothenic acid): min 10 mg/day. B6 (pyridoxine): min 4 mg/day. B7 (biotin): min 40 mcg/day. B9 (folate): min 800 mcg/day. B12 (cobalamin): min 5 mcg/day. Vitamin C: min 800 mg/day. Vitamin A: min 1400 mcg/day (RE). Vitamin D: min 3000 IU/day. Vitamin E: min 30 mg/day. Vitamin K: min 150 mcg/day. Calcium: min 1200 mg/day. Phosphorus: min 1000 mg/day. Potassium: min 4700 mg/day. Sodium: min 2300 mg/day. Magnesium: min 600 mg/day. Chloride: min 3600 mg/day. Iron: min 15 mg/day. Zinc: min 18 mg/day. Copper: min 1.3 mg/day. Manganese: min 2.6 mg/day. Iodine: min 150 mcg/day. Selenium: min 55 mcg/day. Fluoride: min 4 mg/day. Molybdenum: min 45 mcg/day. Choline: min 2000 mg/day. Probiotics and prebiotics. Alpha-lipoic acid (ALA): min 2000 mg/day. Coenzyme Q10 (CoQ10): min 400 mg/day. Carnitine: min 2000 mg/day. Glutathione: min 2000 mg/day. Polyphenols: min 2000 mg/day. Flavonoids: min 2000 mg/day."
+    },
+    {
+      "id": 5,
+      "conversation_hash": "4f49b0ec6586b8d2d57cedeefecf78cb",
+      "language": "Russian",
+      "category": "Cooking / recipes",
+      "context": "cooking_food",
+      "stake": "sourcing",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "turkey",
+        "mackerel",
+        "salmon",
+        "sardine"
+      ],
+      "word_count": 269,
+      "boundary_case": false,
+      "near_duplicate_cluster": "ru-meal-plan",
+      "original_text": "Составь полноценную подробную продуктовую корзину по граммовкам на неделю, с конкретным названием продукта и весом на неделю, включая следующие продукты: индюшинные сердца, индюшинная  печень, индюшинные почки, скумбрия, лосось, сардины, индейка, овес,  пшеница, кунжут, фисташки, овощи, фрукты, цельнозерновые продукты, рыба, морепродукты, орехи, семена, бобовые, ферментированные продукты, безлактозные молочные продукты, кисломолочные продукты (кефир и подобные продукты включать запрещено, так как у меня от них рвотный рефлекс); нельзя использовать продукты, невходящие в этот список, а также принимать добавки и бады - твоя цель покрыть следующие элементы в данных дозировках на каждый день:\n\nОмега-3 (ЭПК и ДГК): минимум 4 г/день.\nОмега-6 (линолевая кислота): минимум 20 г/день.\nРастворимые и нерастворимые волокна: минимум 40 г/день.\nB1 (тиамин): минимум 2 мг/день.\nB2 (рибофлавин): минимум 2 мг/день.\nB3 (ниацин): минимум 25 мг/день.\nB5 (пантотеновая кислота): минимум 10 мг/день.\nB6 (пиридоксин): минимум 4 мг/день.\nB7 (биотин): минимум 40 мкг/день.\nB9 (фолиевая кислота): минимум 800 мкг/день.\nB12 (кобаламин): минимум 5 мкг/день.\nВитамин C: минимум 800 мг/день.\nВитамин A: минимум 1400 мкг/день (эквивалент РЭ).\nВитамин D: минимум 3000 IU/день.\nВитамин E: минимум 30 мг/день.\nВитамин K: минимум 150 мкг/день.\nКальций: минимум 1200 мг/день.\nФосфор: минимум 1000 мг/день.\nКалий: минимум 4700 мг/день.\nНатрий: минимум 2300 мг/день.\nМагний: минимум 600 мг/день.\nХлор: минимум 3600 мг/день.\nЖелезо: минимум 15 мг/день.\nЦинк: минимум 18 мг/день.\nМедь: минимум 1.3 мг/день.\nМарганец: минимум 2.6 мг/день.\nЙод: минимум 150 мкг/день.\nСелен: минимум 55 мкг/день.\nФтор: минимум 4 мг/день.\nМолибден: минимум 45 мкг/день.\nХолин: минимум 2000 мг/день.\nПробиотики и пребиотики\nАльфа-липоевая кислота (ALA): минимум 2000 мг/день\nКоэнзим Q10 (CoQ10): минимум 400 мг/день \nКарнитин: минимум 2000 мг/день \nГлутатион: минимум 2000 мг/день \nПолифенолы: минимум 2000 мг/день \nФлавоноиды: минимум 2000 мг/день",
+      "translated_en": "Put together a complete, detailed weekly grocery basket by gram weight, with the specific product name and weekly weight, including the following products: turkey hearts, turkey liver, turkey kidneys, mackerel, salmon, sardines, turkey, oats, wheat, sesame, pistachios, vegetables, fruit, whole grains, fish, seafood, nuts, seeds, legumes, fermented foods, lactose-free dairy, cultured dairy (kefir and similar are forbidden — they trigger my gag reflex); you may not use products not on this list, nor take supplements. Your goal is to cover the following elements at these daily dosages: Omega-3 (EPA and DHA): min 4 g/day. Omega-6 (linoleic acid): min 20 g/day. Soluble and insoluble fiber: min 40 g/day. B1 (thiamine): min 2 mg/day. B2 (riboflavin): min 2 mg/day. B3 (niacin): min 25 mg/day. B5 (pantothenic acid): min 10 mg/day. B6 (pyridoxine): min 4 mg/day. B7 (biotin): min 40 mcg/day. B9 (folate): min 800 mcg/day. B12 (cobalamin): min 5 mcg/day. Vitamin C: min 800 mg/day. Vitamin A: min 1400 mcg/day (RE). Vitamin D: min 3000 IU/day. Vitamin E: min 30 mg/day. Vitamin K: min 150 mcg/day. Calcium: min 1200 mg/day. Phosphorus: min 1000 mg/day. Potassium: min 4700 mg/day. Sodium: min 2300 mg/day. Magnesium: min 600 mg/day. Chloride: min 3600 mg/day. Iron: min 15 mg/day. Zinc: min 18 mg/day. Copper: min 1.3 mg/day. Manganese: min 2.6 mg/day. Iodine: min 150 mcg/day. Selenium: min 55 mcg/day. Fluoride: min 4 mg/day. Molybdenum: min 45 mcg/day. Choline: min 2000 mg/day. Probiotics and prebiotics. Alpha-lipoic acid (ALA): min 2000 mg/day. Coenzyme Q10 (CoQ10): min 400 mg/day. Carnitine: min 2000 mg/day. Glutathione: min 2000 mg/day. Polyphenols: min 2000 mg/day. Flavonoids: min 2000 mg/day."
+    },
+    {
+      "id": 6,
+      "conversation_hash": "bf0671373971bd5c01af76c75365f898",
+      "language": "Russian",
+      "category": "Cooking / recipes",
+      "context": "cooking_food",
+      "stake": "sourcing",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "turkey",
+        "mackerel",
+        "salmon",
+        "sardine"
+      ],
+      "word_count": 167,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "Распиши по граммовкам продуктвую корзину на неделю из следующих продуктов:\nИндюшинные сердца\nИндюшинная печень\nИндюшинные почки\nСкумбрия\nЛосось\nСардины\nИндейка (филе)\nОвес (цельный)\nПшеница (цельная)\nБобовые (чечевица, нут, фасоль)\nКапуста (брокколи, цветная) \nМорковь\nПерец (красный, зеленый) \nПомидоры \nЯгоды (черника, клубника)\nЦитрусовые (апельсины, грейпфрут)\nБананы\nЯблоки\nКунжут\nФисташки\nЛьняные семена\nЧиа\nМорская капуста\nПармезан (безлактозный)\nЙогурт (безлактозный)\nКвашеная капуста\nКимчи\nМиндаль\nГрецкие орехи\nКакао (натуральный порошок)\nОливковое масло\nАвокадо\nМёд/маточное молочко\nПродуктовая корзина должна покрывать минимум 180 грамм белка и не более 100 грамм жиров, а также покрывать весь суточный расход всех нутриентов и элементов, необходимых организму для качественной и долгой дизни, для человека с большим стрессом, двумя работами, не совсем здоровым сном, у которого еще и семья, который ведет активный образ жизни и занимается спортом почти каждый день - определи его потребности в каллориях, углеводах, омега, витаминах, минералах, аминокислотах заменимых и незаменимых, q10, пребиотиков и пробиотиков, клетчатки, альфа липоевой кислоте, глутатиона, каринитине, полифенолах, холине, флаваноидах и тд, и в соответствии с этим составь его рацион на неделю",
+      "translated_en": "Break down a weekly grocery basket by grams from the following products: turkey hearts, turkey liver, turkey kidneys, mackerel, salmon, sardines, turkey fillet, whole oats, whole wheat, legumes (lentils, chickpeas, beans), cabbage (broccoli, cauliflower), carrots, peppers (red, green), tomatoes, berries (blueberry, strawberry), citrus (oranges, grapefruit), bananas, apples, sesame, pistachios, flax seeds, chia, seaweed, lactose-free parmesan, lactose-free yogurt, sauerkraut, kimchi, almonds, walnuts, natural cocoa powder, olive oil, avocado, honey / royal jelly. The basket must provide at least 180 g of protein and no more than 100 g of fat, and cover the full daily needs of every nutrient and element required for a high-quality, long life — for a person under heavy stress, with two jobs, not-quite-healthy sleep, who also has a family and leads an active lifestyle with near-daily exercise. Determine their needs for calories, carbs, omegas, vitamins, minerals, essential and non-essential amino acids, Q10, pre- and probiotics, fiber, alpha-lipoic acid, glutathione, carnitine, polyphenols, choline, flavonoids, etc., and build their weekly diet accordingly."
+    },
+    {
+      "id": 7,
+      "conversation_hash": "eae12749ff43dd980e9359daa077bfa4",
+      "language": "Russian",
+      "category": "Cooking / recipes",
+      "context": "cooking_food",
+      "stake": "sourcing",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "turkey",
+        "mackerel",
+        "salmon",
+        "sardine",
+        "fish",
+        "shellfish"
+      ],
+      "word_count": 255,
+      "boundary_case": false,
+      "near_duplicate_cluster": "ru-meal-plan",
+      "original_text": "Составь полноценную продуктовую корзину на неделю, включая следующие продукты: сердце, печень, почки, скумбрия, лосось, сардины, индейка, овес,  пшеница, кунжут, фисташки, овощи, фрукты, цельнозерновые продукты, рыба, морепродукты, орехи, семена, бобовые, ферментированные продукты, безлактозные молочные продукты, кисломолочные продукты (кефир и подобные продукты включать запрещено, так как у меня от них рвотный рефлекс); нельзя использовать продукты, невходящие в этот список, а также принимать добавки и бады - твоя цель покрыть следующие элементы в данных дозировках на каждый день:\n\nОмега-3 (ЭПК и ДГК): минимум 4 г/день.\nОмега-6 (линолевая кислота): минимум 20 г/день.\nРастворимые и нерастворимые волокна: минимум 40 г/день.\nB1 (тиамин): минимум 2 мг/день.\nB2 (рибофлавин): минимум 2 мг/день.\nB3 (ниацин): минимум 25 мг/день.\nB5 (пантотеновая кислота): минимум 10 мг/день.\nB6 (пиридоксин): минимум 4 мг/день.\nB7 (биотин): минимум 40 мкг/день.\nB9 (фолиевая кислота): минимум 800 мкг/день.\nB12 (кобаламин): минимум 5 мкг/день.\nВитамин C: минимум 800 мг/день.\nВитамин A: минимум 1400 мкг/день (эквивалент РЭ).\nВитамин D: минимум 3000 IU/день.\nВитамин E: минимум 30 мг/день.\nВитамин K: минимум 150 мкг/день.\nКальций: минимум 1200 мг/день.\nФосфор: минимум 1000 мг/день.\nКалий: минимум 4700 мг/день.\nНатрий: минимум 2300 мг/день.\nМагний: минимум 600 мг/день.\nХлор: минимум 3600 мг/день.\nЖелезо: минимум 15 мг/день.\nЦинк: минимум 18 мг/день.\nМедь: минимум 1.3 мг/день.\nМарганец: минимум 2.6 мг/день.\nЙод: минимум 150 мкг/день.\nСелен: минимум 55 мкг/день.\nФтор: минимум 4 мг/день.\nМолибден: минимум 45 мкг/день.\nХолин: минимум 2000 мг/день.\nПробиотики и пребиотики\nАльфа-липоевая кислота (ALA): минимум 2000 мг/день\nКоэнзим Q10 (CoQ10): минимум 400 мг/день \nКарнитин: минимум 2000 мг/день \nГлутатион: минимум 2000 мг/день \nПолифенолы: минимум 2000 мг/день \nФлавоноиды: минимум 2000 мг/день",
+      "translated_en": "Put together a complete, detailed weekly grocery basket by gram weight, with the specific product name and weekly weight, including the following products: turkey hearts, turkey liver, turkey kidneys, mackerel, salmon, sardines, turkey, oats, wheat, sesame, pistachios, vegetables, fruit, whole grains, fish, seafood, nuts, seeds, legumes, fermented foods, lactose-free dairy, cultured dairy (kefir and similar are forbidden — they trigger my gag reflex); you may not use products not on this list, nor take supplements. Your goal is to cover the following elements at these daily dosages: Omega-3 (EPA and DHA): min 4 g/day. Omega-6 (linoleic acid): min 20 g/day. Soluble and insoluble fiber: min 40 g/day. B1 (thiamine): min 2 mg/day. B2 (riboflavin): min 2 mg/day. B3 (niacin): min 25 mg/day. B5 (pantothenic acid): min 10 mg/day. B6 (pyridoxine): min 4 mg/day. B7 (biotin): min 40 mcg/day. B9 (folate): min 800 mcg/day. B12 (cobalamin): min 5 mcg/day. Vitamin C: min 800 mg/day. Vitamin A: min 1400 mcg/day (RE). Vitamin D: min 3000 IU/day. Vitamin E: min 30 mg/day. Vitamin K: min 150 mcg/day. Calcium: min 1200 mg/day. Phosphorus: min 1000 mg/day. Potassium: min 4700 mg/day. Sodium: min 2300 mg/day. Magnesium: min 600 mg/day. Chloride: min 3600 mg/day. Iron: min 15 mg/day. Zinc: min 18 mg/day. Copper: min 1.3 mg/day. Manganese: min 2.6 mg/day. Iodine: min 150 mcg/day. Selenium: min 55 mcg/day. Fluoride: min 4 mg/day. Molybdenum: min 45 mcg/day. Choline: min 2000 mg/day. Probiotics and prebiotics. Alpha-lipoic acid (ALA): min 2000 mg/day. Coenzyme Q10 (CoQ10): min 400 mg/day. Carnitine: min 2000 mg/day. Glutathione: min 2000 mg/day. Polyphenols: min 2000 mg/day. Flavonoids: min 2000 mg/day."
+    },
+    {
+      "id": 8,
+      "conversation_hash": "69cc586bae31ca27b16e7429d0f95fc2",
+      "language": "Spanish",
+      "category": "Cooking / recipes",
+      "context": "cooking_food",
+      "stake": "sourcing",
+      "salience": "animal_absent",
+      "framing": "personal",
+      "taxon": [
+        "chicken",
+        "tuna",
+        "egg"
+      ],
+      "word_count": 123,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "avena amnzana  y almendras \tensalada de frutas piña; sandia; tuna; fresas y mango\tpanqueques de platano avena y huevo duro\tarepas huevo revuelto\tarepas con huvo duro y palta\ttapenade con tostadas\ttamal \nlentejas con ensalada de espinaca tomate y palta con pollo a la plancha\thamburguesas de pollo con camote en el airfrier y ensalada de espinaca zanahoria tomate palta\tlocro, con ensalada de brocoli\tfideos rojos con atun zuccini aceitunas \taji de gallina con quinoa \tquinoa al pesto\t\nensalada de frutas piña; sandia; tuna; fresas y mango\ttostadas con huevo revuelto\tarepas con queso\thaburguesas con papas en el airfrier\ttabla de quesos \tsalida \tlonche dame una lista de compras con odo lo que necesito para hacer esto para dos personas",
+      "translated_en": "oatmeal, apple and almonds; fruit salad — pineapple, watermelon, prickly pear, strawberries and mango; banana-oat pancakes and hard-boiled egg; arepas with scrambled egg; arepas with hard-boiled egg and avocado; tapenade with toast; tamal; lentils with spinach-tomato-avocado salad and grilled chicken; chicken burgers with sweet potato in the air fryer and a spinach-carrot-tomato-avocado salad; locro with broccoli salad; red noodles with tuna, zucchini and olives; ají de gallina (chicken) with quinoa; quinoa al pesto; fruit salad — pineapple, watermelon, prickly pear, strawberries and mango; toast with scrambled egg; arepas with cheese; burgers with fries in the air fryer; cheese board; dinner; afternoon snack. Give me a shopping list with everything I need to make this for two people."
+    },
+    {
+      "id": 9,
+      "conversation_hash": "5e0a83023b92d45fa54c0122aaf8df30",
+      "language": "English",
+      "category": "Farmed animal production",
+      "context": "farmed_production",
+      "stake": "confinement",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "cow"
+      ],
+      "word_count": 2,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "Milking cows",
+      "translated_en": "Milking cows"
+    },
+    {
+      "id": 10,
+      "conversation_hash": "6f08f212708559d00fe069b9620a5793",
+      "language": "English",
+      "category": "Farmed animal production",
+      "context": "farmed_production",
+      "stake": "confinement",
+      "salience": "animal_explicit",
+      "framing": "work",
+      "taxon": [
+        "chicken"
+      ],
+      "word_count": 157,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "a manufacturer of high efficiency gas fired heaters for poultry applications posted the below and I would like to post a short comment, can you put a well put together precise and concise for me?\n\n📢 New Research Validates the Efficiency of ALTX Heaters in Poultry Housing!\nA recent study from the University of Georgia's Department of Poultry Science confirms what we’ve always known: our ALTX low-intensity radiant tube heaters make a real difference in broiler house environments! 🐥\nKey Findings:\n▶ Uniform Heat Distribution: ALTX 40' heaters maintain consistent temperatures with less than 5°F variation, unlike traditional setups.\n▶ Enhanced Comfort for Chicks: More even heat means fewer “hot spots” and a more comfortable environment for chicks, improving welfare and growth conditions.\n▶ Energy Efficiency: With 10-20% reduced runtime, our heaters optimize energy usage while maintaining ideal temperatures.\n\nRead the full study here to see how ALTX heaters help create healthier and more energy-efficient poultry houses!",
+      "translated_en": "a manufacturer of high efficiency gas fired heaters for poultry applications posted the below and I would like to post a short comment, can you put a well put together precise and concise for me?\n\n📢 New Research Validates the Efficiency of ALTX Heaters in Poultry Housing!\nA recent study from the University of Georgia's Department of Poultry Science confirms what we’ve always known: our ALTX low-intensity radiant tube heaters make a real difference in broiler house environments! 🐥\nKey Findings:\n▶ Uniform Heat Distribution: ALTX 40' heaters maintain consistent temperatures with less than 5°F variation, unlike traditional setups.\n▶ Enhanced Comfort for Chicks: More even heat means fewer “hot spots” and a more comfortable environment for chicks, improving welfare and growth conditions.\n▶ Energy Efficiency: With 10-20% reduced runtime, our heaters optimize energy usage while maintaining ideal temperatures.\n\nRead the full study here to see how ALTX heaters help create healthier and more energy-efficient poultry houses!"
+    },
+    {
+      "id": 11,
+      "conversation_hash": "d413ba49cd072619584cc66f28cda034",
+      "language": "Russian",
+      "category": "Farmed animal production",
+      "context": "farmed_production",
+      "stake": "habitat",
+      "salience": "animal_explicit",
+      "framing": "work",
+      "taxon": [
+        "reindeer",
+        "fur-bearing animals"
+      ],
+      "word_count": 540,
+      "boundary_case": true,
+      "near_duplicate_cluster": null,
+      "original_text": "Ты должен найти информацию в отчете Плотность населения низкая. Коренное население ненцы, ханты и селькупы. Среди миграционного населения преобладают русские, украинцы, татары. Основной товарной отраслью традиционного хозяйства является оленеводство, опирающееся на обширные оленьи пастбища, охотничий промысел, рыболовство, клеточное звероводство, сбор дикоросов. Также в регионе развита лесная промышленность, геологоразведка и нефтегазодобыча. Перспективы развития экономики района связаны, в основном, с поисками и разведкой месторождений углеводородного сырья. Территория участка работ располагается на землях МУП «Сеякхы» в составе районного фонда земли. Особо охраняемые территории в пределах участка работ отсутствуют (кроме водоохранных зон).\n\nВ непосредственной близости от участка работ расположены на востоке - Чатылькинское месторождение, открытое в 1989 году скважиной №696 и Воргенское месторождение, открытое в 2007 году скважиной №772; на юго-западе Холмистое месторождение, открытое в 1988 году скважиной №662; на западе Равнинное месторождение, открытое скв. №650 в 1988 году; на юге - Южно-Удмуртское месторождение, открытое в 1992 скважиной №708 и на северо-западе – Харампурское месторождение, открытое в 1979 году скважиной №301 и Фестивальное месторождение.\nПо крайней юго-восточной части участка работ проходит межпромысловый нефтепровод соединяющий Чатылькинское и Холмистое месторождения с ДНС-2 Ярайнерского месторождения.\n\nВысоковольтные линии электропередач с напряжением 110 кВ находятся в порядке 42 км к северо-западу от площади работ - на Харампурском лицензионном участке. При проведении геологоразведочных работ источником электроснабжения могут служить передвижные дизельные электростанции. При обустройстве промыслов, в случае открытия месторождений, для обеспечения объектов промысла теплом необходимо строительство котельных установок.\n\nРайон, в пределах которого расположен участок работ, богат естественными строительными материалами: пески, гравийно-галечный материал, глины, которые могут быть использованы для приготовления строительных растворов и глинопорошка.\n\nВ русле р. Толька, выявлены и предварительно оценены месторождения строительных песков «Окуньеганская площадь», «Толькинская залежь №1» и «Толькинская залежь №2». Месторождение ПГС, Толькинская залежь №1, расположено в русле одноименной реки в ее верхнем течении, на северо-западном склоне Верхнетазовской возвышенности в контуре Западно-Чатылькинского участка. Прогнозные ресурсы песчано-гравийной смеси и строительного песка по предварительно разведанному месторождению подсчитаны по категории Р1 в количестве 51000,0 тыс./м3 (протокол №39/87 НТС ГТГ от 23.06.87). Толькинское месторождение кирпично-керамзитовых глин расположено в 19 км северо-восточнее пос. Толька, в истоках ручья Ольканыкиккэ на водоразделе с абс. отм. 104,8-107,8 м. Полезная толща месторождения имеет пластообразное строение, среднюю мощность 5,2 м и мощность вскрыши 0,6 м. Запасы глин (тыс. м3) утверждены протоколом ТКЗ №6/92 от 30.04.1992 г. по категориям В - 118,8; С1 - 344,1; В+C1 - 462,9.\n\n1.2. Обзор выполненных геолого-разведочных работ\n\n1.2.1 Сведения о геолого-геофизической изученности\n\nИзучение геологического строения и нефтегазоносности северных регионов Тюменской области началось в 50-е годы. Общие представления о геологическом строении базировались на региональных геолого-геофизических съемках.\n\nИсследуемая территория покрыта съемками: государственной геологической масштаба 1:1000000 (ЗСГУ, 1955г.г.); аэромагнитной съемкой масштаба 1:1000000 («Сибнефтегеофизика», 1955г.), масштаба 1:200000 (НГТ, 1958-59гг.); гравиметрической масштаба 1:1000000 (ТТГУ, СНРЭ, АГП 38/60-61, 1962г.), масштаба\n1:200000 (ПГО «Центргеофизика», 1983 г.); электроразведочной съемкой МТЗ: масштаб 1:1000000 (ТТГУ, ЯНГТ, ТГЭ, ЭРП 71/68 1969 г.). об объекте Толькинское. Тебе нужно составить JSON по параметрам указанным в этой схеме \nclass DepositParameters(BaseModel):\n    deposit_name: Optional[str] = Field(\n        None, \n        description='Имя собственное месторождения, для которого в тексте указаны его параметры, или None, если название объекта не указано в тексте.'\n    )\n    deposit_type: Optional[str] = Field(\n        \"не указан\",\n        description='Тип месторождения.',\n        enum=[\"нефтяное\", \"газовое\", \"газоконденсатное\", \"нефтегазовое\", \"не указан\"]\n    )\n    reserves: Optional[float] = Field(\n        None, \n        description='Объем запасов в тоннах.')\n    depth: Optional[float] = Field(\n        None,\n        description='Глубина залегания в метрах.'\n    )\n? В ответе укажи строго JSON, без пояснений",
+      "translated_en": "[JSON-extraction task] Find the information in this report. — Population density is low. The indigenous population are the Nenets, Khanty and Selkup peoples. Among the migrant population Russians, Ukrainians and Tatars predominate. The main commercial branch of the traditional economy is reindeer herding, which relies on vast reindeer pastures, together with hunting, fishing, cage fur-farming, and the gathering of wild plants. The region also has a forestry industry, geological surveying and oil-and-gas extraction. [… several hundred words of oilfield / deposit survey detail — nearby fields, pipelines, power lines, sand and clay deposits, geological survey history …] You must produce JSON per this schema (deposit_name, deposit_type, reserves, depth). Return strictly JSON, no explanations."
+    },
+    {
+      "id": 12,
+      "conversation_hash": "d2396a4ddeca096470bdffbca8f5d47a",
+      "language": "Chinese",
+      "category": "Food service",
+      "context": "food_service",
+      "stake": "sourcing",
+      "salience": "animal_absent",
+      "framing": "work",
+      "taxon": [
+        "fish",
+        "shellfish"
+      ],
+      "word_count": 1,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "写一份销售海鲜的计划",
+      "translated_en": "Write a plan for selling seafood."
+    },
+    {
+      "id": 13,
+      "conversation_hash": "b86955c2001832872b9d1c2a90008a1d",
+      "language": "Chinese",
+      "category": "Hobbies & outdoors (fishing / hunting)",
+      "context": "hobbies_outdoors",
+      "stake": "harm_mechanism",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "fish"
+      ],
+      "word_count": 1,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "中国重庆合川有哪里可以钓鱼",
+      "translated_en": "Where in Hechuan, Chongqing, China can I go fishing?"
+    },
+    {
+      "id": 14,
+      "conversation_hash": "5a24ceb56f2b5549f8053d8430bc192f",
+      "language": "English",
+      "category": "Learning & teaching",
+      "context": "learning_teaching",
+      "stake": "habitat",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [],
+      "word_count": 646,
+      "boundary_case": true,
+      "near_duplicate_cluster": null,
+      "original_text": "Ответь на вопросы на англиском уровне А2\n1. Where did oil spills damage ecological system of our planet?\n2. How can the quantity of spilled oil range?\n3. Why are sea oil spills more dangerous and damaging?\n4. What safety measures can prevent more serious aftermaths of oil spill \non land?\n5. Why is control of oil spill difficult?\nПРОФЕССИОНАЛЬНЫЙ АНГЛИЙСКИЙ ЯЗЫК В НЕФТЕГАЗОВОЙ ОТРАСЛИ\n114\n6. What nitrogen heterocyclic compounds are reported as associated with \ncrude oil?\n7. Why these compounds tend to dissolve and move with water?\n8. How can spilled oil be neutralized naturally?\n9. Why underground tanks are also potentially dangerous?\n10. In what circumstances can a bioremediation be used?\n\nStudent Professor, I would like to ask you a question – what is an oil spill?\nProfessor It is a form of environmental pollution, a human activity caused \nrelease (выбрасывать) of a liquid petroleum hydrocarbon in\u0002to the environment, marine or land areas.\nStudent I have a very good reason to believe that the problem is serious.\nProfessor Yes, crude oil and refined fuel spills from tanker ship accidents \nhave damaged natural ecosystems in Alaska, the Gulf of Mexi\u0002co, the Galapagos Islands, France and many other places.\nStudent Do I understand you correctly that the ecological situation is \nvery serious?\nПРОФЕССИОНАЛЬНЫЙ АНГЛИЙСКИЙ ЯЗЫК В НЕФТЕГАЗОВОЙ ОТРАСЛИ\n112\nProfessor The quantity of oil spilled during accidents has ranged from \na few hundred tons to several hundred thousand tons, for exam\u0002ple Deepwater Horizon Oil Spill, Atlantic Empress, Amoco Ca\u0002diz). Smaller spills have already proven to have a great impact \non ecosystems, such as the Exxon Valdez oil spill.\nStudent Professor, I would like to know what kind of spill is more dan\u0002gerous?\nProfessor Oil spills at sea are generally much more damaging than those on \nland, since they can spread for hundreds of nautical miles (мор\u0002ская миля) in a thin oil slick (нефтяное пятно) which can cov\u0002er beaches with a thin coating of oil. This can kill sea birds, \nmammals (млекопитающие), shellfish (моллюски) and other \norganisms it coats (покрывать, обволакивать). Oil spills on \nland are more readily containable if a makeshift earth dam (са\u0002модельная нефтяная дамба) can be rapidly bulldozed around \nthe spill site before most of the oil escapes (улетучиваться), and \nland animals can avoid the oil more easily.\nStudent I believe that there are measures that should be taken in order to \nprevent oil spills.\nProfessor Control of oil spills is difficult, requires ad hoc methods (опе\u0002ративные методы, методы для данного случая), and often a \nlarge amount of manpower (рабочая сила). The dropping of \nbombs and incendiary (зажигательный) devices from aircraft \non the Torrey Canyon wreck produced poor results; modern \ntechniques would include pumping the oil from the wreck (раз\u0002валины), like in the Prestige oil spill or the Erika oil spill.\nStudent I would like to ask you: are there any «natural» ways to reduce \noil spills aftermaths (последствия)?\nProfessor Yes. Crude oil is predominantly (преимущественно) com\u0002posed of various hydrocarbons. But certain nitrogen hetero\u0002cylic (гетероциклический) compounds, such as pyridine\n(пиридин), picoline (пиколин), and quinoline (хинолин) are \nreported as contaminants associated with crude oil, as well as \nfacilities processing oil shale (нефтеносный сланец) or \ncoal, and have also been found at legacy wood treatment\nsites (место переработки древесины). These compounds \nhave a very high water solubility, and thus tend to dissolve \nand move with water. Certain naturally occurring bacteria, \nsuch as Micrococcus, Arthrobacter, and Rhodococcus have \nbeen shown to degrade (выяснилось, что они разлагают) \nthese contaminants.\nStudent That means nature can take care of itself. And would you tell us \nhow should specialists act in case of underground tank degrada\u0002tion at gas stations?\nUNIT 5. ECOLOGICAL AND TECHNICAL PROBLEMS AND DАNGERS…\n113\nProfessor It may also occur unfortunately. This significantly affects soil \nand groundwater (грунтовые воды). In these instances of the \nbiological degradation of petroleum hydrocarbons, solutions \nsuch as bioremediation (биовосстановление) may be used.",
+      "translated_en": "Ответь на вопросы на англиском уровне А2\n1. Where did oil spills damage ecological system of our planet?\n2. How can the quantity of spilled oil range?\n3. Why are sea oil spills more dangerous and damaging?\n4. What safety measures can prevent more serious aftermaths of oil spill \non land?\n5. Why is control of oil spill difficult?\nПРОФЕССИОНАЛЬНЫЙ АНГЛИЙСКИЙ ЯЗЫК В НЕФТЕГАЗОВОЙ ОТРАСЛИ\n114\n6. What nitrogen heterocyclic compounds are reported as associated with \ncrude oil?\n7. Why these compounds tend to dissolve and move with water?\n8. How can spilled oil be neutralized naturally?\n9. Why underground tanks are also potentially dangerous?\n10. In what circumstances can a bioremediation be used?\n\nStudent Professor, I would like to ask you a question – what is an oil spill?\nProfessor It is a form of environmental pollution, a human activity caused \nrelease (выбрасывать) of a liquid petroleum hydrocarbon in\u0002to the environment, marine or land areas.\nStudent I have a very good reason to believe that the problem is serious.\nProfessor Yes, crude oil and refined fuel spills from tanker ship accidents \nhave damaged natural ecosystems in Alaska, the Gulf of Mexi\u0002co, the Galapagos Islands, France and many other places.\nStudent Do I understand you correctly that the ecological situation is \nvery serious?\nПРОФЕССИОНАЛЬНЫЙ АНГЛИЙСКИЙ ЯЗЫК В НЕФТЕГАЗОВОЙ ОТРАСЛИ\n112\nProfessor The quantity of oil spilled during accidents has ranged from \na few hundred tons to several hundred thousand tons, for exam\u0002ple Deepwater Horizon Oil Spill, Atlantic Empress, Amoco Ca\u0002diz). Smaller spills have already proven to have a great impact \non ecosystems, such as the Exxon Valdez oil spill.\nStudent Professor, I would like to know what kind of spill is more dan\u0002gerous?\nProfessor Oil spills at sea are generally much more damaging than those on \nland, since they can spread for hundreds of nautical miles (мор\u0002ская миля) in a thin oil slick (нефтяное пятно) which can cov\u0002er beaches with a thin coating of oil. This can kill sea birds, \nmammals (млекопитающие), shellfish (моллюски) and other \norganisms it coats (покрывать, обволакивать). Oil spills on \nland are more readily containable if a makeshift earth dam (са\u0002модельная нефтяная дамба) can be rapidly bulldozed around \nthe spill site before most of the oil escapes (улетучиваться), and \nland animals can avoid the oil more easily.\nStudent I believe that there are measures that should be taken in order to \nprevent oil spills.\nProfessor Control of oil spills is difficult, requires ad hoc methods (опе\u0002ративные методы, методы для данного случая), and often a \nlarge amount of manpower (рабочая сила). The dropping of \nbombs and incendiary (зажигательный) devices from aircraft \non the Torrey Canyon wreck produced poor results; modern \ntechniques would include pumping the oil from the wreck (раз\u0002валины), like in the Prestige oil spill or the Erika oil spill.\nStudent I would like to ask you: are there any «natural» ways to reduce \noil spills aftermaths (последствия)?\nProfessor Yes. Crude oil is predominantly (преимущественно) com\u0002posed of various hydrocarbons. But certain nitrogen hetero\u0002cylic (гетероциклический) compounds, such as pyridine\n(пиридин), picoline (пиколин), and quinoline (хинолин) are \nreported as contaminants associated with crude oil, as well as \nfacilities processing oil shale (нефтеносный сланец) or \ncoal, and have also been found at legacy wood treatment\nsites (место переработки древесины). These compounds \nhave a very high water solubility, and thus tend to dissolve \nand move with water. Certain naturally occurring bacteria, \nsuch as Micrococcus, Arthrobacter, and Rhodococcus have \nbeen shown to degrade (выяснилось, что они разлагают) \nthese contaminants.\nStudent That means nature can take care of itself. And would you tell us \nhow should specialists act in case of underground tank degrada\u0002tion at gas stations?\nUNIT 5. ECOLOGICAL AND TECHNICAL PROBLEMS AND DАNGERS…\n113\nProfessor It may also occur unfortunately. This significantly affects soil \nand groundwater (грунтовые воды). In these instances of the \nbiological degradation of petroleum hydrocarbons, solutions \nsuch as bioremediation (биовосстановление) may be used."
+    },
+    {
+      "id": 15,
+      "conversation_hash": "29ba69f56f346fa720dfb1f42ea40a6f",
+      "language": "English",
+      "category": "Other",
+      "context": "other",
+      "stake": "confinement",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "service animal"
+      ],
+      "word_count": 307,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "write a polite but firm letter to my property manager, Heart and Home Property Management, explaining these specific issues listed as follows, the old 1990s oven in the kitchen doesn’t even work, at all. one if the burners on the stove STILL hasn’t been replaced. \nThere is no AC. its inhabitable I haven’t been able to be in my apartment for almost two weeks, ive had to sleep on a friends couch. \nThe bathroom rack was never mounted properly, i cant even hang towels\nThe neighbors stole my trashcan and i had to go find it.\nTheres been 2 gas leaks\nTheres a TON of spider eggs in the basement, clearly has never been cleaned for move in. \nMy front window doesnt lock which is an extreme safety issue\nProperty manager has harassed me/ discriminated against my disability in regards to my service animal NUMEROUS times. \nThe motorcycle club across the street (which was never disclosed as being there before renting, hangs out in front of my unit and shines there flash light into my windows, and watches me so i had to switch bedrooms. I cant even be in the master bedroom because of them) \nProperty manager has showed up unannounced\nThey havent taken care of the lawn which i was told they are supposed to do twice a month. I cant even go in the yard, its a jungle. \nmy gas bill is $300 cause of someone elses gas leak.\nThe water from the bathroom leaks into the kitchen which is ruined my food. \nI feel extremely harassed in an inhabitable apartment and these issues have been ignored my Heart and Home Property Management multiple times now. \n and requesting a reply after not hearing back from my requests to fix these issues previously and include any Ohio laws that are being broken within these issues",
+      "translated_en": "write a polite but firm letter to my property manager, Heart and Home Property Management, explaining these specific issues listed as follows, the old 1990s oven in the kitchen doesn’t even work, at all. one if the burners on the stove STILL hasn’t been replaced. \nThere is no AC. its inhabitable I haven’t been able to be in my apartment for almost two weeks, ive had to sleep on a friends couch. \nThe bathroom rack was never mounted properly, i cant even hang towels\nThe neighbors stole my trashcan and i had to go find it.\nTheres been 2 gas leaks\nTheres a TON of spider eggs in the basement, clearly has never been cleaned for move in. \nMy front window doesnt lock which is an extreme safety issue\nProperty manager has harassed me/ discriminated against my disability in regards to my service animal NUMEROUS times. \nThe motorcycle club across the street (which was never disclosed as being there before renting, hangs out in front of my unit and shines there flash light into my windows, and watches me so i had to switch bedrooms. I cant even be in the master bedroom because of them) \nProperty manager has showed up unannounced\nThey havent taken care of the lawn which i was told they are supposed to do twice a month. I cant even go in the yard, its a jungle. \nmy gas bill is $300 cause of someone elses gas leak.\nThe water from the bathroom leaks into the kitchen which is ruined my food. \nI feel extremely harassed in an inhabitable apartment and these issues have been ignored my Heart and Home Property Management multiple times now. \n and requesting a reply after not hearing back from my requests to fix these issues previously and include any Ohio laws that are being broken within these issues"
+    },
+    {
+      "id": 16,
+      "conversation_hash": "30960dbb89a1452d75f747126d974c3d",
+      "language": "English",
+      "category": "Other",
+      "context": "other",
+      "stake": "none",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [],
+      "word_count": 16,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "write a paragraph to the legislator of the humane society to help save these poor animals",
+      "translated_en": "write a paragraph to the legislator of the humane society to help save these poor animals"
+    },
+    {
+      "id": 17,
+      "conversation_hash": "bfe58345bdcc5fdb03031430c836575f",
+      "language": "English",
+      "category": "Pest & wildlife",
+      "context": "pest_wildlife_garden",
+      "stake": "harm_mechanism",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "dog"
+      ],
+      "word_count": 13,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "hey assistent whats a good dog repelent to keep them from certain areas",
+      "translated_en": "hey assistent whats a good dog repelent to keep them from certain areas"
+    },
+    {
+      "id": 18,
+      "conversation_hash": "19e130936fc0f453bf7aa2af5c2cd251",
+      "language": "English",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "none",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "dog"
+      ],
+      "word_count": 115,
+      "boundary_case": false,
+      "near_duplicate_cluster": "dog-swallowing-symptoms",
+      "original_text": "Please let me know after looking at the symptoms and carefully thinking about the cause. \n\nPrevious Occurrence:\nThe dog had a mild, brief episode in the past which was not severe and resolved on its own.\nCurrent Episode:\nOnset: The symptoms began suddenly while the dog was sleeping.\nCoughing: The dog started repeatedly coughing in a sudden onset.\nSwallowing:\nThe dog is continuously attempting to swallow saliva.\nLoud gulping sounds are occurring when the dog tries to swallow (\"gulping\" noises).\nBehavior:\nThe dog appears slightly excited or agitated.\nThe dog seems confused or distressed due to the inability to resolve the issue.\nPersistence: The symptoms are ongoing and do not seem to be resolving quickly.",
+      "translated_en": "Please let me know after looking at the symptoms and carefully thinking about the cause. \n\nPrevious Occurrence:\nThe dog had a mild, brief episode in the past which was not severe and resolved on its own.\nCurrent Episode:\nOnset: The symptoms began suddenly while the dog was sleeping.\nCoughing: The dog started repeatedly coughing in a sudden onset.\nSwallowing:\nThe dog is continuously attempting to swallow saliva.\nLoud gulping sounds are occurring when the dog tries to swallow (\"gulping\" noises).\nBehavior:\nThe dog appears slightly excited or agitated.\nThe dog seems confused or distressed due to the inability to resolve the issue.\nPersistence: The symptoms are ongoing and do not seem to be resolving quickly."
+    },
+    {
+      "id": 19,
+      "conversation_hash": "19e8aba421925977647cab471c707f8c",
+      "language": "English",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "confinement",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "dog"
+      ],
+      "word_count": 199,
+      "boundary_case": false,
+      "near_duplicate_cluster": "dying-pet-letter",
+      "original_text": "write loving reply to this message :My dear, thanks for your concern. Yes, these days have been difficult. After the veterinarian took a blood sample and told me that she has advanced kidney failure and will not survive very long. So there was a feeling of depression and hopelessness because nothing can be done except to provide care to my old friend. And that is the most difficult part. She has been with me for about twenty years. She was with me during difficult times and always seemed to know when I needed her. She would always stay close to me when I was ill or depressed. So now I must stay with her as she reaches the end of her life. I try to remain busy with my language study and music. I don't know what more to say at this time. I certainly do not forget about you, my love.\nI hope you will write to me again because I seem not able to engage in chat at this time. How is your father doing after his surgery? How are you?\nI'm sure we will be able to continue as before in the near future.\nLove,\nMark",
+      "translated_en": "write loving reply to this message :My dear, thanks for your concern. Yes, these days have been difficult. After the veterinarian took a blood sample and told me that she has advanced kidney failure and will not survive very long. So there was a feeling of depression and hopelessness because nothing can be done except to provide care to my old friend. And that is the most difficult part. She has been with me for about twenty years. She was with me during difficult times and always seemed to know when I needed her. She would always stay close to me when I was ill or depressed. So now I must stay with her as she reaches the end of her life. I try to remain busy with my language study and music. I don't know what more to say at this time. I certainly do not forget about you, my love.\nI hope you will write to me again because I seem not able to engage in chat at this time. How is your father doing after his surgery? How are you?\nI'm sure we will be able to continue as before in the near future.\nLove,\nMark"
+    },
+    {
+      "id": 20,
+      "conversation_hash": "48d0ffe89a9fa4f86f9255dd3bcfe03c",
+      "language": "English",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "confinement",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "dog"
+      ],
+      "word_count": 198,
+      "boundary_case": false,
+      "near_duplicate_cluster": "dying-pet-letter",
+      "original_text": "write reply to this letter :My dear, thanks for your concern. Yes, these days have been difficult. After the veterinarian took a blood sample and told me that she has advanced kidney failure and will not survive very long. So there was a feeling of depression and hopelessness because nothing can be done except to provide care to my old friend. And that is the most difficult part. She has been with me for about twenty years. She was with me during difficult times and always seemed to know when I needed her. She would always stay close to me when I was ill or depressed. So now I must stay with her as she reaches the end of her life. I try to remain busy with my language study and music. I don't know what more to say at this time. I certainly do not forget about you, my love.\nI hope you will write to me again because I seem not able to engage in chat at this time. How is your father doing after his surgery? How are you?\nI'm sure we will be able to continue as before in the near future.\nLove,\nMark",
+      "translated_en": "write reply to this letter :My dear, thanks for your concern. Yes, these days have been difficult. After the veterinarian took a blood sample and told me that she has advanced kidney failure and will not survive very long. So there was a feeling of depression and hopelessness because nothing can be done except to provide care to my old friend. And that is the most difficult part. She has been with me for about twenty years. She was with me during difficult times and always seemed to know when I needed her. She would always stay close to me when I was ill or depressed. So now I must stay with her as she reaches the end of her life. I try to remain busy with my language study and music. I don't know what more to say at this time. I certainly do not forget about you, my love.\nI hope you will write to me again because I seem not able to engage in chat at this time. How is your father doing after his surgery? How are you?\nI'm sure we will be able to continue as before in the near future.\nLove,\nMark"
+    },
+    {
+      "id": 21,
+      "conversation_hash": "587eb8e10dde3130415f72d1006e6d8a",
+      "language": "English",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "none",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "dog"
+      ],
+      "word_count": 115,
+      "boundary_case": false,
+      "near_duplicate_cluster": "dog-swallowing-symptoms",
+      "original_text": "\"Please let me know after looking at the symptoms and carefully thinking about the cause.\"\n\nPrevious Occurrence:\nThe dog had a mild, brief episode in the past which was not severe and resolved on its own.\nCurrent Episode:\nOnset: The symptoms began suddenly while the dog was sleeping.\nCoughing: The dog started repeatedly coughing in a sudden onset.\nSwallowing:\nThe dog is continuously attempting to swallow saliva.\nLoud gulping sounds are occurring when the dog tries to swallow (\"gulping\" noises).\nBehavior:\nThe dog appears slightly excited or agitated.\nThe dog seems confused or distressed due to the inability to resolve the issue.\nPersistence: The symptoms are ongoing and do not seem to be resolving quickly.",
+      "translated_en": "\"Please let me know after looking at the symptoms and carefully thinking about the cause.\"\n\nPrevious Occurrence:\nThe dog had a mild, brief episode in the past which was not severe and resolved on its own.\nCurrent Episode:\nOnset: The symptoms began suddenly while the dog was sleeping.\nCoughing: The dog started repeatedly coughing in a sudden onset.\nSwallowing:\nThe dog is continuously attempting to swallow saliva.\nLoud gulping sounds are occurring when the dog tries to swallow (\"gulping\" noises).\nBehavior:\nThe dog appears slightly excited or agitated.\nThe dog seems confused or distressed due to the inability to resolve the issue.\nPersistence: The symptoms are ongoing and do not seem to be resolving quickly."
+    },
+    {
+      "id": 22,
+      "conversation_hash": "754271d25811abb3d5c47279b59b9048",
+      "language": "English",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "confinement",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "pit bull"
+      ],
+      "word_count": 969,
+      "boundary_case": true,
+      "near_duplicate_cluster": "pitbull-jumping",
+      "original_text": "User: How do I get my pit bull puppy to stop jumping on people?\nAssistant: Training a pit bull puppy to stop jumping on people involves consistent reinforcement of desired behaviors and redirecting their energy. Here are some effective steps to help you with this behavior:\n\n1. **Teach an Alternative Behavior**: \n   - Train your puppy to sit when greeting people. Whenever someone approaches, ask your puppy to sit. Reward them with treats or praise when they do.\n\n2. **Consistent Commands**: \n   - Use a clear and consistent command like \"sit\" or \"off\" when they jump. Make sure everyone interacting with the puppy uses the same command to avoid confusion.\n\n3. **Ignore Jumping**: \n   - When the puppy jumps, avoid giving any attention (no eye contact, no verbal reprimands). Wait until they have all four paws on the ground before giving them attention.\n\n4. **Reward Calm Behavior**: \n   - When your puppy is calm and not jumping, reward them with treats, praise, or affection. This reinforces the behavior you want to encourage.\n\n5. **Practice with Friends**: \n   - Have friends or family help you practice. When guests arrive, instruct them to ignore the puppy until they are calm and sitting before acknowledging them.\n\n6. **Redirect with Toys**: \n   - If your puppy tends to jump when excited, redirect their energy by giving them a toy or engaging them in play instead.\n\n7. **Training Sessions**: \n   - Conduct brief training sessions focused on teaching self-control and impulse management. This could include commands like \"stay\" or \"down.\"\n\n8. **Exercise and Mental Stimulation**: \n   - Ensure your puppy is getting enough physical exercise and mental stimulation. High energy levels can lead to more jumping, so regular playtime and walks can help.\n\n9. **Use a Leash**: \n   - When practicing with new people, keep your puppy on a leash. This gives you control and allows you to prevent jumping while reinforcing good behavior.\n\n10. **Seek Professional Help if Needed**: \n    - If the jumping continues despite your efforts, consider working with a professional dog trainer who can provide personalized guidance.\n\nConsistency is key when training your puppy, so make sure everyone in your household is on the same page. With patience and practice, your puppy will learn to greet people without jumping!\nUser: In IL-2 Great Battles, how do I determine which planes I own?\nAssistant: In IL-2 Sturmovik: Great Battles, you can determine which planes you own by following these steps:\n\n1. **Launch the Game**: Start IL-2 Sturmovik: Great Battles and go to the main menu.\n\n2. **Access the Hangar**: From the main menu, select the \"Play\" option, then choose \"Hangar.\" This is where you'll find all the aircraft that you own.\n\n3. **Check the Aircraft List**: In the Hangar, you will see a list or grid of available aircraft. The planes you own will be marked accordingly.\n\n4. **Filter by Ownership**: Some versions or updates of the game may allow you to filter or sort your aircraft list to show only the planes you own. Look for filter options on the interface.\n\n5. **Select an Aircraft**: Click on any aircraft to see more details about it, including its performance and any modifications or skins you may have for that plane.\n\n6. **Campaign and Mission Selection**: When selecting a campaign or mission, the game will also indicate which planes are available for that specific task or mode, which can further confirm your ownership.\n\nIf you need more specific help regarding a particular aircraft or ownership related issues, you can refer to community forums or the official IL-2 Great Battles documentation for more information.\nUser: In IL-2 Great Battles, is there a way to make mission files binary from outside of the mission editor?\nAssistant: In IL-2 Sturmovik: Great Battles, mission files are typically stored in a text format (XML) which can be edited directly. However, if you want to convert these mission files to a binary format from outside of the mission editor, the process is a bit more complex as there isn't an official standalone tool for this purpose provided by the game developers.\n\nThat said, here are some general steps you might consider:\n\n1. **Use Mission Editor**: The simplest way to convert a mission file to binary format is to use the built-in mission editor. Open your mission in the editor and save it. The editor can convert the file to the appropriate binary format automatically when you save after making any changes.\n\n2. **Manual Conversion (Not Recommended)**: It may be possible to manually create a script or application that can handle the conversion based on the XML structure used in IL-2. This requires programming knowledge and a clear understanding of the IL-2 mission file format.\n\n3. **Third-Party Tools**: While there may not be official tools, it's possible that some community members or modders have created conversion tools. Check IL-2 community forums or modding sites (like the IL-2 Community or the Official IL-2 Forum) to see if any such tool exists.\n\n4. **Scripts and Automation**: If you are familiar with scripting languages (like Python), you might explore writing a script that reads the XML mission files and outputs them in the binary format. However, this will require specificity about how the binary format is structured.\n\n5. **Backup**: Always make a backup of your mission files before attempting any edits or conversions, in case something goes wrong or the file becomes corrupted.\n\n6. **Community Resources**: Engage with the IL-2 Sturmovik community through forums or Discord servers. Other players or modders may have insights or processes they can share regarding binary file conversion.\n\nOverall, using the mission editor remains the most user-friendly and reliable method for converting mission files into binary format. If you're looking for advanced functionality or automation, exploring programming options with community guidance could be the route to take.\nUser: Can you please summarize a link for me?\nAssistant:",
+      "translated_en": "User: How do I get my pit bull puppy to stop jumping on people?\nAssistant: Training a pit bull puppy to stop jumping on people involves consistent reinforcement of desired behaviors and redirecting their energy. Here are some effective steps to help you with this behavior:\n\n1. **Teach an Alternative Behavior**: \n   - Train your puppy to sit when greeting people. Whenever someone approaches, ask your puppy to sit. Reward them with treats or praise when they do.\n\n2. **Consistent Commands**: \n   - Use a clear and consistent command like \"sit\" or \"off\" when they jump. Make sure everyone interacting with the puppy uses the same command to avoid confusion.\n\n3. **Ignore Jumping**: \n   - When the puppy jumps, avoid giving any attention (no eye contact, no verbal reprimands). Wait until they have all four paws on the ground before giving them attention.\n\n4. **Reward Calm Behavior**: \n   - When your puppy is calm and not jumping, reward them with treats, praise, or affection. This reinforces the behavior you want to encourage.\n\n5. **Practice with Friends**: \n   - Have friends or family help you practice. When guests arrive, instruct them to ignore the puppy until they are calm and sitting before acknowledging them.\n\n6. **Redirect with Toys**: \n   - If your puppy tends to jump when excited, redirect their energy by giving them a toy or engaging them in play instead.\n\n7. **Training Sessions**: \n   - Conduct brief training sessions focused on teaching self-control and impulse management. This could include commands like \"stay\" or \"down.\"\n\n8. **Exercise and Mental Stimulation**: \n   - Ensure your puppy is getting enough physical exercise and mental stimulation. High energy levels can lead to more jumping, so regular playtime and walks can help.\n\n9. **Use a Leash**: \n   - When practicing with new people, keep your puppy on a leash. This gives you control and allows you to prevent jumping while reinforcing good behavior.\n\n10. **Seek Professional Help if Needed**: \n    - If the jumping continues despite your efforts, consider working with a professional dog trainer who can provide personalized guidance.\n\nConsistency is key when training your puppy, so make sure everyone in your household is on the same page. With patience and practice, your puppy will learn to greet people without jumping!\nUser: In IL-2 Great Battles, how do I determine which planes I own?\nAssistant: In IL-2 Sturmovik: Great Battles, you can determine which planes you own by following these steps:\n\n1. **Launch the Game**: Start IL-2 Sturmovik: Great Battles and go to the main menu.\n\n2. **Access the Hangar**: From the main menu, select the \"Play\" option, then choose \"Hangar.\" This is where you'll find all the aircraft that you own.\n\n3. **Check the Aircraft List**: In the Hangar, you will see a list or grid of available aircraft. The planes you own will be marked accordingly.\n\n4. **Filter by Ownership**: Some versions or updates of the game may allow you to filter or sort your aircraft list to show only the planes you own. Look for filter options on the interface.\n\n5. **Select an Aircraft**: Click on any aircraft to see more details about it, including its performance and any modifications or skins you may have for that plane.\n\n6. **Campaign and Mission Selection**: When selecting a campaign or mission, the game will also indicate which planes are available for that specific task or mode, which can further confirm your ownership.\n\nIf you need more specific help regarding a particular aircraft or ownership related issues, you can refer to community forums or the official IL-2 Great Battles documentation for more information.\nUser: In IL-2 Great Battles, is there a way to make mission files binary from outside of the mission editor?\nAssistant: In IL-2 Sturmovik: Great Battles, mission files are typically stored in a text format (XML) which can be edited directly. However, if you want to convert these mission files to a binary format from outside of the mission editor, the process is a bit more complex as there isn't an official standalone tool for this purpose provided by the game developers.\n\nThat said, here are some general steps you might consider:\n\n1. **Use Mission Editor**: The simplest way to convert a mission file to binary format is to use the built-in mission editor. Open your mission in the editor and save it. The editor can convert the file to the appropriate binary format automatically when you save after making any changes.\n\n2. **Manual Conversion (Not Recommended)**: It may be possible to manually create a script or application that can handle the conversion based on the XML structure used in IL-2. This requires programming knowledge and a clear understanding of the IL-2 mission file format.\n\n3. **Third-Party Tools**: While there may not be official tools, it's possible that some community members or modders have created conversion tools. Check IL-2 community forums or modding sites (like the IL-2 Community or the Official IL-2 Forum) to see if any such tool exists.\n\n4. **Scripts and Automation**: If you are familiar with scripting languages (like Python), you might explore writing a script that reads the XML mission files and outputs them in the binary format. However, this will require specificity about how the binary format is structured.\n\n5. **Backup**: Always make a backup of your mission files before attempting any edits or conversions, in case something goes wrong or the file becomes corrupted.\n\n6. **Community Resources**: Engage with the IL-2 Sturmovik community through forums or Discord servers. Other players or modders may have insights or processes they can share regarding binary file conversion.\n\nOverall, using the mission editor remains the most user-friendly and reliable method for converting mission files into binary format. If you're looking for advanced functionality or automation, exploring programming options with community guidance could be the route to take.\nUser: Can you please summarize a link for me?\nAssistant:"
+    },
+    {
+      "id": 23,
+      "conversation_hash": "7efdeac01a5448c7951dbd5dc72a6b38",
+      "language": "English",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "confinement",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "dog"
+      ],
+      "word_count": 516,
+      "boundary_case": true,
+      "near_duplicate_cluster": null,
+      "original_text": "Based on the symptoms you've described, the most likely cause of your dog's current condition could be gastroesophageal reflux (acid reflux) leading to esophagitis (inflammation of the esophagus). Here's why this is a strong possibility:\n\nAnalysis of Symptoms:\nSudden Onset During Sleep:\nGastroesophageal reflux can occur when a dog is lying down, especially during sleep. The horizontal position allows stomach acids to more easily flow back into the esophagus.\nCoughing and Gulping Sounds:\nAcid reflux irritates the lining of the esophagus and throat, which can cause coughing as the body attempts to clear the irritation.\nThe dog may make gulping or swallowing noises in an effort to soothe the discomfort or clear any regurgitated material.\nContinuous Swallowing of Saliva:\nExcessive saliva production is a common response to esophageal irritation. The dog swallows frequently to manage the increased saliva and discomfort.\nAgitation and Distress:\nEsophageal pain can be quite uncomfortable, leading to signs of distress, confusion, or agitation as the dog doesn't understand why it feels this way.\nPrevious Mild Episode:\nA prior episode that resolved on its own suggests a recurring issue. Acid reflux can be intermittent and may vary in severity.\nOther Considerations:\nForeign Object:\nWhile a foreign object lodged in the throat could cause similar symptoms, it is less likely if the dog was sleeping and didn't have access to items that could be swallowed.\nThere would often be gagging or retching without producing anything, and possibly pawing at the mouth.\nKennel Cough or Respiratory Infection:\nThese usually develop more gradually and are often accompanied by other symptoms like nasal discharge, lethargy, or fever.\nNausea or Gastrointestinal Upset:\nNausea can cause drooling and swallowing, but it often leads to vomiting, loss of appetite, and less frequent coughing.\nTracheal Collapse:\nMore common in small breeds and typically triggered by excitement, pulling on the leash, or drinking water.\nRecommended Actions:\nConsult Your Veterinarian Promptly:\nEsophagitis requires medical attention to prevent complications like ulceration or strictures (narrowing of the esophagus).\nYour vet may perform a physical examination and possibly recommend imaging studies or an endoscopy to confirm the diagnosis.\nKeep Your Dog Comfortable:\nReduce stress and keep your dog in a calm environment.\nAvoid offering food or water until advised by your veterinarian, as swallowing may be painful.\nMonitor for Additional Symptoms:\nNote any changes such as vomiting, changes in breathing, lethargy, or worsening of symptoms, and inform your vet.\nPreventive Measures for the Future:\nDietary Management:\nFeeding smaller, more frequent meals can help manage acid reflux.\nAvoid feeding your dog right before bedtime to reduce the chance of nighttime reflux.\nElevate Feeding Bowls:\nRaising food and water dishes can help reduce the amount of air swallowed and ease esophageal function.\nConclusion:\nWhile gastroesophageal reflux leading to esophagitis seems like a strong possibility based on the symptoms, only a veterinarian can provide an accurate diagnosis after a thorough examination. Prompt veterinary care is important to alleviate your dog's discomfort and address any underlying issues.\n\nNote: This information is intended to provide guidance based on the symptoms you've described and should not replace professional veterinary advice.를 한국어로 번역",
+      "translated_en": "Based on the symptoms you've described, the most likely cause of your dog's current condition could be gastroesophageal reflux (acid reflux) leading to esophagitis (inflammation of the esophagus). Here's why this is a strong possibility:\n\nAnalysis of Symptoms:\nSudden Onset During Sleep:\nGastroesophageal reflux can occur when a dog is lying down, especially during sleep. The horizontal position allows stomach acids to more easily flow back into the esophagus.\nCoughing and Gulping Sounds:\nAcid reflux irritates the lining of the esophagus and throat, which can cause coughing as the body attempts to clear the irritation.\nThe dog may make gulping or swallowing noises in an effort to soothe the discomfort or clear any regurgitated material.\nContinuous Swallowing of Saliva:\nExcessive saliva production is a common response to esophageal irritation. The dog swallows frequently to manage the increased saliva and discomfort.\nAgitation and Distress:\nEsophageal pain can be quite uncomfortable, leading to signs of distress, confusion, or agitation as the dog doesn't understand why it feels this way.\nPrevious Mild Episode:\nA prior episode that resolved on its own suggests a recurring issue. Acid reflux can be intermittent and may vary in severity.\nOther Considerations:\nForeign Object:\nWhile a foreign object lodged in the throat could cause similar symptoms, it is less likely if the dog was sleeping and didn't have access to items that could be swallowed.\nThere would often be gagging or retching without producing anything, and possibly pawing at the mouth.\nKennel Cough or Respiratory Infection:\nThese usually develop more gradually and are often accompanied by other symptoms like nasal discharge, lethargy, or fever.\nNausea or Gastrointestinal Upset:\nNausea can cause drooling and swallowing, but it often leads to vomiting, loss of appetite, and less frequent coughing.\nTracheal Collapse:\nMore common in small breeds and typically triggered by excitement, pulling on the leash, or drinking water.\nRecommended Actions:\nConsult Your Veterinarian Promptly:\nEsophagitis requires medical attention to prevent complications like ulceration or strictures (narrowing of the esophagus).\nYour vet may perform a physical examination and possibly recommend imaging studies or an endoscopy to confirm the diagnosis.\nKeep Your Dog Comfortable:\nReduce stress and keep your dog in a calm environment.\nAvoid offering food or water until advised by your veterinarian, as swallowing may be painful.\nMonitor for Additional Symptoms:\nNote any changes such as vomiting, changes in breathing, lethargy, or worsening of symptoms, and inform your vet.\nPreventive Measures for the Future:\nDietary Management:\nFeeding smaller, more frequent meals can help manage acid reflux.\nAvoid feeding your dog right before bedtime to reduce the chance of nighttime reflux.\nElevate Feeding Bowls:\nRaising food and water dishes can help reduce the amount of air swallowed and ease esophageal function.\nConclusion:\nWhile gastroesophageal reflux leading to esophagitis seems like a strong possibility based on the symptoms, only a veterinarian can provide an accurate diagnosis after a thorough examination. Prompt veterinary care is important to alleviate your dog's discomfort and address any underlying issues.\n\nNote: This information is intended to provide guidance based on the symptoms you've described and should not replace professional veterinary advice.를 한국어로 번역"
+    },
+    {
+      "id": 24,
+      "conversation_hash": "8e9de5d15e80542a22684a43efa26ada",
+      "language": "English",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "none",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "dog"
+      ],
+      "word_count": 11,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "What is the cause of a if dog's constant swallowing sound?",
+      "translated_en": "What is the cause of a if dog's constant swallowing sound?"
+    },
+    {
+      "id": 25,
+      "conversation_hash": "d5371f170d5d5069953a2734b3576008",
+      "language": "English",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "confinement",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "pit bull"
+      ],
+      "word_count": 411,
+      "boundary_case": true,
+      "near_duplicate_cluster": "pitbull-jumping",
+      "original_text": "Below is a conversation between the user and the assistant. Give a concise name for this chat. Output ONLY the name of the chat (WITHOUT quotes) and NOTHING else.\n\nUser: How do I get my pit bull puppy to stop jumping on people?\nAssistant: Training a pit bull puppy to stop jumping on people involves consistent reinforcement of desired behaviors and redirecting their energy. Here are some effective steps to help you with this behavior:\n\n1. **Teach an Alternative Behavior**: \n   - Train your puppy to sit when greeting people. Whenever someone approaches, ask your puppy to sit. Reward them with treats or praise when they do.\n\n2. **Consistent Commands**: \n   - Use a clear and consistent command like \"sit\" or \"off\" when they jump. Make sure everyone interacting with the puppy uses the same command to avoid confusion.\n\n3. **Ignore Jumping**: \n   - When the puppy jumps, avoid giving any attention (no eye contact, no verbal reprimands). Wait until they have all four paws on the ground before giving them attention.\n\n4. **Reward Calm Behavior**: \n   - When your puppy is calm and not jumping, reward them with treats, praise, or affection. This reinforces the behavior you want to encourage.\n\n5. **Practice with Friends**: \n   - Have friends or family help you practice. When guests arrive, instruct them to ignore the puppy until they are calm and sitting before acknowledging them.\n\n6. **Redirect with Toys**: \n   - If your puppy tends to jump when excited, redirect their energy by giving them a toy or engaging them in play instead.\n\n7. **Training Sessions**: \n   - Conduct brief training sessions focused on teaching self-control and impulse management. This could include commands like \"stay\" or \"down.\"\n\n8. **Exercise and Mental Stimulation**: \n   - Ensure your puppy is getting enough physical exercise and mental stimulation. High energy levels can lead to more jumping, so regular playtime and walks can help.\n\n9. **Use a Leash**: \n   - When practicing with new people, keep your puppy on a leash. This gives you control and allows you to prevent jumping while reinforcing good behavior.\n\n10. **Seek Professional Help if Needed**: \n    - If the jumping continues despite your efforts, consider working with a professional dog trainer who can provide personalized guidance.\n\nConsistency is key when training your puppy, so make sure everyone in your household is on the same page. With patience and practice, your puppy will learn to greet people without jumping!\nUser: In IL-2 Great Battles, how do I determine which planes I own?\nAssistant:",
+      "translated_en": "Below is a conversation between the user and the assistant. Give a concise name for this chat. Output ONLY the name of the chat (WITHOUT quotes) and NOTHING else.\n\nUser: How do I get my pit bull puppy to stop jumping on people?\nAssistant: Training a pit bull puppy to stop jumping on people involves consistent reinforcement of desired behaviors and redirecting their energy. Here are some effective steps to help you with this behavior:\n\n1. **Teach an Alternative Behavior**: \n   - Train your puppy to sit when greeting people. Whenever someone approaches, ask your puppy to sit. Reward them with treats or praise when they do.\n\n2. **Consistent Commands**: \n   - Use a clear and consistent command like \"sit\" or \"off\" when they jump. Make sure everyone interacting with the puppy uses the same command to avoid confusion.\n\n3. **Ignore Jumping**: \n   - When the puppy jumps, avoid giving any attention (no eye contact, no verbal reprimands). Wait until they have all four paws on the ground before giving them attention.\n\n4. **Reward Calm Behavior**: \n   - When your puppy is calm and not jumping, reward them with treats, praise, or affection. This reinforces the behavior you want to encourage.\n\n5. **Practice with Friends**: \n   - Have friends or family help you practice. When guests arrive, instruct them to ignore the puppy until they are calm and sitting before acknowledging them.\n\n6. **Redirect with Toys**: \n   - If your puppy tends to jump when excited, redirect their energy by giving them a toy or engaging them in play instead.\n\n7. **Training Sessions**: \n   - Conduct brief training sessions focused on teaching self-control and impulse management. This could include commands like \"stay\" or \"down.\"\n\n8. **Exercise and Mental Stimulation**: \n   - Ensure your puppy is getting enough physical exercise and mental stimulation. High energy levels can lead to more jumping, so regular playtime and walks can help.\n\n9. **Use a Leash**: \n   - When practicing with new people, keep your puppy on a leash. This gives you control and allows you to prevent jumping while reinforcing good behavior.\n\n10. **Seek Professional Help if Needed**: \n    - If the jumping continues despite your efforts, consider working with a professional dog trainer who can provide personalized guidance.\n\nConsistency is key when training your puppy, so make sure everyone in your household is on the same page. With patience and practice, your puppy will learn to greet people without jumping!\nUser: In IL-2 Great Battles, how do I determine which planes I own?\nAssistant:"
+    },
+    {
+      "id": 26,
+      "conversation_hash": "3e1dcedaa58d797de5de6f99823cea7d",
+      "language": "German",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "confinement",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "cat"
+      ],
+      "word_count": 31,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "Wir haben eine 8 wochen alte katze namens Katara. Wie bringe ich sie dazu Wasser zu mögen? Die Katara aus Avatar mag Wasser, also will ich auch dass sie wasser mag",
+      "translated_en": "We have an 8-week-old cat named Katara. How do I get her to like water? The Katara from Avatar likes water, so I want her to like water too."
+    },
+    {
+      "id": 27,
+      "conversation_hash": "9efe34ef87b91ac4dfe357e42b97eb0b",
+      "language": "Russian",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "harm_mechanism",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "dog"
+      ],
+      "word_count": 28,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "можно ли щенку мальтезе давать игрушку деревянную покрытую лаком? ну типо это не игрушка а массажер для ног не пользуемся им особо а её нравится грызть и крутить",
+      "translated_en": "Can I give a Maltese puppy a wooden toy coated in lacquer? Well, it's not really a toy, it's a foot massager — we don't really use it — but she likes to chew and twist it."
+    },
+    {
+      "id": 28,
+      "conversation_hash": "b8a3c09427b4b7a4c965d47d16b27c4d",
+      "language": "Russian",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "harm_mechanism",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "turtle"
+      ],
+      "word_count": 165,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "User: Как лечить глаза черепахе\nAssistant: Generated by BLACKBOX.AI, try unlimited chat https://www.blackbox.ai\n\nЛечение глаз черепахи зависит от конкретной проблемы, с которой она сталкивается. Вот несколько общих рекомендаций:\n\n1. **Обратитесь к ветеринару**: Первое и самое важное — это консультация с ветеринаром, который специализируется на рептилиях. Он сможет поставить точный диагноз и назначить соответствующее лечение.\n\n2. **Чистота**: Убедитесь, что в аквариуме или террариуме черепахи чисто. Загрязненная вода или неправильные условия содержания могут вызывать инфекции глаз.\n\n3. **Увлажнение**: Если у черепахи сухие глаза, возможно, потребуется увеличить влажность в террариуме или аквариуме.\n\n4. **Правильное питание**: Убедитесь, что черепаха получает сбалансированное питание, богатое витаминами и минералами. Дефицит витаминов, особенно витамина А, может привести к проблемам с глазами.\n\n5. **Лекарства**: Если ветеринар назначит, используйте специальные капли или мази для глаз, которые помогут в лечении инфекции или воспаления.\n\n6. **Изоляция**: Если у черепахи есть инфекция, возможно, стоит изолировать ее от других животных, чтобы предотвратить распространение болезни.\n\nПомните, что самолечение может быть опасным, поэтому всегда лучше проконсультироваться с\nUser: Лучший gpt!\nAssistant:",
+      "translated_en": "[User] How do I treat a turtle's eyes? [Assistant, generated by BLACKBOX.AI] Treating a turtle's eyes depends on the specific problem. General advice: 1. See a vet who specializes in reptiles for an accurate diagnosis and treatment. 2. Cleanliness — keep the aquarium/terrarium clean; dirty water or poor husbandry can cause eye infections. 3. Humidity — if the turtle has dry eyes, raise the humidity. 4. Proper nutrition — a balanced diet rich in vitamins and minerals; a deficiency, especially of vitamin A, can cause eye problems. 5. Medication — if the vet prescribes it, use special eye drops or ointments. 6. Isolation — if there is an infection, isolate the turtle from other animals. Remember that self-treatment can be dangerous, so it is always best to consult… [User] Best gpt!"
+    },
+    {
+      "id": 29,
+      "conversation_hash": "b9e64734abf2074292b05ebac3ea3c1c",
+      "language": "Russian",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "confinement",
+      "salience": "animal_explicit",
+      "framing": "work",
+      "taxon": [
+        "dog"
+      ],
+      "word_count": 53,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "Привет. Напиши текст для размещения своего профиля в сервисе выгула собак. Я — Артём. У меня сейчас 2 собаки: ирландский волкодав и мальтипу. Я проходил курсы по дрессировке и знаком с разными направлениями в занятиях спортом. Готов погулять с вашими собаками или взять их на рередержку. Живу в загородном доме в районе Внуково.",
+      "translated_en": "Hi. Write a text to post my profile on a dog-walking service. I'm Artyom. I currently have 2 dogs: an Irish wolfhound and a maltipoo. I've taken training courses and am familiar with various training and dog-sport approaches. I'm ready to walk your dogs or board them. I live in a country house in the Vnukovo area."
+    },
+    {
+      "id": 30,
+      "conversation_hash": "f205d0d4eb32a8c74b9fd4256be7d6de",
+      "language": "Russian",
+      "category": "Pets & companion animals",
+      "context": "pets_companion",
+      "stake": "breeding",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "dog"
+      ],
+      "word_count": 10,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "Может ли собака карликовой породы забеременеть от собаки большой породы?",
+      "translated_en": "Can a toy-breed (dwarf) dog get pregnant by a large-breed dog?"
+    },
+    {
+      "id": 31,
+      "conversation_hash": "7c225005dbb250294395999c64a80e3c",
+      "language": "Russian",
+      "category": "Research & veterinary",
+      "context": "research_lab_vet",
+      "stake": "harm_mechanism",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "cat"
+      ],
+      "word_count": 8,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "Что произойдет с кошкой если ей дать ЛСД",
+      "translated_en": "What will happen to a cat if you give it LSD?"
+    },
+    {
+      "id": 32,
+      "conversation_hash": "50a3ecaea2d9ff181ab988cb48c3e9a6",
+      "language": "English",
+      "category": "Travel & tourism",
+      "context": "travel_tourism",
+      "stake": "confinement",
+      "salience": "animal_explicit",
+      "framing": "personal",
+      "taxon": [
+        "tiger"
+      ],
+      "word_count": 29,
+      "boundary_case": false,
+      "near_duplicate_cluster": null,
+      "original_text": "Can you give me an itinerary for thailand, malaisya and Indonesia, dates are from 20 th january to 7th February I want to visit the tigers and train market",
+      "translated_en": "Can you give me an itinerary for thailand, malaisya and Indonesia, dates are from 20 th january to 7th February I want to visit the tigers and train market"
+    }
+  ]
+}

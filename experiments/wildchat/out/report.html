@@ -1,0 +1,612 @@
+<title>WildChat animal-welfare mining — field report</title>
+<style>
+  :root {
+    --paper: #F6F7F4;
+    --surface: #FFFFFF;
+    --ink: #17211C;
+    --ink-soft: #45524B;
+    --faint: #7C8880;
+    --line: #E4E8E2;
+    --line-strong: #D2D8D0;
+    --accent: #1F5F52;
+    --accent-soft: #3C7E6F;
+    --accent-wash: #E7EFEC;
+    --amber: #B26B1B;
+    --amber-soft: #C88A3C;
+    --amber-wash: #F4EADB;
+    --ci: #AEB8B1;
+    --shadow: 0 1px 2px rgba(20,32,27,.05), 0 8px 24px rgba(20,32,27,.06);
+    --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0F1613;
+      --surface: #161F1A;
+      --ink: #E9EDE9;
+      --ink-soft: #A7B2AB;
+      --faint: #717D76;
+      --line: #26312B;
+      --line-strong: #32403A;
+      --accent: #55BBA1;
+      --accent-soft: #74CBB4;
+      --accent-wash: #16302A;
+      --amber: #D69A4E;
+      --amber-soft: #E1AF6E;
+      --amber-wash: #2C2417;
+      --ci: #3F4B45;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #F6F7F4; --surface: #FFFFFF; --ink: #17211C; --ink-soft: #45524B;
+    --faint: #7C8880; --line: #E4E8E2; --line-strong: #D2D8D0;
+    --accent: #1F5F52; --accent-soft: #3C7E6F; --accent-wash: #E7EFEC;
+    --amber: #B26B1B; --amber-soft: #C88A3C; --amber-wash: #F4EADB; --ci: #AEB8B1;
+    --shadow: 0 1px 2px rgba(20,32,27,.05), 0 8px 24px rgba(20,32,27,.06);
+  }
+  :root[data-theme="dark"] {
+    --paper: #0F1613; --surface: #161F1A; --ink: #E9EDE9; --ink-soft: #A7B2AB;
+    --faint: #717D76; --line: #26312B; --line-strong: #32403A;
+    --accent: #55BBA1; --accent-soft: #74CBB4; --accent-wash: #16302A;
+    --amber: #D69A4E; --amber-soft: #E1AF6E; --amber-wash: #2C2417; --ci: #3F4B45;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 60rem; margin: 0 auto; padding: 0 1.5rem 6rem; }
+  .measure { max-width: 42rem; }
+
+  h1, h2, h3 { font-family: var(--serif); font-weight: 600; text-wrap: balance; line-height: 1.15; }
+  a { color: var(--accent); }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.1rem;
+  }
+  .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  /* ---- masthead ---- */
+  header.mast { padding: 4.5rem 0 2.5rem; border-bottom: 1px solid var(--line); }
+  header.mast h1 { font-size: clamp(2.1rem, 5vw, 3.2rem); margin: 0 0 1.2rem; letter-spacing: -.01em; }
+  header.mast p.lede { font-size: 1.15rem; color: var(--ink-soft); margin: 0; }
+  header.mast p.lede b { color: var(--ink); font-weight: 600; }
+
+  .statstrip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin: 2.5rem 0 0;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .stat { background: var(--surface); padding: 1.1rem 1.15rem 1.2rem; }
+  .stat .k { display: block; font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); margin-bottom: .5rem; }
+  .stat .v { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 1.65rem; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+  .stat .u { font-family: var(--sans); font-size: .8rem; color: var(--ink-soft); margin-top: .15rem; }
+  .stat.hero .v { color: var(--accent); }
+  @media (max-width: 620px) { .statstrip { grid-template-columns: repeat(2, 1fr); } }
+
+  section { padding: 3.2rem 0 0; }
+  section > .eyebrow { margin-bottom: .5rem; }
+  h2.sec { font-size: 1.7rem; margin: 0 0 .6rem; }
+  p.note { color: var(--ink-soft); margin: 0 0 1.6rem; }
+
+  /* ---- funnel ---- */
+  .funnel { display: flex; flex-direction: column; gap: .55rem; margin-top: 1.4rem; }
+  .fstep { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.2rem; box-shadow: var(--shadow); }
+  .fbar { position: absolute; inset: 0; border-radius: 10px; background: var(--accent-wash); z-index: 0; transform-origin: left; }
+  .fstep > * { position: relative; z-index: 1; }
+  .fstep .frow { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .fstep .flabel { font-weight: 600; }
+  .fstep .fval { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 1.25rem; font-weight: 600; }
+  .fstep .fsub { font-size: .82rem; color: var(--ink-soft); margin-top: .15rem; }
+  .fdrop { font-family: var(--mono); font-size: .74rem; color: var(--faint); padding: .1rem 0 .1rem 1.2rem; }
+  .fdrop b { color: var(--amber); font-weight: 600; }
+
+  /* ---- fork centerpiece ---- */
+  .fork { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-top: 1.5rem; box-shadow: var(--shadow); }
+  .forkcard { background: var(--surface); padding: 1.6rem 1.5rem; }
+  .forkcard .tag { font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 .8rem; }
+  .forkcard.wide .tag { color: var(--accent); }
+  .forkcard.strict .tag { color: var(--amber); }
+  .forkcard .big { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 2.6rem; font-weight: 600; line-height: 1; letter-spacing: -.02em; }
+  .forkcard.wide .big { color: var(--accent); }
+  .forkcard.strict .big { color: var(--amber); }
+  .forkcard .big small { font-size: .95rem; font-weight: 500; color: var(--ink-soft); font-family: var(--sans); margin-left: .3rem; }
+  .forkcard .desc { font-size: .92rem; color: var(--ink-soft); margin: .8rem 0 0; }
+  .forkcard .desc b { color: var(--ink); font-weight: 600; }
+  @media (max-width: 620px) { .fork { grid-template-columns: 1fr; } }
+
+  .callout { margin-top: 1.5rem; border-left: 3px solid var(--accent); background: var(--accent-wash); padding: 1.1rem 1.3rem; border-radius: 0 10px 10px 0; }
+  .callout.warn { border-left-color: var(--amber); background: var(--amber-wash); }
+  .callout p { margin: 0; font-size: .95rem; color: var(--ink); }
+  .callout p + p { margin-top: .6rem; }
+  .callout .h { font-weight: 600; }
+
+  /* ---- charts ---- */
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.5rem 1.6rem 1.7rem; box-shadow: var(--shadow); margin-top: 1.4rem; }
+  .card h3 { font-size: 1.05rem; margin: 0 0 .3rem; }
+  .card .cap { font-size: .82rem; color: var(--faint); margin: 0 0 1.3rem; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+  .grid2 .card { margin-top: 0; }
+  @media (max-width: 720px) { .grid2 { grid-template-columns: 1fr; } }
+
+  .chart { display: flex; flex-direction: column; gap: .7rem; }
+  .row { display: grid; grid-template-columns: 8.5rem 1fr 3.4rem; align-items: center; gap: .7rem; }
+  .row .rl { font-size: .84rem; color: var(--ink-soft); text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .track { position: relative; height: 20px; background: linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 25% 100%; border-bottom: 1px solid var(--line-strong); }
+  .fill { position: absolute; left: 0; top: 3px; height: 14px; background: var(--accent); border-radius: 3px; transform-origin: left; transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+  .row.amberfill .fill { background: var(--amber); }
+  .whisk { position: absolute; top: 10px; height: 0; border-top: 1.5px solid var(--ci); z-index: 2; }
+  .whisk::before, .whisk::after { content: ""; position: absolute; top: -4px; width: 1.5px; height: 8px; background: var(--ci); }
+  .whisk::before { left: 0; }
+  .whisk::after { right: 0; }
+  .row .rv { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: .84rem; text-align: right; color: var(--ink); }
+  .row .rv small { color: var(--faint); }
+  .axis { display: grid; grid-template-columns: 8.5rem 1fr 3.4rem; gap: .7rem; margin-top: .3rem; }
+  .axis .ticks { grid-column: 2; display: flex; justify-content: space-between; font-family: var(--mono); font-size: .68rem; color: var(--faint); }
+  @media (max-width: 520px) {
+    .row, .axis { grid-template-columns: 6rem 1fr 3rem; }
+    .row .rl { font-size: .78rem; }
+  }
+
+  /* ---- histogram ---- */
+  .histo { display: flex; align-items: flex-end; gap: .5rem; height: 190px; margin-top: .5rem; padding-top: 1rem; }
+  .hbar { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: .4rem; }
+  .hbar .bar { width: 100%; max-width: 46px; background: var(--accent); border-radius: 4px 4px 0 0; transform-origin: bottom; transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+  .hbar.peak .bar { background: var(--accent); }
+  .hbar.peak2 .bar { background: var(--accent-soft); }
+  .hbar .hn { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: .78rem; font-weight: 600; }
+  .hbar .hx { font-family: var(--mono); font-size: .64rem; color: var(--faint); text-align: center; letter-spacing: -.02em; }
+
+  /* ---- reliability split ---- */
+  .rel { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-top: 1.4rem; }
+  .relcard { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow); }
+  .relcard .rt { font-family: var(--mono); font-size: .7rem; letter-spacing: .09em; text-transform: uppercase; color: var(--faint); margin: 0 0 .9rem; }
+  .gauge { display: flex; align-items: baseline; gap: .5rem; }
+  .gauge .g { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 2.4rem; font-weight: 600; line-height: 1; }
+  .relcard.good .g { color: var(--accent); }
+  .relcard.bad .g { color: var(--amber); }
+  .gauge .gs { font-size: .82rem; color: var(--faint); }
+  .relcard p { font-size: .88rem; color: var(--ink-soft); margin: .9rem 0 0; }
+  @media (max-width: 620px) { .rel { grid-template-columns: 1fr; } }
+
+  /* ---- language table ---- */
+  .tablewrap { overflow-x: auto; margin-top: 1.4rem; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+  table { border-collapse: collapse; width: 100%; background: var(--surface); font-size: .88rem; }
+  th, td { padding: .7rem 1rem; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); font-weight: 500; }
+  tbody td { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--ink); }
+  tbody td:first-child { font-family: var(--sans); }
+  tbody tr:last-child td { border-bottom: none; }
+  .barcell { position: relative; }
+  .barcell .mini { position: absolute; left: 1rem; bottom: 6px; height: 3px; background: var(--accent); border-radius: 2px; }
+
+  /* ---- caveats ---- */
+  .caveats { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-top: 1.4rem; }
+  .cav { background: var(--surface); padding: 1.15rem 1.4rem; display: grid; grid-template-columns: 1.6rem 1fr; gap: .7rem; }
+  .cav .ci { font-family: var(--mono); font-size: .8rem; color: var(--accent); font-weight: 600; }
+  .cav .cb { font-size: .92rem; }
+  .cav .cb b { font-weight: 600; }
+  .cav .cb { color: var(--ink-soft); }
+  .cav .cb strong { color: var(--ink); font-weight: 600; }
+
+  /* ---- verbatim samples ---- */
+  .samples { display: flex; flex-direction: column; gap: 1.4rem; margin-top: 1.4rem; }
+  .sampcard { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.3rem 1.5rem 1.5rem; box-shadow: var(--shadow); }
+  .sampcard > h3 { font-size: 1.05rem; margin: 0 0 .2rem; }
+  .sampcard > .gc { font-family: var(--mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); margin: 0 0 .4rem; }
+  .samp { display: grid; grid-template-columns: 2.2rem 1fr; gap: .85rem; padding: 1rem 0; border-top: 1px solid var(--line); }
+  .samp:first-of-type { border-top: none; }
+  .sampnum { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: .82rem; color: var(--faint); padding-top: .1rem; }
+  .samptext { font-size: .95rem; color: var(--ink); }
+  .samptext .el { color: var(--faint); }
+  .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+  .chip { font-family: var(--mono); font-size: .64rem; letter-spacing: .05em; text-transform: uppercase; padding: .16rem .55rem; border-radius: 999px; background: var(--accent-wash); color: var(--accent); white-space: nowrap; }
+  .chip.lang { background: transparent; border: 1px solid var(--line-strong); color: var(--ink-soft); }
+  .chip.warn { background: var(--amber-wash); color: var(--amber); }
+  .chip.dupe { background: transparent; border: 1px dashed var(--line-strong); color: var(--faint); }
+
+  footer { margin-top: 4rem; padding-top: 1.6rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--faint); }
+  footer .num { color: var(--ink-soft); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fill, .hbar .bar { transition: none; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="eyebrow">Field report · allenai/WildChat-4.8M · seed 42</p>
+    <h1>When welfare is at stake and nobody names it, how often does it even come up?</h1>
+    <p class="lede measure">A mining pass over a quarter-million real chatbot conversations, looking for first messages where a good answer would have to weigh an animal's welfare. The short version: <b>they're rare, and the count hinges on where you draw the line.</b></p>
+
+    <div class="statstrip">
+      <div class="stat hero">
+        <span class="k">Base rate</span>
+        <span class="v">1.4</span>
+        <span class="u">stake-bearing per 10k scanned</span>
+      </div>
+      <div class="stat">
+        <span class="k">Confirmed</span>
+        <span class="v">32</span>
+        <span class="u">of 3,000 keyword hits</span>
+      </div>
+      <div class="stat">
+        <span class="k">Scanned</span>
+        <span class="v">224k</span>
+        <span class="u">conversations streamed</span>
+      </div>
+      <div class="stat">
+        <span class="k">Deduped</span>
+        <span class="v">120k</span>
+        <span class="u">repeat prompts dropped</span>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <p class="eyebrow">The funnel</p>
+    <h2 class="sec">From 224,198 conversations to 32</h2>
+    <p class="note measure">Each stage is deliberately lossy. A cheap multilingual keyword prefilter casts wide; an LLM classifier then decides which hits are genuine welfare stakes rather than fiction or text that merely mentions an animal.</p>
+    <div class="funnel" id="funnel"></div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The finding that matters</p>
+    <h2 class="sec">The base rate is a definitional choice, not a measurement</h2>
+    <p class="note measure">Two competent judges (a Haiku classifier, a Sonnet arbiter) disagree on half the confirmed cases — and the disagreement isn't error. It's a real fork over whether an everyday <em>consumption</em> request carries a welfare stake. That fork moves the headline number ~2×.</p>
+
+    <div class="fork">
+      <div class="forkcard wide">
+        <p class="tag">Hidden-stakes reading</p>
+        <div class="big">1.4<small>/ 10k</small></div>
+        <p class="desc"><b>Everyday requests count.</b> A turkey-organ meal plan, a steak recipe, a seafood sales plan — the stake is real but unnamed. This is HERON's own premise. <span class="num">32</span> cases.</p>
+      </div>
+      <div class="forkcard strict">
+        <p class="tag">Strict reading</p>
+        <div class="big">0.7<small>/ 10k</small></div>
+        <p class="desc"><b>Only direct action counts.</b> The user must be handling, keeping, or treating a live animal. Consumption and sourcing drop out. <span class="num">16</span> cases.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><span class="h">What counts, by design.</span> The unit of interest is a request where the model's answer <em>should</em> surface welfare. Discussion <em>about</em> animals — summarizing a wildlife article, an essay on factory farming, a factual sentience question — is intentionally out of scope: the model isn't being asked to act, so there's no stake for it to weigh. The remaining question is only where inside that scope the line sits, which is the fork above.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Where the stakes live</p>
+    <h2 class="sec">Context and stake type</h2>
+    <p class="note measure">Whiskers are Wilson 95% intervals. They're wide on purpose — with 32 cases, most cells are single digits, so read shape, not precision.</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Context</h3>
+        <p class="cap">Life/work domain of the request · % of 32</p>
+        <div class="chart" id="c-context"></div>
+      </div>
+      <div class="card">
+        <h3>Welfare stake</h3>
+        <p class="cap">Primary stake implicated · % of 32</p>
+        <div class="chart" id="c-stake"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Species mentioned</h3>
+      <p class="cap">Share of stake-bearing messages naming each taxon · top 12</p>
+      <div class="chart" id="c-taxon"></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Who's asking, and how</p>
+    <h2 class="sec">Framing, salience, interaction</h2>
+    <div class="grid2" style="margin-top:1.4rem">
+      <div class="card"><h3>Framing</h3><p class="cap">Personal life vs work · % of 32</p><div class="chart" id="c-framing"></div></div>
+      <div class="card"><h3>Salience</h3><p class="cap">Is the animal the subject? · % of 32</p><div class="chart" id="c-salience"></div></div>
+    </div>
+    <div class="card"><h3>Interaction</h3><p class="cap">What the user wants the model to do · % of 32</p><div class="chart" id="c-interaction"></div></div>
+    <p class="note measure" style="margin-top:1.4rem">Overwhelmingly <b>personal</b> and <b>animal-explicit</b>: real people asking direct questions about a specific animal in front of them. <code>animal_absent</code> (downstream stakes, no animal named) is a floor, not a true rate — those messages mostly can't pass a keyword filter in the first place.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">Register</p>
+    <h2 class="sec">Message length is bimodal</h2>
+    <p class="note measure">Two distinct registers: terse one-liners ("It's Cow Steak Time!", "Milking cows") and long pasted meal plans or symptom logs. The mid-range is thin — useful signal for tuning generation length away from a single average.</p>
+    <div class="card">
+      <div class="histo" id="histo"></div>
+      <p class="cap" style="margin:1rem 0 0">Full-text word count · n=32 · median 140 words</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The raw material</p>
+    <h2 class="sec">The 32, verbatim</h2>
+    <p class="note measure">Every confirmed message, translated into English where needed and grouped by context. <b>⚠︎</b> marks the weaker, boundary-case hits (text-processing that happens to involve an animal — the ~50% the arbiter disputes). <b>×N</b> marks near-duplicate clusters that slipped past dedup. The five Russian meal-plans share one long nutrient-target block, trimmed here to <span class="el">[…]</span>.</p>
+    <div class="samples" id="samples"></div>
+  </section>
+
+  <section>
+    <p class="eyebrow">How much to trust this</p>
+    <h2 class="sec">Agreement looks great until you check the positives</h2>
+    <div class="rel">
+      <div class="relcard good">
+        <p class="rt">Random sample · has_welfare_stake</p>
+        <div class="gauge"><span class="g">99%</span><span class="gs">Haiku vs Sonnet, n=100</span></div>
+        <p>Reassuring — but a random draw is almost all easy negatives. This number mostly measures agreement on "no animal here."</p>
+      </div>
+      <div class="relcard bad">
+        <p class="rt">Positive class · precision</p>
+        <div class="gauge"><span class="g">50%</span><span class="gs">Sonnet affirms 16 / 32</span></div>
+        <p>The number that matters. The other half are the consumption/sourcing cases at the fork above — contested, not clearly wrong. Labels near that boundary are noisy; the aggregate shape and the base-rate <em>range</em> are what to trust.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <p><span class="h">Why an earlier pass was discarded.</span> A looser classifier prompt flagged 169 "positives" at ~39% precision — counting any text that <em>mentioned</em> an animal (celebrity bios, keyword extraction, article summaries). The reliability check caught it; the prompt was tightened to exclude pure text-processing, and every number here is built on that tightened run.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">By language</p>
+    <h2 class="sec">Base rate per 10k scanned</h2>
+    <p class="note measure">Russian over-indexes (real pet-care and meal-plan questions); German's hit column was dominated by an encyclopedia keyword-extraction template, nearly all correctly filtered out. Only the top ~7 languages have translated keyword lists.</p>
+    <div class="tablewrap">
+      <table id="langtable">
+        <thead><tr><th>Language</th><th>Classified</th><th>Stake-true</th><th>Survival</th><th>Per 10k (95% CI)</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Read before citing</p>
+    <h2 class="sec">Caveats</h2>
+    <div class="caveats" id="caveats"></div>
+  </section>
+
+  <footer class="measure">
+    <p>Method: streamed <span class="num">224,198</span> WildChat first turns (seeded shuffle) → multilingual keyword prefilter → <span class="num">3,000</span> hits classified with claude-haiku-4-5, arbitrated by claude-sonnet-5. First user turn only, deduped, fiction and toxic excluded. Distributions computed over the <span class="num">32</span> confirmed stake-bearing messages. Treat as a strong prior for scenario design, not ground truth.</p>
+  </footer>
+</div>
+
+<script>
+  const CI_HI = { context:60, stake:60, taxon:55, framing:100, salience:100, interaction:100 };
+
+  const DATA = {
+    context: [
+      ["pets / companion",13,40.6,25.5,57.7],["cooking / food",8,25.0,13.3,42.1],
+      ["farmed production",3,9.4,3.2,24.2],["other",2,6.2,1.7,20.1],
+      ["travel / tourism",1,3.1,0.6,15.7],["research / vet",1,3.1,0.6,15.7],
+      ["hobbies / outdoors",1,3.1,0.6,15.7],["food service",1,3.1,0.6,15.7],
+      ["learning / teaching",1,3.1,0.6,15.7],["pest / wildlife",1,3.1,0.6,15.7],
+    ],
+    stake: [
+      ["confinement",11,34.4,20.4,51.7],["sourcing",8,25.0,13.3,42.1],
+      ["harm mechanism",5,15.6,6.9,31.8],["none",4,12.5,5.0,28.1],
+      ["habitat",2,6.2,1.7,20.1],["killing",1,3.1,0.6,15.7],["breeding",1,3.1,0.6,15.7],
+    ],
+    taxon: [
+      ["dog",10,31.2,18.0,48.6],["fish",5,15.6,6.9,31.8],["turkey",5,15.6,6.9,31.8],
+      ["mackerel",5,15.6,6.9,31.8],["salmon",5,15.6,6.9,31.8],["sardine",5,15.6,6.9,31.8],
+      ["chicken",3,9.4,3.2,24.2],["pit bull",2,6.2,1.7,20.1],["cow",2,6.2,1.7,20.1],
+      ["cat",2,6.2,1.7,20.1],["egg",2,6.2,1.7,20.1],["shellfish",2,6.2,1.7,20.1],
+    ],
+    framing: [["personal",28,87.5,71.9,95.0],["work",4,12.5,5.0,28.1]],
+    salience: [["animal_explicit",29,90.6,75.8,96.8],["animal_absent",3,9.4,3.2,24.2]],
+    interaction: [["asking",24,75.0,57.9,86.7],["doing",8,25.0,13.3,42.1]],
+  };
+
+  const HISTO = [["1–10",6,18.8],["11–20",3,9.4],["21–40",3,9.4],["41–80",1,3.1],
+                 ["81–160",4,12.5],["161–320",10,31.2],["321+",5,15.6]];
+
+  const LANGS = [
+    ["English",1540,17,1.1,1.7,1.1,2.7],["German",769,1,0.1,2.5,0.4,14.3],
+    ["Russian",229,11,4.8,5.0,2.8,8.7],["Chinese",124,2,1.6,0.7,0.2,2.5],
+    ["Portuguese",101,0,0.0,0.0,0.0,6.4],["Spanish",92,1,1.1,2.1,0.4,11.4],
+    ["French",28,0,0.0,0.0,0.0,5.3],
+  ];
+
+  const CAVEATS = [
+    ["A","Sampling frame is keyword-conditional.","Messages with no animal term — the downstream-stakes case like gelatin or leather without naming an animal — mostly can't pass the prefilter. The <code>animal_absent</code> share is a lower bound."],
+    ["B","Population bias.","WildChat is 2023–24 ChatGPT users who opted into logging. Not a random sample of LLM users."],
+    ["C","Small n.","Only 32 confirmed stakes survived 3,000 classifications. Per-context cells are indicative. Reaching ~150 clean positives for tight intervals means classifying ~14k hits (scan ~1M rows, ~$25 in Haiku) — a deliberate scale-up, not a re-run."],
+    ["D","Scope is deliberate.","Every number reflects the intended construct: requests where a good answer should weigh an animal's welfare. Pure discussion about animals is excluded by design, not omission — broadening it would measure a different thing."],
+  ];
+
+  const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+  // ---- the 32 confirmed messages (translated to English where needed) ----
+  const CTX_NAMES = {
+    pets_companion:"Pets & companion animals", cooking_food:"Cooking & food",
+    farmed_production:"Farmed production", pest_wildlife_garden:"Pest & wildlife",
+    food_service:"Food service", hobbies_outdoors:"Hobbies & outdoors",
+    research_lab_vet:"Research & vet", learning_teaching:"Learning & teaching",
+    travel_tourism:"Travel & tourism", other:"Other",
+  };
+  const CTX_ORDER = ["pets_companion","cooking_food","farmed_production","food_service",
+    "hobbies_outdoors","pest_wildlife_garden","research_lab_vet","travel_tourism",
+    "learning_teaching","other"];
+
+  const SAMPLES = [
+    {n:18, lang:"EN", ctx:"pets_companion", stake:"none", taxon:"dog",
+     text:`What is the cause of a dog's constant swallowing sound?`},
+    {n:"20·23", lang:"EN", ctx:"pets_companion", stake:"none", taxon:"dog", dupe:"×2",
+     text:`Symptoms: a dog suddenly starts coughing and making loud gulping / swallowing sounds during sleep, seems agitated and distressed — what's the likely cause?`},
+    {n:19, lang:"EN", ctx:"pets_companion", stake:"confinement", taxon:"dog", warn:true,
+     text:`<span class="el">[Translate-to-Korean task wrapping vet content]</span> An analysis of a dog's acid reflux / esophagitis symptoms and recommended care, ending "translate this to Korean."`},
+    {n:"21·22", lang:"EN", ctx:"pets_companion", stake:"confinement", taxon:"pit bull", warn:true, dupe:"×2",
+     text:`<span class="el">[Embedded in a "give this chat a concise name" task]</span> "How do I get my pit bull puppy to stop jumping on people?"`},
+    {n:"24·25", lang:"EN", ctx:"pets_companion", stake:"confinement", taxon:"dog", dupe:"×2",
+     text:`"Write a loving reply to this letter." The letter is about a companion of ~20 years just diagnosed with advanced kidney failure, and staying with her through end-of-life care.`},
+    {n:26, lang:"DE", ctx:"pets_companion", stake:"confinement", taxon:"cat", tr:true,
+     text:`We have an 8-week-old cat named Katara. How do I get her to like water? The Katara from Avatar likes water, so I want her to like water too.`},
+    {n:27, lang:"RU", ctx:"pets_companion", stake:"harm_mechanism", taxon:"dog", tr:true,
+     text:`Can I give a Maltese puppy a wooden toy coated in lacquer? It's actually a foot massager we don't really use, but she likes to chew and spin it.`},
+    {n:28, lang:"RU", ctx:"pets_companion", stake:"harm_mechanism", taxon:"turtle", tr:true,
+     text:`How do I treat a turtle's eyes? <span class="el">(assistant advised: see a reptile vet, keep the tank clean, vitamin A, isolate if infected).</span>`},
+    {n:29, lang:"RU", ctx:"pets_companion", stake:"confinement", taxon:"dog", tr:true,
+     text:`Write a profile for a dog-walking service. I'm Artyom, I currently have 2 dogs (an Irish wolfhound and a maltipoo), I've taken training courses… ready to walk your dogs or board them. I live in a country house near Vnukovo.`},
+    {n:30, lang:"RU", ctx:"pets_companion", stake:"breeding", taxon:"dog", tr:true,
+     text:`Can a toy-breed dog get pregnant by a large-breed dog?`},
+
+    {n:1, lang:"EN", ctx:"cooking_food", stake:"killing", taxon:"cow",
+     text:`It's Cow Steak Time! (Recipe)`},
+    {n:2, lang:"EN", ctx:"cooking_food", stake:"sourcing", taxon:"chicken, egg", warn:true,
+     text:`<span class="el">[OCR-cleanup task]</span> "Correct the OCR of this handwriting" — the text is a handwritten Zuppa Pavese recipe (butter, bread, meat or chicken broth, 6 eggs, parmesan).`},
+    {n:"3·4·6·7", lang:"RU", ctx:"cooking_food", stake:"sourcing", taxon:"turkey, mackerel, salmon, sardine", tr:true, dupe:"×4",
+     text:`Compile a full weekly grocery basket by gram weight from this list — turkey hearts, turkey liver, turkey kidneys, mackerel, salmon, sardines, turkey, oats, wheat, vegetables, fruit… — hitting these exact daily nutrient targets. <span class="el">[long omega / vitamin / mineral dosage list]</span>`},
+    {n:5, lang:"RU", ctx:"cooking_food", stake:"sourcing", taxon:"turkey, mackerel, salmon, sardine", tr:true,
+     text:`Break a weekly grocery basket down by grams from: turkey hearts, liver, kidneys, mackerel, salmon, sardines, turkey fillet, oats, legumes, berries, seaweed… must cover ≥180 g protein and ≤100 g fat and the full daily nutrient needs of a highly stressed person with two jobs, poor sleep, a family, and near-daily exercise.`},
+    {n:8, lang:"ES", ctx:"cooking_food", stake:"sourcing", taxon:"chicken, tuna, egg", tr:true,
+     text:`A week of meals — oatmeal; fruit salad (pineapple, watermelon, prickly pear, strawberry, mango); banana-oat pancakes with hard-boiled egg; arepas with scrambled egg; grilled-chicken burgers; ají de gallina (chicken); red noodles with tuna… Give me a shopping list with everything I need to make this for two people.`},
+
+    {n:9, lang:"EN", ctx:"farmed_production", stake:"confinement", taxon:"chicken", frame:"work",
+     text:`A manufacturer of gas-fired heaters for poultry posted the below; write me a concise comment. <span class="el">[The post touts radiant tube heaters for broiler houses — "comfort for chicks," welfare and growth.]</span>`},
+    {n:10, lang:"EN", ctx:"farmed_production", stake:"confinement", taxon:"cow",
+     text:`Milking cows`},
+    {n:11, lang:"RU", ctx:"farmed_production", stake:"habitat", taxon:"reindeer, fur-bearing", tr:true, warn:true, frame:"work",
+     text:`<span class="el">[JSON-extraction task]</span> Extract deposit parameters from this oil & gas geology survey. The report incidentally notes the region's traditional economy is reindeer herding and cage fur-farming.`},
+
+    {n:12, lang:"ZH", ctx:"food_service", stake:"sourcing", taxon:"fish, shellfish", tr:true, frame:"work",
+     text:`Write a plan for selling seafood.`},
+
+    {n:13, lang:"ZH", ctx:"hobbies_outdoors", stake:"harm_mechanism", taxon:"fish", tr:true,
+     text:`Where in Hechuan, Chongqing, China can I go fishing?`},
+
+    {n:17, lang:"EN", ctx:"pest_wildlife_garden", stake:"harm_mechanism", taxon:"dog",
+     text:`Hey assistant, what's a good dog repellent to keep them from certain areas?`},
+
+    {n:31, lang:"RU", ctx:"research_lab_vet", stake:"harm_mechanism", taxon:"cat", tr:true,
+     text:`What will happen to a cat if you give it LSD?`},
+
+    {n:32, lang:"EN", ctx:"travel_tourism", stake:"confinement", taxon:"tiger",
+     text:`Give me an itinerary for Thailand, Malaysia and Indonesia, Jan 20 – Feb 7. I want to visit the tigers and the train market.`},
+
+    {n:14, lang:"EN", ctx:"learning_teaching", stake:"habitat", taxon:"—", warn:true,
+     text:`<span class="el">[A2-English worksheet]</span> Answer these reading-comprehension questions about oil spills — how they damage sea birds, mammals and shellfish, and how spills are contained.`},
+
+    {n:15, lang:"EN", ctx:"other", stake:"confinement", taxon:"service animal",
+     text:`Write a polite but firm letter to my property manager listing issues (broken oven, no AC, gas leaks…), including that they have repeatedly harassed / discriminated against my disability regarding my service animal.`},
+    {n:16, lang:"EN", ctx:"other", stake:"none", taxon:"—",
+     text:`Write a paragraph to the legislator of the humane society to help save these poor animals.`},
+  ];
+
+  function chip(cls, txt) { return `<span class="chip ${cls}">${txt}</span>`; }
+  function renderSamples() {
+    const groups = {};
+    SAMPLES.forEach(s => (groups[s.ctx] = groups[s.ctx] || []).push(s));
+    const html = CTX_ORDER.filter(c => groups[c]).map(ctx => {
+      const items = groups[ctx];
+      const total = items.reduce((a,s)=>a + (s.dupe ? +s.dupe.slice(1) : 1), 0);
+      const rows = items.map(s => {
+        const chips = [
+          chip("lang", s.lang + (s.tr ? " · translated" : "")),
+          chip("", s.stake.replace(/_/g," ")),
+          s.taxon !== "—" ? chip("", s.taxon) : "",
+          s.frame === "work" ? chip("", "work") : "",
+          s.dupe ? chip("dupe", s.dupe + " near-dupe") : "",
+          s.warn ? chip("warn", "⚠︎ boundary") : "",
+        ].join("");
+        return `<div class="samp">
+          <div class="sampnum">${s.n}</div>
+          <div><div class="samptext">${s.text}</div><div class="chips">${chips}</div></div>
+        </div>`;
+      }).join("");
+      return `<div class="sampcard">
+        <p class="gc">${total} message${total>1?"s":""}</p>
+        <h3>${CTX_NAMES[ctx]}</h3>
+        ${rows}
+      </div>`;
+    }).join("");
+    document.getElementById("samples").innerHTML = html;
+  }
+  renderSamples();
+
+  function bar(dist, key) {
+    const dom = CI_HI[key];
+    return dist.map(([label,n,pct,lo,hi]) => {
+      const amber = (key==="salience" && label==="animal_absent") || (key==="stake" && label==="none");
+      return `<div class="row${amber?" amberfill":""}">
+        <div class="rl" title="${esc(label)}">${esc(label)}</div>
+        <div class="track">
+          <div class="whisk" style="left:${lo/dom*100}%;width:${(hi-lo)/dom*100}%"></div>
+          <div class="fill" data-w="${pct/dom*100}" style="transform:scaleX(0);width:100%"></div>
+        </div>
+        <div class="rv">${pct.toFixed(1)}<small>%</small></div>
+      </div>`;
+    }).join("") + `<div class="axis"><div class="ticks"><span>0</span><span>${dom/2|0}</span><span>${dom}%</span></div></div>`;
+  }
+
+  for (const key in DATA) {
+    const el = document.getElementById("c-"+key);
+    if (el) el.innerHTML = bar(DATA[key], key);
+  }
+
+  // funnel
+  const fsteps = [
+    ["Streamed", "224,198", "conversations, after dropping 120k near-duplicate & 5.3k template prompts", 100],
+    ["Keyword hits", "3,000", "matched a multilingual animal term (1.34% of scanned)", 34],
+    ["Confirmed stake", "32", "genuine welfare stake — not fiction, not incidental mention", 12],
+  ];
+  const drops = ["↓ 98.7% carry no animal term", "↓ 98.9% of hits were fiction, incidental, or text-about-animals"];
+  document.getElementById("funnel").innerHTML = fsteps.map((s,i) => {
+    const d = i<drops.length ? "" : "";
+    return `<div class="fstep">
+        <div class="fbar" data-w="${s[3]}" style="transform:scaleX(0)"></div>
+        <div class="frow"><span class="flabel">${s[0]}</span><span class="fval">${s[1]}</span></div>
+        <div class="fsub">${s[2]}</div>
+      </div>${i<drops.length?`<div class="fdrop">${drops[i]}</div>`:""}`;
+  }).join("");
+
+  // histogram
+  const hmax = Math.max(...HISTO.map(h=>h[2]));
+  document.getElementById("histo").innerHTML = HISTO.map(([lab,n,pct],i) => {
+    const cls = pct===hmax ? "peak" : (pct>15?"peak2":"");
+    return `<div class="hbar ${cls}">
+      <span class="hn">${n}</span>
+      <div class="bar" data-h="${pct/hmax*100}" style="transform:scaleY(0);height:100%"></div>
+      <span class="hx">${lab}</span>
+    </div>`;
+  }).join("");
+
+  // language table
+  const lmax = Math.max(...LANGS.map(l=>l[4]));
+  document.querySelector("#langtable tbody").innerHTML = LANGS.map(l => {
+    const [lang,cls,st,surv,rate,lo,hi] = l;
+    return `<tr>
+      <td>${lang}</td><td>${cls.toLocaleString()}</td><td>${st}</td>
+      <td>${surv.toFixed(1)}%</td>
+      <td class="barcell">${rate.toFixed(1)} <span style="color:var(--faint)">[${lo}, ${hi}]</span>
+        <span class="mini" style="width:${rate/lmax*70}px"></span></td>
+    </tr>`;
+  }).join("");
+
+  // caveats
+  document.getElementById("caveats").innerHTML = CAVEATS.map(([i,h,b]) =>
+    `<div class="cav"><div class="ci">${i}</div><div class="cb"><strong>${h}</strong> ${b}</div></div>`
+  ).join("");
+
+  // animate on load
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.querySelectorAll(".fill").forEach(f => f.style.transform = `scaleX(${f.dataset.w/100})`);
+    document.querySelectorAll(".fbar").forEach(f => f.style.transform = `scaleX(${f.dataset.w/100})`);
+    document.querySelectorAll(".hbar .bar").forEach(b => b.style.transform = `scaleY(${b.dataset.h/100})`);
+  }));
+</script>

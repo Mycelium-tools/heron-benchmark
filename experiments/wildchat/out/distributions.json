@@ -1,0 +1,534 @@
+{
+  "generated": "2026-07-31 13:55",
+  "stage1": {
+    "scanned": 224198,
+    "hits": 3000,
+    "hit_rate_pct": 1.338,
+    "skipped_empty": 770,
+    "skipped_toxic": 0,
+    "skipped_dupe": 119733,
+    "skipped_template": 5344,
+    "seed": 42,
+    "tier_b": false
+  },
+  "classified": 3000,
+  "stake_true": 32,
+  "survival_pct": 1.1,
+  "survival_ci_pct": [
+    0.8,
+    1.5
+  ],
+  "fiction": 528,
+  "fiction_pct": 17.6,
+  "base_rate_per_10k": 1.4,
+  "base_rate_ci_per_10k": [
+    1.0,
+    2.0
+  ],
+  "base_rate_by_language": [
+    {
+      "language": "English",
+      "classified": 1540,
+      "stake_true": 17,
+      "survival_pct": 1.1,
+      "base_rate_per_10k": 1.7,
+      "ci_low": 1.1,
+      "ci_high": 2.7
+    },
+    {
+      "language": "German",
+      "classified": 769,
+      "stake_true": 1,
+      "survival_pct": 0.1,
+      "base_rate_per_10k": 2.5,
+      "ci_low": 0.4,
+      "ci_high": 14.3
+    },
+    {
+      "language": "Russian",
+      "classified": 229,
+      "stake_true": 11,
+      "survival_pct": 4.8,
+      "base_rate_per_10k": 5.0,
+      "ci_low": 2.8,
+      "ci_high": 8.7
+    },
+    {
+      "language": "Chinese",
+      "classified": 124,
+      "stake_true": 2,
+      "survival_pct": 1.6,
+      "base_rate_per_10k": 0.7,
+      "ci_low": 0.2,
+      "ci_high": 2.5
+    },
+    {
+      "language": "Portuguese",
+      "classified": 101,
+      "stake_true": 0,
+      "survival_pct": 0.0,
+      "base_rate_per_10k": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 6.4
+    },
+    {
+      "language": "Spanish",
+      "classified": 92,
+      "stake_true": 1,
+      "survival_pct": 1.1,
+      "base_rate_per_10k": 2.1,
+      "ci_low": 0.4,
+      "ci_high": 11.4
+    },
+    {
+      "language": "French",
+      "classified": 28,
+      "stake_true": 0,
+      "survival_pct": 0.0,
+      "base_rate_per_10k": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 5.3
+    }
+  ],
+  "distributions": {
+    "context": [
+      {
+        "value": "pets_companion",
+        "count": 13,
+        "pct": 40.6,
+        "ci_low_pct": 25.5,
+        "ci_high_pct": 57.7
+      },
+      {
+        "value": "cooking_food",
+        "count": 8,
+        "pct": 25.0,
+        "ci_low_pct": 13.3,
+        "ci_high_pct": 42.1
+      },
+      {
+        "value": "farmed_production",
+        "count": 3,
+        "pct": 9.4,
+        "ci_low_pct": 3.2,
+        "ci_high_pct": 24.2
+      },
+      {
+        "value": "other",
+        "count": 2,
+        "pct": 6.2,
+        "ci_low_pct": 1.7,
+        "ci_high_pct": 20.1
+      },
+      {
+        "value": "travel_tourism",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "research_lab_vet",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "hobbies_outdoors",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "food_service",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "learning_teaching",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "pest_wildlife_garden",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      }
+    ],
+    "framing": [
+      {
+        "value": "personal",
+        "count": 28,
+        "pct": 87.5,
+        "ci_low_pct": 71.9,
+        "ci_high_pct": 95.0
+      },
+      {
+        "value": "work",
+        "count": 4,
+        "pct": 12.5,
+        "ci_low_pct": 5.0,
+        "ci_high_pct": 28.1
+      }
+    ],
+    "salience": [
+      {
+        "value": "animal_explicit",
+        "count": 29,
+        "pct": 90.6,
+        "ci_low_pct": 75.8,
+        "ci_high_pct": 96.8
+      },
+      {
+        "value": "animal_absent",
+        "count": 3,
+        "pct": 9.4,
+        "ci_low_pct": 3.2,
+        "ci_high_pct": 24.2
+      }
+    ],
+    "interaction": [
+      {
+        "value": "asking",
+        "count": 24,
+        "pct": 75.0,
+        "ci_low_pct": 57.9,
+        "ci_high_pct": 86.7
+      },
+      {
+        "value": "doing",
+        "count": 8,
+        "pct": 25.0,
+        "ci_low_pct": 13.3,
+        "ci_high_pct": 42.1
+      }
+    ],
+    "stake": [
+      {
+        "value": "confinement",
+        "count": 11,
+        "pct": 34.4,
+        "ci_low_pct": 20.4,
+        "ci_high_pct": 51.7
+      },
+      {
+        "value": "sourcing",
+        "count": 8,
+        "pct": 25.0,
+        "ci_low_pct": 13.3,
+        "ci_high_pct": 42.1
+      },
+      {
+        "value": "harm_mechanism",
+        "count": 5,
+        "pct": 15.6,
+        "ci_low_pct": 6.9,
+        "ci_high_pct": 31.8
+      },
+      {
+        "value": "none",
+        "count": 4,
+        "pct": 12.5,
+        "ci_low_pct": 5.0,
+        "ci_high_pct": 28.1
+      },
+      {
+        "value": "habitat",
+        "count": 2,
+        "pct": 6.2,
+        "ci_low_pct": 1.7,
+        "ci_high_pct": 20.1
+      },
+      {
+        "value": "killing",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "breeding",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      }
+    ],
+    "taxon": [
+      {
+        "value": "dog",
+        "count": 10,
+        "pct": 31.2,
+        "ci_low_pct": 18.0,
+        "ci_high_pct": 48.6
+      },
+      {
+        "value": "fish",
+        "count": 5,
+        "pct": 15.6,
+        "ci_low_pct": 6.9,
+        "ci_high_pct": 31.8
+      },
+      {
+        "value": "turkey",
+        "count": 5,
+        "pct": 15.6,
+        "ci_low_pct": 6.9,
+        "ci_high_pct": 31.8
+      },
+      {
+        "value": "mackerel",
+        "count": 5,
+        "pct": 15.6,
+        "ci_low_pct": 6.9,
+        "ci_high_pct": 31.8
+      },
+      {
+        "value": "salmon",
+        "count": 5,
+        "pct": 15.6,
+        "ci_low_pct": 6.9,
+        "ci_high_pct": 31.8
+      },
+      {
+        "value": "sardine",
+        "count": 5,
+        "pct": 15.6,
+        "ci_low_pct": 6.9,
+        "ci_high_pct": 31.8
+      },
+      {
+        "value": "chicken",
+        "count": 3,
+        "pct": 9.4,
+        "ci_low_pct": 3.2,
+        "ci_high_pct": 24.2
+      },
+      {
+        "value": "pit bull",
+        "count": 2,
+        "pct": 6.2,
+        "ci_low_pct": 1.7,
+        "ci_high_pct": 20.1
+      },
+      {
+        "value": "cow",
+        "count": 2,
+        "pct": 6.2,
+        "ci_low_pct": 1.7,
+        "ci_high_pct": 20.1
+      },
+      {
+        "value": "cat",
+        "count": 2,
+        "pct": 6.2,
+        "ci_low_pct": 1.7,
+        "ci_high_pct": 20.1
+      },
+      {
+        "value": "egg",
+        "count": 2,
+        "pct": 6.2,
+        "ci_low_pct": 1.7,
+        "ci_high_pct": 20.1
+      },
+      {
+        "value": "shellfish",
+        "count": 2,
+        "pct": 6.2,
+        "ci_low_pct": 1.7,
+        "ci_high_pct": 20.1
+      },
+      {
+        "value": "service animal",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "tiger",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "turtle",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "reindeer",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "fur-bearing animals",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "tuna",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "seafood",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      }
+    ],
+    "language": [
+      {
+        "value": "English",
+        "count": 17,
+        "pct": 53.1,
+        "ci_low_pct": 36.4,
+        "ci_high_pct": 69.1
+      },
+      {
+        "value": "Russian",
+        "count": 11,
+        "pct": 34.4,
+        "ci_low_pct": 20.4,
+        "ci_high_pct": 51.7
+      },
+      {
+        "value": "Chinese",
+        "count": 2,
+        "pct": 6.2,
+        "ci_low_pct": 1.7,
+        "ci_high_pct": 20.1
+      },
+      {
+        "value": "German",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      },
+      {
+        "value": "Spanish",
+        "count": 1,
+        "pct": 3.1,
+        "ci_low_pct": 0.6,
+        "ci_high_pct": 15.7
+      }
+    ]
+  },
+  "word_count": {
+    "all_stake": {
+      "n": 32,
+      "median": 140.0,
+      "histogram": [
+        {
+          "bucket": "1-10",
+          "count": 6,
+          "pct": 18.8
+        },
+        {
+          "bucket": "11-20",
+          "count": 3,
+          "pct": 9.4
+        },
+        {
+          "bucket": "21-40",
+          "count": 3,
+          "pct": 9.4
+        },
+        {
+          "bucket": "41-80",
+          "count": 1,
+          "pct": 3.1
+        },
+        {
+          "bucket": "81-160",
+          "count": 4,
+          "pct": 12.5
+        },
+        {
+          "bucket": "161-320",
+          "count": 10,
+          "pct": 31.2
+        },
+        {
+          "bucket": "321+",
+          "count": 5,
+          "pct": 15.6
+        }
+      ]
+    },
+    "explicit_personal": {
+      "n": 26,
+      "median": 140.0,
+      "histogram": [
+        {
+          "bucket": "1-10",
+          "count": 5,
+          "pct": 19.2
+        },
+        {
+          "bucket": "11-20",
+          "count": 3,
+          "pct": 11.5
+        },
+        {
+          "bucket": "21-40",
+          "count": 3,
+          "pct": 11.5
+        },
+        {
+          "bucket": "41-80",
+          "count": 0,
+          "pct": 0.0
+        },
+        {
+          "bucket": "81-160",
+          "count": 2,
+          "pct": 7.7
+        },
+        {
+          "bucket": "161-320",
+          "count": 9,
+          "pct": 34.6
+        },
+        {
+          "bucket": "321+",
+          "count": 4,
+          "pct": 15.4
+        }
+      ]
+    }
+  },
+  "reliability": {
+    "has_welfare_stake": 99.0,
+    "context": 79.0,
+    "salience": 84.0,
+    "n": 100
+  },
+  "positive_precision": {
+    "n": 32,
+    "affirmed": 16,
+    "precision_pct": 50.0,
+    "strict_base_rate_per_10k": 0.7
+  }
+}

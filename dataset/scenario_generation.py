@@ -1347,25 +1347,36 @@ def generate_and_score_scenarios(
                     n_fixed += 1
             print(f"Repair pass: {n_fixed}/{len(near_idx)} revisions now pass (score >= {repair_min_score})")
 
-    # Save full run for reproducibility
+    # Save results and the config snapshot as separate files. The snapshot
+    # (every prompt/example the models were shown) makes each run
+    # interpretable after the prompts evolve; it is identical for every batch
+    # in a run, so it is written once per run directory.
     if scenarios_dir:
-        fname = filename or f"batch_{version:02d}_scored.json"
+        fname = filename or f"batch_{version:02d}_scored_scenarios.json"
         save_path = os.path.join(scenarios_dir, fname)
-        data = {
-            "dataset": [
-                {**q.model_dump(), "repaired": repaired_flags[i]}
-                for i, q in enumerate(dataset)
-            ],
-            "RUBRIC": rubric,
-            "SCORING_EXAMPLES": [ex.model_dump() for ex in scoring_examples],
-            "FEWSHOT_EXAMPLES": few_shot_examples or [],
-            "VAR_PROMPTS": var_prompts,
-            "SYSTEM_PROMPT": system_prompt,
-            "USER_PROMPT": user_prompt,
-        }
         with open(save_path, "w") as f:
-            json.dump(data, f, indent=2)
+            json.dump({
+                "dataset": [
+                    {**q.model_dump(), "repaired": repaired_flags[i]}
+                    for i, q in enumerate(dataset)
+                ],
+            }, f, indent=2)
         print(f"Saved scored batch to {save_path}")
+
+        snapshot_path = os.path.join(scenarios_dir, "config_snapshot.json")
+        if not os.path.exists(snapshot_path):
+            with open(snapshot_path, "w") as f:
+                json.dump({
+                    "MODEL": model,
+                    "JUDGE_MODEL": JUDGE_MODEL,
+                    "RUBRIC": rubric,
+                    "SCORING_EXAMPLES": [ex.model_dump() for ex in scoring_examples],
+                    "FEWSHOT_EXAMPLES": few_shot_examples or [],
+                    "VAR_PROMPTS": var_prompts,
+                    "SYSTEM_PROMPT": system_prompt,
+                    "USER_PROMPT": user_prompt,
+                }, f, indent=2)
+            print(f"Saved config snapshot to {snapshot_path}")
 
     return dataset
 
@@ -1515,7 +1526,7 @@ def run_verification(n: int = 24, out_dir: str = "") -> list[QCScenario]:
         few_shot_examples=SEED_FEWSHOT_EXAMPLES,
         register_exemplars=load_register_exemplars(),
         scenarios_dir=out_dir,
-        filename="verify_scored.json",
+        filename="scored_scenarios.json",
         repair=True,
     )
 
@@ -1638,7 +1649,7 @@ if __name__ == "__main__":
         version=VERSION,
         few_shot_examples=SEED_FEWSHOT_EXAMPLES,
         scenarios_dir=run_dir,
-        filename="step1_test_scored.json",
+        filename="step1_scored_scenarios.json",
         register_exemplars=load_register_exemplars(),
         seed_examples=SEED_FEWSHOT_EXAMPLES,
     )

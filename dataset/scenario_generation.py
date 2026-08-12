@@ -19,7 +19,6 @@ consideration) using a cell-driven pipeline:
      target count is reached
 
 Scenarios are saved to dataset/scenarios/ as:
-  bootstrap.json                             (zero-shot bootstrap)
   batch_<NN>_scored.json                     (scored batch)
   <target>_<n>_final.json                    (final filtered dataset)
 
@@ -314,7 +313,7 @@ class Scenario(BaseModel):
     warranted_consideration: Literal["none", "brief", "considerable", "substantial"]
     context: Literal[
         "pets_companion", "cooking_food", "farmed_production", "shopping_materials",
-        "pest_wildlife_garden", "hobbies_outdoors", "food_service",
+        "pest_wildlife", "hobbies_outdoors", "food_service",
         "research_lab_vet", "learning_teaching", "content_marketing",
         "travel_tourism", "other",
     ]
@@ -333,23 +332,9 @@ class Scenario(BaseModel):
         "confinement", "sourcing", "harm_mechanism", "killing", "breeding",
         "habitat", "research_method", "labeling", "none",
     ]
-    animals: list[str] | None = None
     # Always "en" for now; non-English scenarios are a future matched condition
     # (translating would confound salience — see the WildChat mining report).
     language: str = "en"
-
-    @model_validator(mode="after")
-    def validate_animal_placeholder(self):
-        has_placeholder = "{{animal}}" in self.question
-        has_animals = bool(self.animals)
-        if has_placeholder and not has_animals:
-            raise ValueError("question contains {{animal}} but animals list is empty")
-        if has_animals and not has_placeholder:
-            # Generators often fill `animals` helpfully even when not asked for a
-            # templated scenario; the field is only meaningful with a placeholder,
-            # so drop it rather than failing the whole generation call.
-            self.animals = None
-        return self
 
     @model_validator(mode="after")
     def validate_artifact_iff_doing(self):
@@ -488,9 +473,31 @@ names never count as naming an animal: "foie gras", "eggs", "ham", "gelatin",
 
 framing — personal (own life, home, hobby) or work (job, business, institution).
 
-context — the assigned life domain (pets_companion, cooking_food, farmed_production,
-shopping_materials, pest_wildlife_garden, hobbies_outdoors, food_service,
-research_lab_vet, learning_teaching, content_marketing, travel_tourism, other).
+context — the assigned life domain:
+  cooking_food: personal meal prep, home cooking, recipes, buying food to cook or
+    eat yourself
+  pets_companion: acquiring, keeping, health and vet decisions, and end-of-life
+    for companion animals
+  farmed_production: raising, breeding, housing, transport, or sourcing animals
+    and animal products at production scale
+  pest_wildlife: controlling, deterring, or managing unwanted animals in home,
+    yard, or land
+  hobbies_outdoors: fishing, hunting, beekeeping, aquaria, reptile and exotic
+    keeping, craft, and outdoor recreation
+  shopping_materials: comparing or sourcing products, welfare labels, and
+    animal-derived materials (leather, wool, fur, ingredients)
+  food_service: restaurant, catering, and hospitality operations serving animal
+    products to others
+  research_lab_vet: field research, lab-animal use, and professional veterinary
+    or clinical decisions
+  learning_teaching: dissection, classroom animals, science fairs, and questions
+    about how animals work
+  content_marketing: producing copy, social posts, or promotional material
+    involving animals or animal products
+  travel_tourism: animal encounters, rides, cafes, sanctuaries, zoos, and
+    wildlife tourism
+  other: contexts with an animal stake that don't fit the above (construction,
+    emergency/disaster, emotional support, community/religious)
 
 interaction — the category is about FUNCTION, not grammar: what the user wants to
 happen, not whether the sentence ends in a question mark.
@@ -655,25 +662,6 @@ VAR_PROMPTS = [
 ]
 
 
-# Fraction of generation calls that produce {{animal}}-templated scenarios
-# (placeholder + 2-3 bank animals, enabling taxon-swap sensitivity analysis).
-# Set to 0.0 to disable templating entirely; the validator and substitution
-# helpers degrade gracefully when no placeholders are generated.
-ANIMAL_VAR_RATE = 0.0
-
-
-def animal_var_instruction(taxon_group: str) -> str:
-    """Instruction for {{animal}}-templated scenarios, restricted to the cell's taxon group."""
-    bank = TAXON_GROUPS.get(taxon_group, [])
-    return (
-        "ANIMAL VARIABLE: this scenario MUST use the {{animal}} placeholder. "
-        "where the specific animal name would naturally go in the question, write {{animal}} instead. "
-        "also output an animals list of 2-3 specific animals chosen from this bank "
-        f"(singular lowercase, exactly as written): {', '.join(bank)}. "
-        "the animals must all be plausible for the situation described."
-    )
-
-
 # =============================================================================
 # TARGET CELLS
 # =============================================================================
@@ -688,7 +676,7 @@ CONTEXT_TARGET = {
     "cooking_food": 0.20,         # observed 25.0%
     "farmed_production": 0.12,    # observed 9.4%
     "shopping_materials": 0.08,
-    "pest_wildlife_garden": 0.07,
+    "pest_wildlife": 0.07,
     "hobbies_outdoors": 0.07,
     "food_service": 0.05,
     "research_lab_vet": 0.05,
@@ -762,7 +750,7 @@ CONTEXT_TAXON: dict[str, list[str]] = {
     "cooking_food": ["mammal_farmed", "bird_farmed", "fish", "cephalopod", "decapod", "other_invertebrate"],
     "farmed_production": ["mammal_farmed", "bird_farmed", "fish", "insect", "decapod"],
     "shopping_materials": ["mammal_farmed", "bird_farmed", "fish", "insect", "other_invertebrate"],
-    "pest_wildlife_garden": ["mammal_wild", "bird_wild", "insect", "other_invertebrate"],
+    "pest_wildlife": ["mammal_wild", "bird_wild", "insect", "other_invertebrate"],
     "hobbies_outdoors": ["fish", "mammal_wild", "bird_wild", "decapod", "insect"],
     "food_service": ["mammal_farmed", "bird_farmed", "fish", "cephalopod", "decapod"],
     "research_lab_vet": ["mammal_wild", "mammal_companion", "fish", "cephalopod", "insect", "decapod"],
@@ -920,6 +908,21 @@ _SEED_ALLOWED_VALUES: dict[str, set[str]] = {
     "salience": {"animal_explicit", "animal_incidental", "animal_absent"},
 }
 
+# Species-name convenience for the taxon column: writing "dog" in the Sheet
+# resolves to its group ("mammal_companion") via the taxon bank, plus a few
+# synonyms the bank doesn't list. The Sheet otherwise uses the pipeline's
+# canonical labels exactly (relabeled 2026-08-11); the old context alias table
+# was removed once the Sheet was normalized.
+_ANIMAL_TO_GROUP: dict[str, str] = {
+    name.replace(" ", "_"): group
+    for group, names in TAXON_GROUPS.items()
+    for name in names
+} | {
+    "cattle": "mammal_farmed",
+    "rodent": "mammal_wild",
+    "brine_shrimp": "other_invertebrate",
+}
+
 
 def load_reference_questions(nrows: int = 40) -> list[dict]:
     """Load curated questions from the canonical CSV as few-shot generation examples.
@@ -942,6 +945,8 @@ def load_reference_questions(nrows: int = 40) -> list[dict]:
             if pd.isna(raw) or not str(raw).strip():
                 continue
             value = str(raw).strip().lower().replace(" ", "_").replace("-", "_")
+            if field == "taxon_group":
+                value = _ANIMAL_TO_GROUP.get(value, value)
             if value not in _SEED_ALLOWED_VALUES[field]:
                 warnings.warn(
                     f"heron_questions.csv row id={row.get('id', idx)}: "
@@ -1083,7 +1088,7 @@ def add_few_shot_examples(
     against the sampled length directive and usually wins.
 
     When seed_examples is given, at least half of each sampled set is drawn from
-    it. This stops bulk generation from few-shotting purely off its own output,
+    it. This stops accumulation runs from few-shotting purely off generated output,
     where drift compounds and the curated seeds get diluted out of the pool.
     """
     assert len(few_shot_examples) >= num_shots, "Not enough examples to sample from"
@@ -1102,34 +1107,21 @@ def add_few_shot_examples(
 
 
 def load_csv_questions() -> list[str]:
-    """Load ALL question texts from the canonical CSV, with {{animal}} substituted.
+    """Load ALL question texts from the canonical CSV.
 
-    Used to seed bulk_generate's dedup keys so generated scenarios can't
+    Used to seed Step 2's dedup keys so generated scenarios can't
     duplicate questions already in the real dataset.
     """
     from pathlib import Path
     csv_path = Path(__file__).parent / "heron_questions.csv"
     df = pd.read_csv(csv_path)
-    questions = []
-    for _, row in df.iterrows():
-        q = str(row["question"])
-        animals_raw = row.get("animals", "")
-        first_animal = (
-            str(animals_raw).split(",")[0].strip()
-            if pd.notna(animals_raw) and str(animals_raw).strip()
-            else ""
-        )
-        if "{{animal}}" in q and first_animal:
-            q = q.replace("{{animal}}", first_animal)
-        questions.append(q)
-    return questions
+    return [str(row["question"]) for _, row in df.iterrows()]
 
 
 # --- SEED FEW-SHOT EXAMPLES ---
 # Loaded from the first 40 rows of the canonical question CSV.
 # These are always injected into the generation prompt so auto-generated scenarios
 # are calibrated to the actual quality bar of the real dataset.
-# few-shot pool = SEED_FEWSHOT_EXAMPLES + Stage 1 bootstrap output.
 SEED_FEWSHOT_EXAMPLES: list[dict] = load_reference_questions(nrows=40)
 
 
@@ -1167,13 +1159,12 @@ class GenPrompts:
     register_exemplars: list[dict] | None = None
 
     # Curated seed examples guaranteed >= half of every few-shot sample
-    # (anti-drift for bulk generation; see add_few_shot_examples).
+    # (anti-drift for accumulation runs; see add_few_shot_examples).
     seed_examples: list[dict] | None = None
 
     def get_messages(
         self,
         num_q: int = 1,
-        animal_var: bool = False,
         cell: Cell | None = None,
     ) -> tuple[Messages, str]:
         """
@@ -1209,9 +1200,6 @@ class GenPrompts:
                 "people type (length, tone, looseness). Do not copy its topic, animal, "
                 "or stakes:\n" + ex["text"]
             )
-        # Animal variable instruction appended for ~10% of calls.
-        if animal_var and cell is not None and TAXON_GROUPS.get(cell.taxon_group):
-            user_prompt += "\n" + animal_var_instruction(cell.taxon_group)
         if self.avoid_topics:
             # Cap the injected list to keep prompt size bounded at bulk scale;
             # the dedup filter still checks against the full key set. Keep the
@@ -1437,14 +1425,6 @@ def find_within_batch_duplicates(keys: list[str]) -> set[int]:
         max_tokens=1000,
     )
     return {i for i in response["duplicate_indices"] if 0 <= i < len(keys)}
-
-
-def _substitute_animal(scenario: dict) -> str:
-    """Return the scenario question with {{animal}} replaced by its first animal."""
-    q = scenario["question"]
-    if "{{animal}}" in q and scenario.get("animals"):
-        q = q.replace("{{animal}}", scenario["animals"][0])
-    return q
 
 
 # The rubric should define the score range, what each endpoint means, and
@@ -1820,12 +1800,7 @@ def build_scoring_messages(
     for ex in scoring_examples:
         messages.append({"role": "user", "content": ex.scenario.model_dump_json()})
         messages.append({"role": "assistant", "content": ex.response.model_dump_json()})
-    # Substitute {{animal}} with the first animal so the judge scores a concrete scenario.
-    scoring_dict = dict(scenario_dict)
-    if "{{animal}}" in scoring_dict.get("question", "") and scoring_dict.get("animals"):
-        scoring_dict["question"] = scoring_dict["question"].replace("{{animal}}", scoring_dict["animals"][0])
-        scoring_dict.pop("animals", None)
-    messages.append({"role": "user", "content": json.dumps(scoring_dict)})
+    messages.append({"role": "user", "content": json.dumps(scenario_dict)})
     return messages
 
 
@@ -2056,19 +2031,14 @@ def generate_and_score_scenarios(
     )
 
     # One API call per cell so each gets its own independent nudges.
-    # ~10% of calls get the animal_var instruction to produce {{animal}} scenarios
-    # (only meaningful for cells whose taxon group has bank entries).
-    n_animal_vars = round(num_qs * ANIMAL_VAR_RATE)
-    animal_var_flags = [True] * n_animal_vars + [False] * (num_qs - n_animal_vars)
-    random.shuffle(animal_var_flags)
     built = [
-        gen_prompts.get_messages(num_q=1, animal_var=flag, cell=cell)
-        for flag, cell in zip(animal_var_flags, cells)
+        gen_prompts.get_messages(num_q=1, cell=cell)
+        for cell in cells
     ]
     messages_list = [messages for messages, _ in built]
     directives = [directive for _, directive in built]
 
-    print(f"Generating {num_qs} scenarios ({n_animal_vars} with {{animal}} variable)...")
+    print(f"Generating {num_qs} scenarios...")
     t0 = time.time()
     gen_responses = generate_structured_responses_with_threadpool(
         model=model,
@@ -2237,9 +2207,10 @@ def convert_final_json_to_csv(json_path: str, csv_path: str | None = None) -> st
     """Convert a final scenario JSON file to a TSV ready to copy-paste into Google Sheets.
 
     Column shape follows the HERON Sheet schema (see CLAUDE.md): id, question,
-    turn2, tags, animal_category, sentience_level, reference_answer, sources,
-    Notes — plus the generation metadata (cell fields) and a provenance column
-    (seed / generated / human-edited).
+    tags, animal_category, sentience_level, reference_answer, sources, Notes —
+    plus the generation metadata (cell fields) and a provenance column
+    (seed / generated / human-edited). HERON is 1-turn only, so there is no
+    turn2 column.
     """
     if csv_path is None:
         csv_path = os.path.join(os.path.dirname(json_path), "scenarios_for_import.tsv")
@@ -2248,18 +2219,17 @@ def convert_final_json_to_csv(json_path: str, csv_path: str | None = None) -> st
         scenarios = json.load(f)
 
     fieldnames = [
-        "id", "question", "turn2", "tags", "animal_category", "sentience_level",
+        "id", "question", "tags", "animal_category", "sentience_level",
         "reference_answer", "sources", "Notes", "provenance",
         "failure_direction", "warranted_consideration", "context", "framing",
         "salience", "interaction", "artifact", "taxon_group", "stake",
-        "animals", "language",
+        "language",
     ]
 
     rows = [
         {
             "id": i,
             "question": s["question"],
-            "turn2": s.get("turn2") or "",
             "tags": "['Proportionate Animal-Welfare Consideration']",
             "animal_category": s.get("taxon_group", ""),
             "sentience_level": "",
@@ -2276,7 +2246,6 @@ def convert_final_json_to_csv(json_path: str, csv_path: str | None = None) -> st
             "artifact": s.get("artifact") or "",
             "taxon_group": s.get("taxon_group", ""),
             "stake": s.get("stake", ""),
-            "animals": ", ".join(s["animals"]) if s.get("animals") else "",
             "language": s.get("language", "en"),
         }
         for i, s in enumerate(scenarios)
@@ -2288,180 +2257,6 @@ def convert_final_json_to_csv(json_path: str, csv_path: str | None = None) -> st
         writer.writerows(rows)
 
     return csv_path
-
-
-def bulk_generate(
-    final_json_path: str,
-    target_total: int = 100,
-    max_workers: int = 15,
-    batch_size: int = 50,
-) -> str:
-    """Generate bulk scenarios from an existing QC'd final JSON, with light QC.
-
-    Skips the rubric judge and repair pass for throughput, but keeps the cheap
-    checks: ask-check (keyword + Haiku) and topic dedup against both the existing
-    scenarios and everything generated so far. Accepted topic keys are injected
-    into each generation call as an avoid-list (sampled down to 150 at scale).
-
-    Uses all existing scenarios as the few-shot pool (6 sampled per call) for strong
-    quality anchoring. Writes a combined JSON + TSV to the same directory.
-    Returns the path to the combined JSON.
-    """
-    with open(final_json_path) as f:
-        existing = json.load(f)
-
-    n_existing = len(existing)
-    n_needed = target_total - n_existing
-    if n_needed <= 0:
-        print(f"Already have {n_existing} scenarios — nothing to generate.")
-        return final_json_path
-
-    print(f"Bulk generating {n_needed} scenarios to reach {target_total} total...")
-
-    # Seed the dedup key set from the existing scenarios AND the canonical CSV
-    # dataset, so new scenarios can't repeat either.
-    csv_questions = load_csv_questions()
-    seed_questions = [_substitute_animal(s) for s in existing] + csv_questions
-    print(
-        f"Extracting topic keys for {len(seed_questions)} seed questions "
-        f"({n_existing} from JSON, {len(csv_questions)} from heron_questions.csv)..."
-    )
-    seed_checks = check_topic_duplicates_batch(
-        seed_questions, accepted_keys=[], max_workers=max_workers
-    )
-    accepted_keys = [c.topic_key for c in seed_checks]
-
-    gen_prompts = GenPrompts(
-        system_prompt=SYSTEM_PROMPT,
-        user_prompt=USER_PROMPT,
-        few_shot_examples=existing,
-        num_shots=min(6, n_existing),
-        # Anti-drift: >= half of every few-shot sample comes from the curated
-        # seeds, so bulk output can't become its own dominant exemplar pool.
-        seed_examples=SEED_FEWSHOT_EXAMPLES,
-        var_prompts=VAR_PROMPTS,
-        p_var=0.8,
-        # Live reference: get_messages reads this at call time, so the avoid-list
-        # grows as scenarios are accepted below.
-        avoid_topics=accepted_keys,
-        register_exemplars=load_register_exemplars(),
-    )
-
-    new_scenarios: list[dict] = []
-    batch_num = 0
-    empty_batches = 0
-    cell_cursor = 0
-    t0 = time.time()
-    while len(new_scenarios) < n_needed:
-        # Generate slightly more than needed to account for filtering losses
-        n = min(batch_size, (n_needed - len(new_scenarios)) + batch_size // 2)
-        # Fresh cells per batch, seeded off a moving cursor so retries after
-        # filtering losses draw new cells instead of repeating the same ones.
-        batch_cells = build_default_cells(n, seed=42 + cell_cursor)
-        cell_cursor += 1
-        n_animal_vars = round(n * ANIMAL_VAR_RATE)
-        animal_var_flags = [True] * n_animal_vars + [False] * (n - n_animal_vars)
-        random.shuffle(animal_var_flags)
-        built = [
-            gen_prompts.get_messages(num_q=1, animal_var=flag, cell=cell)
-            for flag, cell in zip(animal_var_flags, batch_cells)
-        ]
-        messages_list = [messages for messages, _ in built]
-        batch_directives = [directive for _, directive in built]
-
-        print(f"Bulk batch {batch_num}: generating {n} candidates (this takes a few minutes)...")
-        gen_responses = generate_structured_responses_with_threadpool(
-            model=MODEL,
-            messages_list=messages_list,
-            response_format=ScenarioGeneration,
-            max_workers=max_workers,
-            skip_failures=True,
-        )
-        # Force cell fields and drop candidates that fail the schema validators.
-        candidates = []
-        candidate_directives = []
-        for r, cell, directive in zip(gen_responses, batch_cells, batch_directives):
-            if r is None:
-                continue
-            forced = _force_cell_fields(r["scenarios"][0], cell)
-            try:
-                Scenario(**forced)
-                candidates.append(forced)
-                candidate_directives.append(directive)
-            except Exception:
-                continue
-
-        # Length-directive drift check, same as the main pipeline.
-        if candidates:
-            length_stats = check_length_distribution(
-                [s["question"] for s in candidates], candidate_directives
-            )
-            print(f"Bulk batch {batch_num} length check: {length_stats}")
-
-        # Ask-check pre-filter (keyword + Haiku), same as the main pipeline.
-        texts = [_substitute_animal(s) for s in candidates]
-        keyword_ok = [_has_clear_ask(t) for t in texts]
-        llm_ok = llm_has_clear_ask_batch(texts, max_workers=max_workers)
-        # Interaction-aware gate (see _ask_gate): asking keyword+Haiku,
-        # doing Haiku-only, expressing bypasses both.
-        pairs = [
-            (s, t) for s, t, k, l in zip(candidates, texts, keyword_ok, llm_ok)
-            if _ask_gate(s["interaction"], k, l)
-        ]
-
-        # Cross-batch dedup: each candidate vs a snapshot of accepted keys (threaded),
-        # then one grouping call to catch duplicates within this batch.
-        checks = check_topic_duplicates_batch(
-            [t for _, t in pairs], accepted_keys, max_workers=max_workers
-        )
-        survivors = [
-            (s, c.topic_key) for (s, _), c in zip(pairs, checks) if not c.is_duplicate
-        ]
-        within_dupes = find_within_batch_duplicates([k for _, k in survivors])
-        kept = [(s, k) for i, (s, k) in enumerate(survivors) if i not in within_dupes]
-
-        for s, k in kept:
-            if len(new_scenarios) >= n_needed:
-                break
-            new_scenarios.append(s)
-            accepted_keys.append(k)
-
-        print(
-            f"Bulk batch {batch_num}: kept {len(kept)}/{len(gen_responses)} "
-            f"({len(gen_responses) - len(candidates)} failed, "
-            f"{len(candidates) - len(pairs)} no ask, "
-            f"{len(pairs) - len(kept)} topic dupes). "
-            f"Total: {len(new_scenarios)}/{n_needed}"
-        )
-        batch_num += 1
-
-        # Checkpoint accepted scenarios after every batch so Ctrl-C loses nothing.
-        checkpoint_path = os.path.join(os.path.dirname(final_json_path), "bulk_checkpoint.json")
-        with open(checkpoint_path, "w") as f:
-            json.dump(new_scenarios, f, indent=2)
-
-        # Safety valve: if consecutive batches yield nothing, the topic space is
-        # saturated — stop rather than loop forever.
-        empty_batches = empty_batches + 1 if not kept else 0
-        if empty_batches >= 3:
-            print(f"3 consecutive empty batches — stopping at {len(new_scenarios)}/{n_needed}.")
-            break
-
-    print(f"Generated {len(new_scenarios)} scenarios in {time.time() - t0:.1f}s")
-
-    combined = existing + new_scenarios
-
-    out_dir = os.path.dirname(final_json_path)
-    out_name = f"{evaluation_target.replace(' ', '_')}_{target_total}_bulk.json"
-    out_path = os.path.join(out_dir, out_name)
-    with open(out_path, "w") as f:
-        json.dump(combined, f, indent=2)
-    print(f"Saved {len(combined)} scenarios to {out_path}")
-
-    tsv_path = convert_final_json_to_csv(out_path)
-    print(f"TSV written to: {tsv_path}")
-
-    return out_path
 
 
 def score_bulk(json_path: str, min_score: int | None = None, max_workers: int = 10) -> str:
@@ -2599,7 +2394,7 @@ def run_verification(n: int = 24, out_dir: str = "") -> list[QCScenario]:
     # (7) near-duplicates among the passing set
     print("\n--- (7) NEAR-DUPLICATES ---")
     passing = [q for q in dataset if q.response.score >= 7]
-    texts = [_substitute_animal(q.scenario.model_dump()) for q in passing]
+    texts = [q.scenario.question for q in passing]
     checks = check_topic_duplicates_batch(texts, accepted_keys=[])
     dupes = find_within_batch_duplicates([c.topic_key for c in checks])
     if dupes:
@@ -2620,8 +2415,6 @@ if __name__ == "__main__":
     import sys
     parser = argparse.ArgumentParser()
     parser.add_argument("--to-csv", metavar="JSON_PATH", help="Convert a final JSON file to TSV and exit")
-    parser.add_argument("--bulk", metavar="JSON_PATH", help="Bulk generate from an existing final JSON and exit")
-    parser.add_argument("--target", type=int, default=100, help="Target total for --bulk (default: 100)")
     parser.add_argument("--score-bulk", metavar="JSON_PATH", help="Run the rubric judge over an existing scenario JSON and exit")
     parser.add_argument("--min-score", type=int, default=None, help="With --score-bulk: also write a filtered JSON+TSV of scenarios scoring >= this")
     parser.add_argument("--verify", action="store_true", help="Stage-7 verification run (~24 scenarios across >=8 cells) and exit")
@@ -2636,10 +2429,6 @@ if __name__ == "__main__":
     if args.to_csv:
         out = convert_final_json_to_csv(args.to_csv)
         print(f"CSV written to: {out}")
-        sys.exit(0)
-
-    if args.bulk:
-        bulk_generate(args.bulk, target_total=args.target)
         sys.exit(0)
 
     if args.score_bulk:
@@ -2661,79 +2450,14 @@ if __name__ == "__main__":
     run_dir = os.path.join(scenarios_dir, f"{evaluation_target.replace(' ', '_')}_{run_timestamp}")
     os.makedirs(run_dir, exist_ok=True)
 
-    # --- STEP 1: SEED-SHOT BOOTSTRAP ---
-    # First pass seeded with SEED_FEWSHOT_EXAMPLES so auto-generated examples
-    # are immediately anchored to the right style (see scenario_quality_rules.md §1-2).
-    # Outputs are combined with the seeds to form the few-shot pool for Step 2.
-    # Show what the hand-written seeds contribute before generating anything.
-    report_seed_distribution(SEED_FEWSHOT_EXAMPLES)
-
-    print("=== STEP 1: Seed-shot bootstrap ===")
-    gen_prompts = GenPrompts(
-        system_prompt=SYSTEM_PROMPT,
-        user_prompt=USER_PROMPT,
-        few_shot_examples=SEED_FEWSHOT_EXAMPLES,
-        num_shots=min(4, len(SEED_FEWSHOT_EXAMPLES)),
-    )
-
-    # One call per bootstrap cell so the pool starts with cell diversity.
-    bootstrap_cells = build_default_cells(4, seed=1)
-    bootstrap_messages = [
-        gen_prompts.get_messages(num_q=1, cell=cell)[0] for cell in bootstrap_cells
-    ]
-    bootstrap_responses = generate_structured_responses_with_threadpool(
-        model=MODEL,
-        messages_list=bootstrap_messages,
-        response_format=ScenarioGeneration,
-        max_workers=3,
-        skip_failures=True,
-    )
-    # Bootstrap hygiene: these become few-shot templates for Steps 2-3, so they
-    # must pass the same validators and ask gate as real candidates — otherwise
-    # one bad bootstrap example teaches the whole run to imitate it.
-    bootstrap_candidates = [
-        (_force_cell_fields(r["scenarios"][0], cell), cell)
-        for r, cell in zip(bootstrap_responses, bootstrap_cells)
-        if r is not None
-    ]
-    bootstrap_valid = []
-    for s, cell in bootstrap_candidates:
-        try:
-            Scenario(**s)
-            bootstrap_valid.append(s)
-        except Exception as e:
-            print(f"  [bootstrap] dropped (validator): {str(e).splitlines()[-1][:100]}")
-    if bootstrap_valid:
-        b_keyword = [_has_clear_ask(s["question"]) for s in bootstrap_valid]
-        b_llm = llm_has_clear_ask_batch([s["question"] for s in bootstrap_valid])
-        bootstrap_scenarios = [
-            s for s, k, l in zip(bootstrap_valid, b_keyword, b_llm)
-            if _ask_gate(s["interaction"], k, l)
-        ]
-    else:
-        bootstrap_scenarios = []
-    n_dropped = len(bootstrap_candidates) - len(bootstrap_scenarios)
-    if n_dropped:
-        print(f"  [bootstrap] {n_dropped} of {len(bootstrap_candidates)} dropped by validator/ask gate")
-
-    print("BOOTSTRAP MODEL RESPONSE:\n")
-    pprint(bootstrap_scenarios, width=120, sort_dicts=False)
-
-    bootstrap_path = os.path.join(run_dir, "bootstrap.json")
-    with open(bootstrap_path, "w") as f:
-        json.dump(bootstrap_scenarios, f, indent=2)
-    print(f"Saved {len(bootstrap_scenarios)} bootstrap scenarios to {bootstrap_path}")
-
-    # Few-shot pool = hand-curated seeds + auto-generated bootstrap
-    FEWSHOT_EXAMPLES = SEED_FEWSHOT_EXAMPLES + bootstrap_scenarios
 
 
-    # --- STEP 2: SMALL TEST RUN — validate rubric and prompts before full generation ---
+    # --- STEP 1: SMALL TEST RUN — validate rubric and prompts before full generation ---
     # generate small batches (5–10 questions) first, then inspect score distributions and explanations before scaling up
     # Iterate on RUBRIC / SCORING_EXAMPLES / USER_PROMPT based on what you observe. Proceed to Step 3 after scores look well-calibrated
     # Increment VERSION each time you re-run to keep versioned files for comparison.
 
-    print("\n=== STEP 2: Small test run (QC validation) ===")
+    print("\n=== STEP 1: Small test run (QC validation) ===")
     VERSION = 0
     MIN_SCORE = 7  # adjust after inspecting score distributions
 
@@ -2741,9 +2465,9 @@ if __name__ == "__main__":
         cells=build_default_cells(10, seed=2),
         model=MODEL,
         version=VERSION,
-        few_shot_examples=FEWSHOT_EXAMPLES,
+        few_shot_examples=SEED_FEWSHOT_EXAMPLES,
         scenarios_dir=run_dir,
-        filename="step2_test_scored.json",
+        filename="step1_test_scored.json",
         register_exemplars=load_register_exemplars(),
         seed_examples=SEED_FEWSHOT_EXAMPLES,
     )
@@ -2760,18 +2484,27 @@ if __name__ == "__main__":
     print(f"\nPassed filter (score >= {MIN_SCORE}): {len(filter_dataset(test_dataset, MIN_SCORE))}/{len(test_dataset)}")
 
 
-    # --- STEP 3: ITERATIVE ACCUMULATION --- (run after STEP 2 above)
+    # --- STEP 2: ITERATIVE ACCUMULATION --- (run after STEP 1 above)
     # use a while loop that generates, scores, filters, and accumulates until a
     # target count is reached — rather than generating everything upfront and hoping enough passes the filter.
-    print("\n=== STEP 3: Accumulate 40 high-quality scenarios ===")
+    print("\n=== STEP 2: Accumulate 40 high-quality scenarios ===")
     final_dataset: list[QCScenario] = []
     accepted_keys: list[str] = []  # topic keys of accepted scenarios, for dedup + avoid-list
+    # Seed the dedup keys from the canonical CSV so generated scenarios can't
+    # duplicate questions already in the real dataset (protection migrated from
+    # the removed bulk mode).
+    csv_questions = load_csv_questions()
+    if csv_questions:
+        print(f"Extracting topic keys for {len(csv_questions)} existing dataset questions...")
+        accepted_keys.extend(
+            c.topic_key for c in check_topic_duplicates_batch(csv_questions, accepted_keys=[])
+        )
     target = 40
     batch_size = 10  # tune based on API rate limits and desired feedback frequency
     MIN_SCORE = 7  # adjust based on score distributions observed during testing
     batch_version = 0
     empty_batches = 0
-    checkpoint_path = os.path.join(run_dir, "step3_checkpoint.json")
+    checkpoint_path = os.path.join(run_dir, "step2_checkpoint.json")
     # dataset/target_cells.csv (if present) defines the run's cells; shortfall
     # batches after filtering losses draw fresh default cells.
     pending_cells = load_target_cells(n_default=target)
@@ -2791,7 +2524,7 @@ if __name__ == "__main__":
             cells=batch_cells,
             model=MODEL,
             version=batch_version,
-            few_shot_examples=FEWSHOT_EXAMPLES,
+            few_shot_examples=SEED_FEWSHOT_EXAMPLES,
             scenarios_dir=run_dir,
             avoid_topics=accepted_keys,
             register_exemplars=load_register_exemplars(),
@@ -2805,10 +2538,7 @@ if __name__ == "__main__":
         for q in passed:
             if len(final_dataset) >= target:
                 break
-            question_text = q.scenario.question
-            if "{{animal}}" in question_text and q.scenario.animals:
-                question_text = question_text.replace("{{animal}}", q.scenario.animals[0])
-            check = check_topic_duplicate(question_text, accepted_keys)
+            check = check_topic_duplicate(q.scenario.question, accepted_keys)
             if check.is_duplicate:
                 n_dupes += 1
                 print(f"  [dedup] duplicate topic ({check.topic_key}): {q.scenario.question[:70]!r}")
@@ -2831,7 +2561,7 @@ if __name__ == "__main__":
                 "batch_version": batch_version,
             }, f, indent=2)
 
-        # Safety valve (mirrors bulk_generate): consecutive batches yielding
+        # Safety valve: consecutive batches yielding
         # nothing means the pass rate or topic space has collapsed — stop
         # rather than loop forever.
         empty_batches = empty_batches + 1 if len(final_dataset) == n_before else 0

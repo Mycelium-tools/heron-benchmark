@@ -1,8 +1,22 @@
 """
-HERON scenario schema: taxon bank, Pydantic models, and target distributions.
+HERON scenario schema — the vocabulary layer of the generation pipeline.
 
-The vocabulary layer of the generation pipeline — imports nothing local.
-Prompt text lives in scenario_prompts.py; machinery in scenario_generation.py.
+Defines what a scenario IS, with no runtime logic:
+  - TAXON_GROUPS: the 10 animal groups, their member animals, and the
+    animal-name text scan that powers the animal_absent salience check
+  - The Pydantic models: Scenario (a question plus all its labels) with its
+    validators, and the structured-output wrappers the LLM calls return
+    (ScenarioGeneration, QCResponse, QCScenario)
+  - The target distributions: what fraction of generated scenarios should
+    have each context, framing, salience, interaction, warranted level, and
+    failure direction — plus the pairing/compatibility tables between them
+  - Cell: one "order ticket" (a full combination of the above) that a single
+    generation call is asked to satisfy
+
+Pipeline layering (dependencies flow one way):
+  scenario_schema.py  <-  scenario_prompts.py  <-  scenario_generation.py
+This file imports nothing local. Change it when adding/renaming categories
+or adjusting the dataset's target mix.
 """
 
 import re

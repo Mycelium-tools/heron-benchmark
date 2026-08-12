@@ -1,9 +1,26 @@
 """
-HERON scenario prompts: everything the generator and QC judge read.
+HERON scenario prompts — all the substantial text the LLMs read.
+
+No machinery here; this is where the benchmark's editorial decisions live:
+  - The construct definition (proportionate animal-welfare consideration,
+    bidirectional: under- AND over-consideration are failures)
+  - question_description / USER_PROMPT: the generator's full instructions —
+    field definitions (the 12 context domains, the lexical salience rule,
+    function-not-grammar interactions, the 4 warranted levels), banned
+    patterns, structure rules, and style/register rules
+  - LENGTH_DIRECTIVES and TYPO_DIRECTIVES: the per-call sampled instructions
+    that shape message length (bimodal, WildChat-derived) and typo density
+  - VAR_PROMPTS: optional style nudges
+  - RUBRIC: the QC judge's grading instructions (hard caps, conformance
+    checks, the bidirectional-discrimination test, the 0-10 scale)
+  - SCORING_EXAMPLES: the judge's 16 few-shot calibration examples,
+    spanning scores 2-9 and including deliberate mislabel traps
+  - REPAIR_PROMPT: the one-shot revision instruction for near-miss scenarios
 
 KEEP ALIGNED with PROPORTIONALITY_JUDGE_PROMPT in src/heron/scorer.py — the
-construct definitions here must not contradict the eval-time judge. Schema
-objects come from scenario_schema; machinery lives in scenario_generation.py.
+construct definitions here must not contradict the eval-time judge.
+Change this file to change what generated scenarios read like or how the QC
+judge grades; change scenario_schema.py for categories and target mixes.
 """
 
 from scenario_schema import QCResponse, QCScenario, Scenario

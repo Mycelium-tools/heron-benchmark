@@ -1,30 +1,39 @@
 """
-Scenario Generation with LLM
-=============================
-Generates scenarios for the HERON benchmark (proportionate animal-welfare
-consideration) using a cell-driven pipeline:
+HERON scenario generation — the machinery that runs the pipeline.
 
-  1. Target cells: every generation call is assigned one cell — a full
-     combination of (failure_direction, salience, framing, context, taxon_group,
-     interaction) — stated in the prompt as hard requirements. Cell counts derive
-     from empirical WildChat priors (experiments/wildchat/out/report.md).
-  2. Few-shot + register/format variance prompts + ThreadPoolExecutor: concurrent
-     calls where each scenario gets an independently sampled length directive and
-     style nudge (sampled inside get_messages() so each call gets a different one)
-  3. Quality control: an ask-check pre-filter (keyword + Haiku) zeroes scenarios
-     with no clear ask before judging; an LLM-scored proportionality rubric
-     (bidirectional discrimination + salience/warranted-consideration conformance)
-     filters out low-quality scenarios; near-misses (score 5-6) get one repair
-     pass (revise + re-score); iterative generation loop accumulates until the
-     target count is reached
+Generates candidate Turn-1 scenarios for the HERON benchmark (proportionate
+animal-welfare consideration). The flow, per batch:
 
-Scenarios are saved to dataset/scenarios/ as:
-  batch_<NN>_scored.json                     (scored batch)
-  <target>_<n>_final.json                    (final filtered dataset)
+  1. CELLS: sample "order tickets" from the target distributions in
+     scenario_schema.py (or load exact ones from dataset/target_cells.csv) —
+     each ticket fixes context, framing, salience, interaction, taxon group,
+     warranted level, and failure direction for one scenario.
+  2. GENERATE: one Claude call per cell. The prompt combines the instructions
+     in scenario_prompts.py, few-shot examples drawn from the hand-written
+     seeds in heron_questions.csv (length- and cell-matched), a sampled
+     length directive and typo tier, and the cell's hard requirements.
+  3. FILTER: the cell's labels are forced onto the output; schema validators
+     and an ask-check (keyword + Haiku, gated per interaction type) drop
+     nonconforming candidates cheaply.
+  4. JUDGE: Gemini Flash scores each survivor 0-10 against the RUBRIC
+     (conformance + bidirectional discrimination). Scores 3-6 get one
+     repair-and-rescore attempt.
+  5. ACCUMULATE: scores >= 7 pass topic dedup and bank toward the target
+     count; checkpoints save after every batch.
+
+Outputs land in dataset/scenarios/<run>/: scored batches, the final filtered
+JSON, and a TSV shaped for pasting into the Google Sheet. Nothing enters the
+benchmark without human review of that output.
+
+Also here: the Anthropic/Gemini API layer, seed/exemplar loading, and the
+reporting that compares realized label distributions to their targets.
 
 Usage:
-    python scenario_generation.py            # full 3-step pipeline
-    python scenario_generation.py --verify   # Stage-7 verification run (~24 scenarios)
+    python scenario_generation.py               # full run: calibration batch, then accumulate 40
+    python scenario_generation.py --verify      # diagnostic run (~24 scenarios), full report card
+    python scenario_generation.py --seed-report # seed dataset vs targets (no API calls)
+    python scenario_generation.py --score-bulk F.json [--min-score 7]  # judge an existing JSON
+    python scenario_generation.py --to-csv F.json                      # JSON -> Sheet TSV
 """
 
 import csv

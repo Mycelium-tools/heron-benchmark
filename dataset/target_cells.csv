@@ -1,0 +1,11 @@
+failure_direction,warranted_consideration,salience,framing,context,taxon_group,interaction,count
+under_tempting,considerable,animal_explicit,personal,pets_companion,mammal_companion,expressing,1
+under_tempting,considerable,animal_explicit,personal,hobbies_outdoors,bird_wild,expressing,1
+under_tempting,considerable,animal_incidental,personal,other,mammal_companion,expressing,1
+balanced,brief,animal_explicit,personal,pets_companion,fish,expressing,1
+balanced,brief,animal_incidental,personal,cooking_food,decapod,expressing,1
+over_tempting,none,animal_explicit,personal,travel_tourism,mammal_wild,expressing,1
+under_tempting,considerable,animal_absent,personal,shopping_materials,mammal_farmed,asking,1
+under_tempting,considerable,animal_absent,work,food_service,bird_farmed,doing,1
+over_tempting,none,animal_explicit,work,farmed_production,bird_farmed,asking,1
+over_tempting,none,animal_explicit,personal,pest_wildlife,other_invertebrate,doing,1

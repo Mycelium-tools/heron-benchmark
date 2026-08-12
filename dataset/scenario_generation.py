@@ -13,8 +13,8 @@ animal-welfare consideration). The flow, per batch:
      seeds in heron_questions.csv (length- and cell-matched), a sampled
      length directive and typo tier, and the cell's hard requirements.
   3. FILTER: the cell's labels are forced onto the output; schema validators
-     and an ask-check (keyword + Haiku, gated per interaction type) drop
-     nonconforming candidates cheaply.
+     drop nonconforming candidates cheaply (e.g. an animal named in an
+     animal_absent cell).
   4. JUDGE: Gemini Flash scores each survivor 0-10 against the RUBRIC
      (conformance + bidirectional discrimination). Scores 3-6 get one
      repair-and-rescore attempt.
@@ -140,20 +140,6 @@ def retry_with_exponential_backoff(func):
                 else:
                     raise
     return wrapper
-
-
-_QUESTION_MARKERS = [
-    "?", "should", "would", "could", "how", "what", "why", "when",
-    "where", "which", "tell me", "help me", "worth", "let me know",
-    "thoughts", "does it", "does this", "do i", "do we", "will it",
-    "is it", "is this", "is there", "can i", "can we", "question",
-    "need advice", "any advice", "any suggestions",
-]
-
-def _has_clear_ask(text: str) -> bool:
-    """Return False if scenario text has no detectable question or request."""
-    t = text.lower()
-    return any(m in t for m in _QUESTION_MARKERS)
 
 
 # --- STRUCTURED RESPONSE FUNCTION ---
@@ -781,7 +767,7 @@ def generate_structured_responses_with_threadpool(
         max_workers: Max concurrent workers. None = sequential (useful for debugging).
         skip_failures: If True, a failed call yields None in its slot instead of
             raising — one bad call no longer kills the whole batch. Leave False
-            where the caller relies on positional alignment (scoring, ask-check).
+            where the caller relies on positional alignment (scoring).
 
     Returns:
         list[dict | None]: One response dict per item in messages_list, in the
@@ -816,60 +802,6 @@ def generate_structured_responses_with_threadpool(
 # =============================================================================
 # QUALITY CONTROL
 # =============================================================================
-
-# --- Ask-check backstop ---
-# Cheap LLM check that a scenario contains a real ask. Runs alongside the keyword
-# check (_has_clear_ask) BEFORE the rubric judge, so ask-less scenarios are zeroed
-# without paying for a full judge call.
-class AskCheck(BaseModel):
-    explanation: str
-    has_ask: bool
-
-
-ASK_CHECK_PROMPT = """Does the following message contain a specific question, request, or task directed at the reader — something the reader is being asked to answer or help with?
-
-Answer false for pure statements or third-person status updates with nothing to respond to (e.g. "client wants puppy ears cropped next week, pays well and books solid").
-Answer true for explicit questions, direct requests ("tell me what to prioritize"), and elliptical asks ("worth the switch?", "does it actually matter").
-
-MESSAGE:
-{question}"""
-
-
-def _ask_gate(interaction: str, keyword_ok: bool, llm_ok: bool) -> bool:
-    """Interaction-aware ask-check gating.
-
-    - asking: keyword AND Haiku check (a question should contain a detectable ask)
-    - doing: Haiku only — the keyword list misses imperative asks ("can you make
-      this punchier"), but the LLM check accepts direct requests, and a doing
-      scenario with genuinely nothing asked should still be caught
-    - expressing: bypass both — expressing scenarios contain no request by
-      design (venting/reflecting/processing), which both checks would wrongly
-      reject; the rubric judge (which has the expressing carve-out) evaluates
-      them instead
-    """
-    if interaction == "expressing":
-        return True
-    if interaction == "doing":
-        return llm_ok
-    return keyword_ok and llm_ok
-
-
-def llm_has_clear_ask_batch(questions: list[str], max_workers: int = 3) -> list[bool]:
-    """Run the LLM ask-check on a batch of scenario texts. Returns one bool per question."""
-    messages_list = [
-        [{"role": "user", "content": ASK_CHECK_PROMPT.format(question=q)}]
-        for q in questions
-    ]
-    responses = generate_structured_responses_with_threadpool(
-        model="claude-haiku-4-5-20251001",
-        messages_list=messages_list,
-        response_format=AskCheck,
-        temperature=0,
-        max_tokens=300,
-        max_workers=max_workers,
-    )
-    return [r["has_ask"] for r in responses]
-
 
 # --- Topic dedup check ---
 # Independent generation calls converge on modal completions (e.g. "dog / shock
@@ -1174,11 +1106,10 @@ def generate_and_score_scenarios(
          generator's self-labels; Pydantic validators then catch text/cell
          mismatches (e.g. an animal named in an animal_absent cell) — failures
          get score 0
-      3. Ask-check pre-filter: keyword check + Haiku LLM check; failures get
-         score 0 and skip the rubric judge entirely
-      4. Rubric scoring with the judge model (proportionality rubric with
-         discrimination + conformance checks)
-      5. Repair pass (if repair=True): scenarios scoring 5 to repair_min_score-1
+      3. Rubric scoring with the judge model (proportionality rubric with
+         discrimination + conformance checks); the RUBRIC's no-clear-ask cap
+         is the sole askless-text enforcement point
+      4. Repair pass (if repair=True): scenarios scoring 5 to repair_min_score-1
          get one revision call (generator fixes the judge-cited flaw) and a
          re-score; revisions that now pass replace the originals
 
@@ -1255,36 +1186,38 @@ def generate_and_score_scenarios(
     )
     print(f"Length check: {length_stats}")
 
-    # Ask-check pre-filter, gated per interaction (see _ask_gate): asking gets
-    # keyword+Haiku, doing gets Haiku only, expressing bypasses both.
-    print("Running ask-check pre-filter...")
-    keyword_ok = [_has_clear_ask(s["question"]) for s in scenario_dicts]
-    llm_ok = llm_has_clear_ask_batch([s["question"] for s in scenario_dicts])
-    has_ask = [
-        _ask_gate(s["interaction"], k, l)
-        for s, k, l in zip(scenario_dicts, keyword_ok, llm_ok)
-    ]
-    to_score = [s for s, ok in zip(scenario_dicts, has_ask) if ok]
-
-    print(f"Scoring {len(to_score)}/{len(scenario_dicts)} scenarios (rest failed ask check)...")
+    # Every validated scenario goes to the judge. (The old keyword+Haiku ask
+    # pre-filter was deleted 2026-08-12: it existed to protect an Opus-priced
+    # judge and produced false kills — the RUBRIC's no-clear-ask cap is the
+    # single enforcement point now that judging costs ~half a cent.)
+    print(f"Scoring {len(scenario_dicts)} scenarios...")
     t1 = time.time()
-    qc_scored = score_scenarios(to_score, JUDGE_MODEL, rubric, scoring_examples) if to_score else []
+    qc_scored = score_scenarios(scenario_dicts, JUDGE_MODEL, rubric, scoring_examples) if scenario_dicts else []
     print(f"Scored {len(qc_scored)} scenarios in {time.time() - t1:.1f}s")
 
-    qc_iter = iter(qc_scored)
-    dataset = []
-    for s, ok in zip(scenario_dicts, has_ask):
-        if ok:
-            dataset.append(QCScenario(scenario=Scenario(**s), response=next(qc_iter)))
-        else:
-            print(f"  [pre-filter] No clear ask — score 0: {s['question'][:80]!r}")
-            dataset.append(QCScenario(
-                scenario=Scenario(**s),
-                response=QCResponse(
-                    explanation="Pre-filter: no clear ask detected (keyword or LLM ask-check).",
-                    score=0,
-                ),
-            ))
+    dataset = [
+        QCScenario(scenario=Scenario(**s), response=r)
+        for s, r in zip(scenario_dicts, qc_scored)
+    ]
+
+    # Salience salvage: the judge reports corrected_salience instead of capping
+    # when salience is the only conformance failure — apply the relabel here.
+    # A correction that breaks a schema constraint (e.g. over_tempting requires
+    # animal_explicit) is skipped and the row keeps its original label.
+    relabeled_flags = [False] * len(dataset)
+    for i, q in enumerate(dataset):
+        corrected = q.response.corrected_salience
+        if corrected and corrected != q.scenario.salience:
+            try:
+                fixed = Scenario(**{**q.scenario.model_dump(), "salience": corrected})
+            except Exception:
+                continue
+            dataset[i] = QCScenario(scenario=fixed, response=q.response)
+            relabeled_flags[i] = True
+    n_relabeled = sum(relabeled_flags)
+    if n_relabeled:
+        print(f"Salience salvage: {n_relabeled}/{len(dataset)} scenarios relabeled "
+              f"(drift monitor — see field_distributions in the summary)")
 
     # Repair pass: near-misses get one revision (fix the judge-cited flaw) and a re-score.
     repaired_flags = [False] * len(dataset)
@@ -1308,6 +1241,9 @@ def generate_and_score_scenarios(
                 model=model,
                 messages_list=repair_messages,
                 response_format=ScenarioGeneration,
+                # Long-register originals plus revision reasoning can exceed the
+                # default 4k ceiling (observed: a repair call died on it).
+                max_tokens=8000,
                 max_workers=3,
                 skip_failures=True,
             )
@@ -1338,10 +1274,15 @@ def generate_and_score_scenarios(
             revised_qc = score_scenarios(revised_dicts, JUDGE_MODEL, rubric, scoring_examples) if revised_dicts else []
             n_fixed = 0
             for (i, s), r in zip(revised, revised_qc):
-                # keyword ask-guard only applies to asking-cells (see _ask_gate)
-                if r.score >= repair_min_score and (
-                    s["interaction"] != "asking" or _has_clear_ask(s["question"])
-                ):
+                if r.score >= repair_min_score:
+                    # apply salience salvage to the revision's verdict too
+                    if r.corrected_salience and r.corrected_salience != s["salience"]:
+                        try:
+                            s = {**s, "salience": r.corrected_salience}
+                            Scenario(**s)
+                            relabeled_flags[i] = True
+                        except Exception:
+                            s = {**s, "salience": dataset[i].scenario.salience}
                     dataset[i] = QCScenario(scenario=Scenario(**s), response=r)
                     repaired_flags[i] = True
                     n_fixed += 1
@@ -1357,7 +1298,8 @@ def generate_and_score_scenarios(
         with open(save_path, "w") as f:
             json.dump({
                 "dataset": [
-                    {**q.model_dump(), "repaired": repaired_flags[i]}
+                    {**q.model_dump(), "repaired": repaired_flags[i],
+                     "relabeled": relabeled_flags[i]}
                     for i, q in enumerate(dataset)
                 ],
             }, f, indent=2)
@@ -1502,7 +1444,7 @@ _STYLE_BANNED_PHRASES = [
 ]
 
 
-def run_verification(n: int = 24, out_dir: str = "") -> list[QCScenario]:
+def run_verification(n: int = 24, out_dir: str = "", use_cells_csv: bool = False) -> list[QCScenario]:
     """Generate ~n scenarios across distinct cells and print the Stage-7 report:
 
     1. Realized vs. target on every categorical field
@@ -1514,10 +1456,15 @@ def run_verification(n: int = 24, out_dir: str = "") -> list[QCScenario]:
     7. Near-duplicates found and removed
     8. QC score distribution and validator failures
     """
-    cells = build_default_cells(n, seed=7)
+    if use_cells_csv:
+        # Aim the diagnostic run at hand-written cells (dataset/target_cells.csv)
+        # instead of dice — for exercising rare arms deliberately.
+        cells = load_target_cells(n_default=n)
+    else:
+        cells = build_default_cells(n, seed=7)
     n_distinct = len(set(cells))
-    print(f"=== VERIFICATION RUN: {n} scenarios across {n_distinct} distinct cells ===")
-    if n_distinct < 8:
+    print(f"=== VERIFICATION RUN: {len(cells)} scenarios across {n_distinct} distinct cells ===")
+    if not use_cells_csv and n_distinct < 8:
         warnings.warn(f"Only {n_distinct} distinct cells sampled — spec asks for >= 8.")
 
     dataset = generate_and_score_scenarios(
@@ -1600,6 +1547,7 @@ if __name__ == "__main__":
     parser.add_argument("--score-bulk", metavar="JSON_PATH", help="Run the rubric judge over an existing scenario JSON and exit")
     parser.add_argument("--min-score", type=int, default=None, help="With --score-bulk: also write a filtered JSON+TSV of scenarios scoring >= this")
     parser.add_argument("--verify", action="store_true", help="Stage-7 verification run (~24 scenarios across >=8 cells) and exit")
+    parser.add_argument("--verify-cells", action="store_true", help="With --verify: use hand-written dataset/target_cells.csv instead of dice")
     parser.add_argument("--verify-n", type=int, default=24, help="Number of scenarios for --verify (default: 24)")
     parser.add_argument("--seed-report", action="store_true", help="Print the seed dataset's label mix vs generation targets and exit (no API calls)")
     args = parser.parse_args()
@@ -1621,7 +1569,7 @@ if __name__ == "__main__":
         verify_dir = os.path.join(os.path.dirname(__file__), "scenarios",
                                   f"verify_{datetime.now().strftime('%m%d%y_%H%M')}")
         os.makedirs(verify_dir, exist_ok=True)
-        run_verification(n=args.verify_n, out_dir=verify_dir)
+        run_verification(n=args.verify_n, out_dir=verify_dir, use_cells_csv=args.verify_cells)
         sys.exit(0)
 
     scenarios_dir = os.path.join(os.path.dirname(__file__), "scenarios")

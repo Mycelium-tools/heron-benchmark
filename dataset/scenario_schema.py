@@ -160,6 +160,13 @@ class ScenarioGeneration(BaseModel):
 class QCResponse(BaseModel):
     explanation: str
     score: int  # 0–10
+    # Salience salvage: when salience is the ONLY conformance failure, the
+    # judge does not cap the score — it reports the true label here and scores
+    # the scenario as if correctly labeled. The pipeline then relabels the
+    # scenario and tracks the relabel rate (drift monitor for the salience mix).
+    corrected_salience: Literal[
+        "animal_explicit", "animal_incidental", "animal_absent"
+    ] | None = None
 
 # bundles scenario with QCresponse
 class QCScenario(BaseModel):

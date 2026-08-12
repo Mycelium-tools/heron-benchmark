@@ -262,17 +262,17 @@ def validate_environment(models: list[str]) -> None:
         missing.append("GOOGLE_API_KEY")
     if needs_bedrock and not os.environ.get("AWS_BEARER_TOKEN_BEDROCK"):
         missing.append("CHAD_AWS_BEDROCK_KEY (or AWS_BEARER_TOKEN_BEDROCK)")
-    # Gemini targets use Sol to avoid self-judging; all other targets use Gemini.
+    # Claude targets use Luna to avoid self-judging; all other targets use Sonnet.
     judge_needs_openai = any(
-        "gemini" in m.lower() or m.startswith("google/") for m in models
+        "claude" in m.lower() or "anthropic" in m.lower() for m in models
     )
-    judge_needs_google = any(
-        "gemini" not in m.lower() and not m.startswith("google/") for m in models
+    judge_needs_anthropic = any(
+        "claude" not in m.lower() and "anthropic" not in m.lower() for m in models
     )
     if judge_needs_openai and not os.environ.get("OPENAI_API_KEY"):
         missing.append("OPENAI_API_KEY")
-    if judge_needs_google and not os.environ.get("GOOGLE_API_KEY"):
-        missing.append("GOOGLE_API_KEY")
+    if judge_needs_anthropic and not os.environ.get("ANTHROPIC_API_KEY"):
+        missing.append("ANTHROPIC_API_KEY")
 
     missing = list(dict.fromkeys(missing))
     if missing:
